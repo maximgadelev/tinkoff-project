@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import com.example.tinkoff_project.databinding.CatalogFragmentBinding
 import com.example.tinkoff_project.databinding.MenuFragmentBinding
 
-class CatalogFragment:Fragment(R.layout.catalog_fragment){
-    private var binding: CatalogFragmentBinding?=null
+class CatalogFragment : Fragment(R.layout.catalog_fragment) {
+    private var binding: CatalogFragmentBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

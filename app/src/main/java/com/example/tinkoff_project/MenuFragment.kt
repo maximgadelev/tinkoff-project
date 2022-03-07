@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.tinkoff_project.databinding.MenuFragmentBinding
 
-class MenuFragment: Fragment(R.layout.menu_fragment) {
-    private var binding: MenuFragmentBinding?=null
+class MenuFragment : Fragment(R.layout.menu_fragment) {
+    private var binding: MenuFragmentBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

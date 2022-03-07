@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.tinkoff_project.databinding.BasketFragmentBinding
 
-class BasketFragment: Fragment(R.layout.basket_fragment) {
-    private var binding: BasketFragmentBinding?=null
+class BasketFragment : Fragment(R.layout.basket_fragment) {
+    private var binding: BasketFragmentBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

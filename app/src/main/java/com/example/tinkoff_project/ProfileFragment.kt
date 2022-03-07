@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import com.example.tinkoff_project.databinding.FavouritesFragmentBinding
 import com.example.tinkoff_project.databinding.ProfileFragmentBinding
 
-class ProfileFragment: Fragment(R.layout.profile_fragment) {
-    private var binding: ProfileFragmentBinding?=null
+class ProfileFragment : Fragment(R.layout.profile_fragment) {
+    private var binding: ProfileFragmentBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

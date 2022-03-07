@@ -4,8 +4,7 @@
     <item
         android:id="@+id/menuFragment"
         android:icon="@drawable/menu"
-        android:title="@string/menu"
-       />
+        android:title="@string/menu" />
     <item
         android:id="@+id/catalogFragment"
         android:icon="@drawable/catalog"

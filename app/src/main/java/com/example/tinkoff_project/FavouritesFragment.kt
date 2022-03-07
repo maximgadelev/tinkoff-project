@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.tinkoff_project.databinding.FavouritesFragmentBinding
 
-class FavouritesFragment: Fragment(R.layout.favourites_fragment) {
-    private var binding: FavouritesFragmentBinding?=null
+class FavouritesFragment : Fragment(R.layout.favourites_fragment) {
+    private var binding: FavouritesFragmentBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
