@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menuFragment"
+        android:icon="@drawable/menu"
+        android:title="@string/menu"
+       />
+    <item
+        android:id="@+id/catalogFragment"
+        android:icon="@drawable/catalog"
+        android:title="@string/catalog" />
+    <item
+        android:id="@+id/basketFragment"
+        android:icon="@drawable/basket"
+        android:title="@string/basket" />
+    <item
+        android:id="@+id/favouritesFragment"
+        android:icon="@drawable/favourites"
+        android:title="@string/favourites" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/profile"
+        android:title="@string/profile" />
+</menu>
