@@ -5,7 +5,9 @@ plugins {
 
 android {
     compileSdk 32
-
+    buildFeatures {
+        viewBinding true
+    }
     defaultConfig {
         applicationId "com.example.tinkoff_project"
         minSdk 31
@@ -37,7 +39,40 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    // region Network
+    def retrofit = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:${retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofit}"
+
+    def okhttp = "4.9.3"
+    implementation "com.squareup.okhttp3:okhttp:${okhttp}"
+    debugImplementation "com.squareup.okhttp3:logging-interceptor:${okhttp}"
+    // endregion
+
     testImplementation 'junit:junit:4.13.2'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
+
+detekt {
+    source = files(projectDir)
+    config = files("${project.rootDir}/config/detekt/detekt.yml")
+    parallel = true
+    reports {
+        txt.enabled = true
+        xml.enabled = true
+        sarif.enabled = true
+        html {
+            enabled = true
+            destination = file("build/reports/detekt.html")
+        }
+    }
 }
