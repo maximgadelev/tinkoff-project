@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/menuFragment">
+
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.tinkoff_project.MenuFragment"
+        android:label="MenuFragment" />
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.example.tinkoff_project.CatalogFragment"
+        android:label="CatalogFragment" />
+    <fragment
+        android:id="@+id/basketFragment"
+        android:name="com.example.tinkoff_project.BasketFragment"
+        android:label="BasketFragment" />
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.example.tinkoff_project.FavouritesFragment"
+        android:label="FavouritesFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.tinkoff_project.ProfileFragment"
+        android:label="ProfileFragment" />
+</navigation>
