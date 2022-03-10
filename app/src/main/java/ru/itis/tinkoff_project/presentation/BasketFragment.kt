@@ -1,10 +1,11 @@
-package com.example.tinkoff_project
+package ru.itis.tinkoff_project.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.tinkoff_project.R
 import com.example.tinkoff_project.databinding.BasketFragmentBinding
 
 class BasketFragment : Fragment(R.layout.basket_fragment) {

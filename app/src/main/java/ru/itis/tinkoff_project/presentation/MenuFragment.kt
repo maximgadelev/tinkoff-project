@@ -1,20 +1,21 @@
-package com.example.tinkoff_project
+package ru.itis.tinkoff_project.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.tinkoff_project.databinding.FavouritesFragmentBinding
+import com.example.tinkoff_project.R
+import com.example.tinkoff_project.databinding.MenuFragmentBinding
 
-class FavouritesFragment : Fragment(R.layout.favourites_fragment) {
-    private var binding: FavouritesFragmentBinding? = null
+class MenuFragment : Fragment(R.layout.menu_fragment) {
+    private var binding: MenuFragmentBinding? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FavouritesFragmentBinding.inflate(inflater, container, false)
+        binding = MenuFragmentBinding.inflate(inflater, container, false)
         return binding?.root
     }
 }

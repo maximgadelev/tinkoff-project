@@ -6,22 +6,22 @@
 
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.tinkoff_project.MenuFragment"
+        android:name="ru.itis.tinkoff_project.presentation.MenuFragment"
         android:label="MenuFragment" />
     <fragment
         android:id="@+id/catalogFragment"
-        android:name="com.example.tinkoff_project.CatalogFragment"
+        android:name="ru.itis.tinkoff_project.presentation.CatalogFragment"
         android:label="CatalogFragment" />
     <fragment
         android:id="@+id/basketFragment"
-        android:name="com.example.tinkoff_project.BasketFragment"
+        android:name="ru.itis.tinkoff_project.presentation.BasketFragment"
         android:label="BasketFragment" />
     <fragment
         android:id="@+id/favouritesFragment"
-        android:name="com.example.tinkoff_project.FavouritesFragment"
+        android:name="ru.itis.tinkoff_project.presentation.FavouritesFragment"
         android:label="FavouritesFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.tinkoff_project.ProfileFragment"
+        android:name="ru.itis.tinkoff_project.presentation.ProfileFragment"
         android:label="ProfileFragment" />
 </navigation>

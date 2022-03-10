@@ -9,7 +9,7 @@ android {
         viewBinding true
     }
     defaultConfig {
-        applicationId "com.example.tinkoff_project"
+        applicationId "ru.itis.tinkoff_project"
         minSdk 26
         targetSdk 32
         versionCode 1

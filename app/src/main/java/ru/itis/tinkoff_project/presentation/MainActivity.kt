@@ -1,10 +1,11 @@
-package com.example.tinkoff_project
+package ru.itis.tinkoff_project.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.tinkoff_project.R
 import com.example.tinkoff_project.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
