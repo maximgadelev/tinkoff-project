@@ -14,7 +14,7 @@ import com.example.tinkoff_project.databinding.MenuFragmentBinding
 class MenuFragment : Fragment(R.layout.menu_fragment) {
     private val viewBinding: MenuFragmentBinding by viewBinding(CreateMethod.INFLATE)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return viewBinding.root
     }
 }

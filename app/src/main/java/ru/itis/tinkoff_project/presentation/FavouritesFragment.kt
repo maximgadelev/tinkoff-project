@@ -13,7 +13,7 @@ import com.example.tinkoff_project.databinding.FavouritesFragmentBinding
 class FavouritesFragment : Fragment(R.layout.favourites_fragment) {
     private val viewBinding: FavouritesFragmentBinding by viewBinding(CreateMethod.INFLATE)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return viewBinding.root
     }
 }

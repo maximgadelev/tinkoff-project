@@ -14,7 +14,7 @@ import com.example.tinkoff_project.databinding.CatalogFragmentBinding
 class BasketFragment : Fragment(R.layout.basket_fragment) {
     private val viewBinding: BasketFragmentBinding by viewBinding(CreateMethod.INFLATE)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return viewBinding.root
     }
 }
