@@ -2,26 +2,26 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/menuFragment">
+    app:startDestination="@id/menu">
 
     <fragment
-        android:id="@+id/menuFragment"
-        android:name="ru.itis.tinkoff_project.presentation.MenuFragment"
+        android:id="@+id/menu"
+        android:name="ru.itis.tinkoff.project.features.menu.ui.MenuFragment"
         android:label="MenuFragment" />
     <fragment
-        android:id="@+id/catalogFragment"
-        android:name="ru.itis.tinkoff_project.presentation.CatalogFragment"
+        android:id="@+id/catalog"
+        android:name="ru.itis.tinkoff.project.features.catalog.CatalogFragment"
         android:label="CatalogFragment" />
     <fragment
-        android:id="@+id/basketFragment"
-        android:name="ru.itis.tinkoff_project.presentation.BasketFragment"
+        android:id="@+id/basket"
+        android:name="ru.itis.tinkoff.project.features.cart.ui.CartFragment"
         android:label="BasketFragment" />
     <fragment
-        android:id="@+id/favouritesFragment"
-        android:name="ru.itis.tinkoff_project.presentation.FavouritesFragment"
+        android:id="@+id/favourites"
+        android:name="ru.itis.tinkoff.project.features.favorites.ui.FavouritesFragment"
         android:label="FavouritesFragment" />
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="ru.itis.tinkoff_project.presentation.ProfileFragment"
+        android:id="@+id/profile"
+        android:name="ru.itis.tinkoff.project.features.profile.ui.ProfileFragment"
         android:label="ProfileFragment" />
 </navigation>
