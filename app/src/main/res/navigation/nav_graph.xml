@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/menu"
-        android:name="ru.itis.tinkoff.project.features.menu.ui.MenuFragment"
+        android:name="ru.itis.tinkoff.project.features.main.presentation.ui.MainFragment"
         android:label="MenuFragment" />
     <fragment
         android:id="@+id/catalog"

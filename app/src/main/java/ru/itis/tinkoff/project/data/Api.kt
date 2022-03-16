@@ -1,18 +1,21 @@
 package ru.itis.tinkoff.project.data
 
 import retrofit2.http.GET
-import ru.itis.tinkoff.project.entity.User
+import ru.itis.tinkoff.project.entity.Category
+import ru.itis.tinkoff.project.entity.Product
+import ru.itis.tinkoff.project.entity.Profile
+import ru.itis.tinkoff.project.entity.Promotion
 
 interface Api {
-    @GET()
-    suspend fun getCategories()
+    @GET("categories")
+    suspend fun getCategories(): List<Category>
 
-    @GET()
-    suspend fun getProducts()
+    @GET("products")
+    suspend fun getProducts(): List<Product>
 
-    @GET()
-    suspend fun getProfileInfo(id: Long): User
+    @GET("profileInfo")
+    suspend fun getProfileInfo(): Profile
 
-    @GET()
-    suspend fun getPromotions()
+    @GET("promotions")
+    suspend fun getPromotions(): List<Promotion>
 }
