@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.utils
+package ru.itis.tinkoff.project.features.menu.ui.renderer
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,27 +7,28 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
+import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
-import ru.haroncode.aquarius.core.clicker.ClickableRenderer
-import ru.itis.tinkoff.project.features.utils.CarouselRenderer.RenderContract
 
 
-class CarouselRenderer<Item> : ItemBaseRenderer<Item, RenderContract>(),ClickableRenderer {
+class ProductCardListRenderer<Item> :
+    ItemBaseRenderer<Item, ProductCardListRenderer.RenderContract>(), ClickableRenderer {
 
     interface RenderContract {
-        val promotions: List<Promotion>
+        val products: List<Product>
     }
 
-    data class Promotion(
+    data class Product(
+        override val name: String,
         override val image: String,
-        override val name:String
-    ) : PromotionRender.RenderContract, ComparableItem
+        override val price: Int
+    ) : ProductCardRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {
-        RenderAdapterBuilder<Promotion>()
-            .renderer(Promotion::class, PromotionRender())
+        RenderAdapterBuilder<Product>()
+            .renderer(Product::class, ProductCardRenderer())
             .build(DifferStrategies.withDiffUtilComparable())
     }
 
@@ -35,12 +36,12 @@ class CarouselRenderer<Item> : ItemBaseRenderer<Item, RenderContract>(),Clickabl
         viewHolder: RecyclerView.ViewHolder,
         listener: (RecyclerView.ViewHolder, View) -> Unit
     ) {
-        viewHolder.itemView.setOnClickListener{
-           listener(viewHolder,it)
+        viewHolder.itemView.setOnClickListener {
+            listener(viewHolder, it)
         }
     }
 
-    override val layoutRes: Int = R.layout.item_carousel
+    override val layoutRes: Int = R.layout.item_product_card_recycler
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): BaseViewHolder {
         val viewHolder = super.onCreateViewHolder(inflater, parent)
@@ -52,6 +53,6 @@ class CarouselRenderer<Item> : ItemBaseRenderer<Item, RenderContract>(),Clickabl
     }
 
     override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
-        itemAdapter.differ.submitList(item.promotions)
+        itemAdapter.differ.submitList(item.products)
     }
 }

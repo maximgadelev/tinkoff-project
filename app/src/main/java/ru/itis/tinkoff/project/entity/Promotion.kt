@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.entity
+package ru.itis.tinkoff.project.entity
 
 data class Promotion (
     val name:String,

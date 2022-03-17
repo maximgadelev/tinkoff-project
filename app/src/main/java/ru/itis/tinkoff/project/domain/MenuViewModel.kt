@@ -1,13 +1,12 @@
-package ru.itis.tinkoff.project.features
+package ru.itis.tinkoff.project.domain
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import ru.itis.tinkoff.project.features.entity.Promotion
-import ru.itis.tinkoff.project.features.utils.PromotionService
+import ru.itis.tinkoff.project.entity.Promotion
 
 class MenuViewModel(
-private val promotionService: PromotionService
+
 ): ViewModel() {
 private val _promotions=MutableLiveData<List<Promotion>>()
     val promotions:LiveData<List<Promotion>> =_promotions

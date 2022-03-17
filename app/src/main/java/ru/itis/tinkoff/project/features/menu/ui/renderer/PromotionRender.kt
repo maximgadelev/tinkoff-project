@@ -1,11 +1,11 @@
-package ru.itis.tinkoff.project.features.utils
+package ru.itis.tinkoff.project.features.menu.ui.renderer
 
 
 import com.bumptech.glide.Glide
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
 import kotlinx.android.synthetic.main.item_promotion.view.*
-import ru.itis.tinkoff.project.features.utils.PromotionRender.RenderContract
+import ru.itis.tinkoff.project.features.menu.ui.renderer.PromotionRender.RenderContract
 class PromotionRender<Item> : ItemBaseRenderer<Item, RenderContract>() {
 
     interface RenderContract {

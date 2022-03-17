@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.utils
+package ru.itis.tinkoff.project.features.menu.ui.renderer
 
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.product_card.view.*

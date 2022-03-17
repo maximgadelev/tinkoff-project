@@ -1,7 +1,8 @@
 package ru.itis.tinkoff.project.features.utils
-import ru.itis.tinkoff.project.features.utils.CarouselRenderer.Promotion
+import ru.itis.tinkoff.project.features.menu.ui.renderer.CarouselRenderer.Promotion
 import android.content.Context
 import ru.itis.tinkoff.project.R
+import ru.itis.tinkoff.project.features.menu.ui.renderer.ProductCardListRenderer
 
 object  ItemFactory {
 
@@ -63,7 +64,7 @@ object  ItemFactory {
                     5999),
                 ProductCardListRenderer.Product("Фен",
                     "https://markshmidt.ru/wa-data/public/shop/products/04/05/504/images/1108/1108.970.jpg",
-                    5999),ProductCardListRenderer.Product("Фен",
+                    5999), ProductCardListRenderer.Product("Фен",
                     "https://markshmidt.ru/wa-data/public/shop/products/04/05/504/images/1108/1108.970.jpg",
                     5999),
                 ProductCardListRenderer.Product("Фен",
