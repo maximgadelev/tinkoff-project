@@ -3,14 +3,18 @@ import ru.itis.tinkoff.project.features.menu.ui.renderer.CarouselRenderer.Promot
 import android.content.Context
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.features.menu.ui.renderer.ProductCardListRenderer
+import ru.itis.tinkoff.project.features.menu.ui.renderer.SnapRenderer
+import ru.itis.tinkoff.project.features.menu.ui.renderer.ThreePromotionsCardRenderer
 
 object  ItemFactory {
 
      fun staticItems(context: Context): List<Item> {
          val resultList = mutableListOf<Item>()
-         resultList += carousel()
+         resultList+= snap()
          resultList+= Item.Title(R.string.title)
          resultList+= generateProductCards()
+         resultList += carousel()
+         resultList += generatePromotionsThreeElements()
          return resultList
      }
 
@@ -18,7 +22,7 @@ object  ItemFactory {
         return Item.CarouselItem(
             promotions = listOf(
                 Promotion(
-                    "https://i.pinimg.com/originals/f4/d2/96/f4d2961b652880be432fb9580891ed62.png",
+                    "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg",
                     "8 марта"
                 ),
                 Promotion(
@@ -42,16 +46,33 @@ object  ItemFactory {
             )
         )
     }
-    private fun generateCardItems(count: Int = 6): List<Item> {
-        val result = mutableListOf<Item>()
-        for (index in 0 until count) {
-            result += Item.ProductItem(
-                "Фен",
-                "https://markshmidt.ru/wa-data/public/shop/products/04/05/504/images/1108/1108.970.jpg",
-                5999
+    private fun snap(): Item.SnapItem {
+        return Item.SnapItem(
+            promotions = listOf(
+                SnapRenderer.Promotion(
+                    "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg",
+                    "8 марта"
+                ),
+                SnapRenderer.Promotion(
+                    "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg",
+                    "23 февраля"
+                ), SnapRenderer.Promotion(
+                    "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg", "23 февраля"
+                ),
+                SnapRenderer.Promotion(
+                    "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg",
+                    "8 марта"
+                ),
+                SnapRenderer.Promotion(
+                    "https://i05.fotocdn.net/s114/42b1a5899e67aa9f/user_xl/2582268942.jpg",
+                    "23 февраля"
+                ),
+                SnapRenderer.Promotion(
+                    "https://gorod48.ru/upload/iblock/cbd/cbdddbed4705f37ccb30322e7ffb9da9.JPG",
+                    "9 мая"
+                )
             )
-        }
-        return result
+        )
     }
     private fun generateProductCards():Item.ProductListItem{
         return Item.ProductListItem(
@@ -76,11 +97,27 @@ object  ItemFactory {
             )
         )
     }
+    private fun generatePromotionsThreeElements():Item.ThreePromotionsCardItem{
+        return Item.ThreePromotionsCardItem(
+            promotions = listOf(
+                ThreePromotionsCardRenderer.Promotion(
+                    "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg", "23 февраля"
+                ),
+                ThreePromotionsCardRenderer.Promotion(
+                    "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg", "23 февраля"
+                ),
+                ThreePromotionsCardRenderer.Promotion(
+                    "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg", "23 февраля"
+                )
+            )
+        )
+    }
     fun loadMore(): List<Item> {
         val resultList = mutableListOf<Item>()
         resultList += carousel()
         resultList+= Item.Title(R.string.title)
         resultList+= generateProductCards()
+        resultList+= snap()
         return resultList
     }
 }

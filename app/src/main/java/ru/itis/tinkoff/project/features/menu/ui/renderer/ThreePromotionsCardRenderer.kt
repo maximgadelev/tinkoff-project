@@ -7,15 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
+import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
-import ru.haroncode.aquarius.core.clicker.ClickableRenderer
-import ru.itis.tinkoff.project.features.menu.ui.renderer.CarouselRenderer.RenderContract
 
-
-
-class CarouselRenderer<Item>(isLong:String) : ItemBaseRenderer<Item, RenderContract>(),ClickableRenderer {
+class ThreePromotionsCardRenderer<Item>(isLong:String) : ItemBaseRenderer<Item, ThreePromotionsCardRenderer.RenderContract>(),
+    ClickableRenderer {
 
     interface RenderContract {
         val promotions: List<Promotion>
@@ -38,11 +36,11 @@ class CarouselRenderer<Item>(isLong:String) : ItemBaseRenderer<Item, RenderContr
         listener: (RecyclerView.ViewHolder, View) -> Unit
     ) {
         viewHolder.itemView.setOnClickListener{
-           listener(viewHolder,it)
+            listener(viewHolder,it)
         }
     }
 
-    override val layoutRes: Int = R.layout.item_carousel
+    override val layoutRes: Int = R.layout.item_static_three_promotion_list
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): BaseViewHolder {
         val viewHolder = super.onCreateViewHolder(inflater, parent)

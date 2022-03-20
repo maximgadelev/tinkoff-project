@@ -1,11 +1,7 @@
 package ru.itis.tinkoff.project.features.utils
 
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
-import ru.itis.tinkoff.project.features.menu.ui.renderer.TitleRenderer
-import ru.itis.tinkoff.project.features.menu.ui.renderer.CarouselRenderer
-import ru.itis.tinkoff.project.features.menu.ui.renderer.ProductCardListRenderer
-import ru.itis.tinkoff.project.features.menu.ui.renderer.ProductCardRenderer
-import ru.itis.tinkoff.project.features.menu.ui.renderer.PromotionRender
+import ru.itis.tinkoff.project.features.menu.ui.renderer.*
 
 sealed class Item:ComparableItem {
 
@@ -23,7 +19,15 @@ sealed class Item:ComparableItem {
         override val price: Int,
     ) : Item(), ProductCardRenderer.RenderContract
 
+    data class SnapItem(
+    override val promotions: List<SnapRenderer.Promotion>,
+) : Item(), SnapRenderer.RenderContract
+
     data class ProductListItem(
         override val products: List<ProductCardListRenderer.Product>):Item(),
         ProductCardListRenderer.RenderContract
+
+    data class ThreePromotionsCardItem(
+        override val promotions: List<ThreePromotionsCardRenderer.Promotion>,
+    ) : Item(), ThreePromotionsCardRenderer.RenderContract
 }

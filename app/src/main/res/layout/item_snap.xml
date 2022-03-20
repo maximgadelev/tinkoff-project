@@ -6,5 +6,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-    />
+    tools:listitem="@layout/item_promotion_square_200dp"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
