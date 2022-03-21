@@ -3,6 +3,7 @@ package ru.itis.tinkoff.project.features.profile.ui
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.tinkoff.project.databinding.ItemOptionBinding
+import ru.itis.tinkoff.project.entity.ProfileOption
 
 class ProfileOptionHolder (
     item: View

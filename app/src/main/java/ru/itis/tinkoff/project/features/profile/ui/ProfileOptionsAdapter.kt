@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.tinkoff.project.R
+import ru.itis.tinkoff.project.entity.ProfileOption
 
 class ProfileOptionsAdapter (
     private val list: List<ProfileOption>,
