@@ -24,4 +24,9 @@
     <dimen name="small_picture">24dp</dimen>
     <dimen name="normal_picture">32dp</dimen>
     <dimen name="large_picture">72dp</dimen>
+
+    <dimen name="item_height">48dp</dimen>
+    <dimen name="big_item_height">96dp</dimen>
+    <dimen name="background_profile_accent">240dp</dimen>
+    <dimen name="profile_rv_height">348dp</dimen>
 </resources>

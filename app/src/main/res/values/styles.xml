@@ -12,17 +12,17 @@
 
     <style name="SmallIconSize">
         <item name="android:layout_height">@dimen/small_picture</item>
-        <item name="android:layout_weight">@dimen/small_picture</item>
+        <item name="android:layout_width">@dimen/small_picture</item>
     </style>
 
     <style name="NormalIconSize">
         <item name="android:layout_height">@dimen/normal_picture</item>
-        <item name="android:layout_weight">@dimen/normal_picture</item>
+        <item name="android:layout_width">@dimen/normal_picture</item>
     </style>
 
     <style name="LargeIconSize">
         <item name="android:layout_height">@dimen/large_picture</item>
-        <item name="android:layout_weight">@dimen/large_picture</item>
+        <item name="android:layout_width">@dimen/large_picture</item>
     </style>
 
     <style name="TextStyleMedium" parent="TextAppearance.AppCompat">
