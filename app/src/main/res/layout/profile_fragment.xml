@@ -14,34 +14,22 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fragmentContainerView"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="@dimen/background_profile_accent"
                 android:background="@color/deep_yellow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_avatar"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/iv_avatar"
                 android:layout_width="96dp"
                 android:layout_height="96dp"
-                app:cardCornerRadius="60dp"
-                android:elevation="10dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_marginStart="28dp"
                 android:src="@drawable/user_photo_default"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="90dp">
-
-                <ImageView
-                    android:id="@+id/iv_avatar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/user_photo_default"
-                    android:scaleType="centerCrop">
-
-                </ImageView>
-            </androidx.cardview.widget.CardView>
+                android:layout_marginTop="90dp" />
 
             <TextView
                 android:id="@+id/tv_name"
@@ -51,8 +39,8 @@
                 android:layout_marginTop="@dimen/spacing_normal"
                 style="@style/TextStyleMedium.SmallTextBlack"
                 android:text="@string/name"
-                app:layout_constraintStart_toEndOf="@+id/cv_avatar"
-                app:layout_constraintTop_toTopOf="@+id/cv_avatar" />
+                app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+                app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
 
             <TextView
                 android:id="@+id/tv_surname"
@@ -67,12 +55,12 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/actual_orders"
                 android:layout_width="match_parent"
-                android:layout_height="96dp"
+                android:layout_height="@dimen/big_item_height"
                 android:layout_marginHorizontal="@dimen/spacing_normal"
                 android:layout_marginTop="@dimen/spacing_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cv_avatar"
+                app:layout_constraintTop_toBottomOf="@id/iv_avatar"
                 android:background="@drawable/white_round_corners_shape"
                 android:elevation="@dimen/elevation_size"
                 android:translationZ="@dimen/elevation_size">
@@ -106,13 +94,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_options"
                 android:layout_width="match_parent"
-                android:layout_height="348dp"
+                android:layout_height="@dimen/profile_rv_height"
                 android:layout_marginHorizontal="@dimen/spacing_normal"
                 android:layout_marginTop="@dimen/spacing_normal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/actual_orders" />
+                app:layout_constraintTop_toBottomOf="@+id/actual_orders"
+                tools:listitem="@layout/item_option" />
 
             <Button
                 android:id="@+id/out_btn"
