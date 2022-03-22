@@ -2,6 +2,7 @@ package ru.itis.tinkoff.project.features.profile.ui
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -14,13 +15,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
-import coil.transform.CircleCropTransformation
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProfileFragmentBinding
 
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private val viewBinding by viewBinding(ProfileFragmentBinding::bind)
+    private lateinit var alertDialog: AlertDialog
     private val REQUEST_CODE_LOAD = 1001
     private val REQUEST_CODE_TAKE_PHOTO = 1002
 
@@ -31,10 +32,30 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
         with(viewBinding) {
             ivAvatar.setOnClickListener {
-                addAvatarByLoading()
-                //addAvatarByTakingPhoto()
+                showAlert()
             }
         }
+    }
+
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(context)
+        val optionsForLoading = arrayOf<CharSequence>("Сделать фото", "Загрузить с устройства")
+        builder
+            .setTitle("Изменить аватар профиля")
+            .setItems(optionsForLoading) { dialog, which ->
+                if (which == 0) {
+                    addAvatarByTakingPhoto()
+                }
+                if (which == 1) {
+                    addAvatarByLoading()
+                }
+            }
+            .setNegativeButton("Отмена") { dialog, _ ->
+                dialog.cancel()
+            }
+            .show()
+        alertDialog = builder.create()
+        alertDialog.show()
     }
 
     private fun addAvatarByLoading() {
