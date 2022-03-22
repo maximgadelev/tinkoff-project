@@ -4,8 +4,10 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -19,7 +21,8 @@ import ru.itis.tinkoff.project.databinding.ProfileFragmentBinding
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private val viewBinding by viewBinding(ProfileFragmentBinding::bind)
-    private val REQUEST_CODE = 1001
+    private val REQUEST_CODE_LOAD = 1001
+    private val REQUEST_CODE_TAKE_PHOTO = 1002
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,20 +31,29 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
         with(viewBinding) {
             ivAvatar.setOnClickListener {
-                addAvatar()
+                addAvatarByLoading()
+                //addAvatarByTakingPhoto()
             }
         }
     }
 
-    private fun addAvatar() {
-        if (checkPermissions() == true) {
+    private fun addAvatarByLoading() {
+        if (checkGalleryPermissions() == true) {
             chooseImageGallery()
         } else {
-            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_CODE)
+            requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), REQUEST_CODE_LOAD)
         }
     }
 
-    private fun checkPermissions(): Boolean? {
+    private fun addAvatarByTakingPhoto(){
+        if (checkCameraPermissions() == true) {
+            takeCameraPhoto()
+        } else {
+            requestPermissions(arrayOf(Manifest.permission.CAMERA), REQUEST_CODE_TAKE_PHOTO)
+        }
+    }
+
+    private fun checkGalleryPermissions(): Boolean? {
         activity?.apply {
             return (ContextCompat.checkSelfPermission(
                 applicationContext,
@@ -55,22 +67,65 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         return null
     }
 
+    private fun checkCameraPermissions(): Boolean? {
+        activity?.apply {
+            return (ContextCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(
+                        applicationContext,
+                        Manifest.permission.CAMERA
+                    ) == PackageManager.PERMISSION_GRANTED)
+        }
+        return null
+    }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        if (requestCode == REQUEST_CODE && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            chooseImageGallery()
-        } else {
-            Toast.makeText(context, "Доступ к фотографиям запрещен", Toast.LENGTH_SHORT).show()
+        when(requestCode){
+            REQUEST_CODE_LOAD -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                chooseImageGallery()
+            } else {
+                Toast.makeText(context, "Доступ к галерее запрещен", Toast.LENGTH_SHORT).show()
+            }
+            REQUEST_CODE_TAKE_PHOTO -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+               takeCameraPhoto()
+            } else {
+                Toast.makeText(context, "Доступ к камере запрещен", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private fun chooseImageGallery() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        startActivityForResult(intent, REQUEST_CODE)
+        startActivityForResult(intent, REQUEST_CODE_LOAD)
+    }
+
+    private fun takeCameraPhoto(){
+        val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(callCameraIntent, REQUEST_CODE_TAKE_PHOTO)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when(requestCode){
+            REQUEST_CODE_LOAD -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    data?.data?.let { loadWithCoil(it) }
+                }
+            }
+            REQUEST_CODE_TAKE_PHOTO -> {
+                if (resultCode == Activity.RESULT_OK) {
+                    with(viewBinding){
+                        ivAvatar.setImageBitmap(data?.extras?.get("data") as Bitmap)
+                    }
+                }
+            }
+        }
     }
 
     private fun loadWithCoil(imageRoute: Uri) {
@@ -79,15 +134,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 crossfade(true)
                 placeholder(R.drawable.user_photo_default)
                 error(R.drawable.user_photo_default)
-                transformations(CircleCropTransformation())
             }
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            data?.data?.let { loadWithCoil(it) }
-        }
+        Toast.makeText(context, "Фото профиля успешно изменено", Toast.LENGTH_SHORT).show()
     }
 
     private fun updateProfileData(): Boolean {
