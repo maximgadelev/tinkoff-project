@@ -5,6 +5,7 @@ import kotlinx.android.synthetic.main.item_product_card.view.*
 import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
+import java.math.BigDecimal
 
 
 class ProductCardRenderer<Item> : ItemBaseRenderer<Item, ProductCardRenderer.RenderContract>(),
@@ -13,7 +14,7 @@ class ProductCardRenderer<Item> : ItemBaseRenderer<Item, ProductCardRenderer.Ren
     interface RenderContract {
         val name: String
         val image: String
-        val price: Int
+        val price: BigDecimal
     }
 
     override val layoutRes: Int

@@ -11,6 +11,7 @@ import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
+import java.math.BigDecimal
 
 
 class ProductCardListRenderer<Item> :
@@ -23,7 +24,7 @@ class ProductCardListRenderer<Item> :
     data class Product(
         override val name: String,
         override val image: String,
-        override val price: Int
+        override val price: BigDecimal
     ) : ProductCardRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {

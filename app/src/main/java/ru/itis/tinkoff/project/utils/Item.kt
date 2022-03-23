@@ -1,7 +1,8 @@
-package ru.itis.tinkoff.project.features.utils
+package ru.itis.tinkoff.project.utils
 
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.itis.tinkoff.project.features.menu.ui.renderer.*
+import java.math.BigDecimal
 
 sealed class Item:ComparableItem {
 
@@ -16,7 +17,7 @@ sealed class Item:ComparableItem {
     data class ProductItem(
         override val name: String,
         override val image: String,
-        override val price: Int,
+        override val price: BigDecimal,
     ) : Item(), ProductCardRenderer.RenderContract
 
     data class SnapItem(
