@@ -42,7 +42,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         val optionsForLoading = arrayOf<CharSequence>("Сделать фото", "Загрузить с устройства")
         builder
             .setTitle("Изменить аватар профиля")
-            .setItems(optionsForLoading) { dialog, which ->
+            .setItems(optionsForLoading) { _, which ->
                 if (which == 0) {
                     addAvatarByTakingPhoto()
                 }
@@ -55,7 +55,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             }
             .show()
         alertDialog = builder.create()
-        alertDialog.show()
     }
 
     private fun addAvatarByLoading() {

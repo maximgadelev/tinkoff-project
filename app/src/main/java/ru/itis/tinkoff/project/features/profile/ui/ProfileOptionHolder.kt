@@ -1,6 +1,7 @@
 package ru.itis.tinkoff.project.features.profile.ui
 
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.tinkoff.project.databinding.ItemOptionBinding
 import ru.itis.tinkoff.project.entity.ProfileOption
@@ -18,6 +19,9 @@ class ProfileOptionHolder (
             tvOptionTitle.text = profileOption?.title
             profileOption?.icon?.let {
                 ivIconOption.setImageResource(it) }
+            ibIconNext.setOnClickListener{
+
+            }
         }
     }
 }
