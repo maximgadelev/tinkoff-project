@@ -17,6 +17,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProfileFragmentBinding
+import ru.itis.tinkoff.project.features.profile.data.ProfileOptionsRepository
 
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
@@ -28,6 +29,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initSwipeToRefreshLayout()
+        initInfo()
         initRv()
 
         with(viewBinding) {
@@ -180,5 +182,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         with(viewBinding) {
             rvOptions.adapter = ProfileOptionsAdapter(ProfileOptionsRepository.options)
         }
+    }
+
+    private fun initInfo(){
+
     }
 }

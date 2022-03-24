@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.profile.ui
+package ru.itis.tinkoff.project.features.profile.data
 
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.entity.ProfileOption
