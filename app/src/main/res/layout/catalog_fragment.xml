@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".features.catalog.presentation.ui.CatalogFragment">
+    tools:context=".features.catalog.ui.CatalogFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_catalog"
@@ -18,7 +18,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        tools:listitem="@layout/item_category_catalog"
+        tools:listitem="@layout/item_category"
         android:visibility="visible"/>
 
     <androidx.appcompat.widget.SearchView
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         app:queryHint="@string/search_bar_hint"
         android:textColorHint="@color/black"
-        android:background="@drawable/light_grey_round_corners_shape"
+        android:background="@drawable/bg_item"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
