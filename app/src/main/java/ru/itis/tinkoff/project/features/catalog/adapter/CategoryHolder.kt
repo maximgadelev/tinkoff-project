@@ -17,9 +17,5 @@ class CategoryHolder(
             tvCategoryName.text = item.name
             ivIconCategory.setImageResource(item.photo)
         }
-
-        itemView.setOnClickListener {
-
-        }
     }
 }
