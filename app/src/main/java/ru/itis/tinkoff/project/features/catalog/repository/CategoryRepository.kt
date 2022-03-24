@@ -26,7 +26,6 @@ object CategoryRepository {
         Category(13, R.drawable.ic_baseline_navigate_next_24, "Зоотовары"),
         Category(14, R.drawable.ic_baseline_navigate_next_24, "Книги"),
         Category(15, R.drawable.ic_baseline_navigate_next_24, "Дача, сад и огород")
-
     )
 
 }
