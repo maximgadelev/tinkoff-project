@@ -5,4 +5,5 @@
     <string name="basket">Корзина</string>
     <string name="favourites">Избранное</string>
     <string name="profile">Профиль</string>
+    <string name="search_bar_hint">Поиск товаров</string>
 </resources>

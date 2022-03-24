@@ -62,6 +62,12 @@ dependencies {
     implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.5.3'
     implementation 'com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.3'
 
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.2'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-layoutcontainer:4.3.2'
+
+// If you use ViewBinding
+
     implementation 'com.jakewharton.timber:timber:5.0.1'
 }
 
