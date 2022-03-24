@@ -2,6 +2,7 @@ package ru.itis.tinkoff.project.features.profile.ui
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -12,31 +13,57 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
-import coil.transform.CircleCropTransformation
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProfileFragmentBinding
+import ru.itis.tinkoff.project.di.DIContainer
+import ru.itis.tinkoff.project.entity.User
+import ru.itis.tinkoff.project.features.profile.ProfileViewModelFactory
 import ru.itis.tinkoff.project.features.profile.data.ProfileOptionsRepository
+import ru.itis.tinkoff.project.features.profile.viewModel.UserViewModel
 
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private val viewBinding by viewBinding(ProfileFragmentBinding::bind)
+    private lateinit var alertDialog: AlertDialog
+    private lateinit var viewModel: UserViewModel
     private val REQUEST_CODE_LOAD = 1001
     private val REQUEST_CODE_TAKE_PHOTO = 1002
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initSwipeToRefreshLayout()
-        initInfo()
+        initFactory()
+        initObservers()
         initRv()
 
         with(viewBinding) {
             ivAvatar.setOnClickListener {
-                addAvatarByLoading()
-                //addAvatarByTakingPhoto()
+                showAlert()
             }
         }
+    }
+
+    private fun showAlert() {
+        val builder = AlertDialog.Builder(context)
+        val optionsForLoading = arrayOf<CharSequence>("Сделать фото", "Загрузить с устройства")
+        builder
+            .setTitle("Изменить аватар профиля")
+            .setItems(optionsForLoading) { _, which ->
+                if (which == 0) {
+                    addAvatarByTakingPhoto()
+                }
+                if (which == 1) {
+                    addAvatarByLoading()
+                }
+            }
+            .setNegativeButton("Отмена") { dialog, _ ->
+                dialog.cancel()
+            }
+            .show()
+        alertDialog = builder.create()
     }
 
     private fun addAvatarByLoading() {
@@ -164,7 +191,28 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    private fun initInfo(){
+    private fun initObservers(){
+        viewModel.user.observe(viewLifecycleOwner){ it ->
+            it.fold(
+                onSuccess =
+                {
+                    initUserInfo(it) },
+                onFailure = {  })
+        }
+    }
 
+    private fun initUserInfo(user : User){
+        with(viewBinding){
+            tvName.text = user.name
+            tvSurname.text = user.surname
+        }
+    }
+
+    private fun initFactory() {
+        val factory = ProfileViewModelFactory(DIContainer)
+        viewModel = ViewModelProvider(
+            this,
+            factory
+        )[UserViewModel::class.java]
     }
 }
