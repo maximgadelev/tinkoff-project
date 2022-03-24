@@ -1,5 +1,6 @@
 package ru.itis.tinkoff.project.di
 
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -7,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.itis.tinkoff.project.BuildConfig
 import ru.itis.tinkoff.project.data.Api
 import ru.itis.tinkoff.project.domain.repositories.UserRepository
+import ru.itis.tinkoff.project.domain.usecases.GetUserUseCase
 import ru.itis.tinkoff.project.features.profile.data.UserRepositoryImpl
 
 object DIContainer  {
@@ -36,5 +38,10 @@ object DIContainer  {
 
     val userRepository : UserRepository = UserRepositoryImpl(
         api = api
+    )
+
+    val getUserUseCase : GetUserUseCase = GetUserUseCase(
+     repository = userRepository,
+     scope = Dispatchers.Default
     )
 }
