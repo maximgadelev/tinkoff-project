@@ -6,11 +6,11 @@
 
     <fragment
         android:id="@+id/menu"
-        android:name="ru.itis.tinkoff.project.features.main.ui.MainFragment"
+        android:name="ru.itis.tinkoff.project.features.menu.ui.MenuFragment"
         android:label="MenuFragment" />
     <fragment
         android:id="@+id/catalog"
-        android:name="ru.itis.tinkoff.project.features.catalog.presentation.ui.CatalogFragment"
+        android:name="ru.itis.tinkoff.project.features.catalog.ui.CatalogFragment"
         android:label="CatalogFragment" />
     <fragment
         android:id="@+id/basket"
@@ -18,7 +18,7 @@
         android:label="BasketFragment" />
     <fragment
         android:id="@+id/favourites"
-        android:name="ru.itis.tinkoff.project.features.favorites.ui.FavoritesFragment"
+        android:name="ru.itis.tinkoff.project.features.favorites.ui.FavouritesFragment"
         android:label="FavouritesFragment" />
     <fragment
         android:id="@+id/profile"
