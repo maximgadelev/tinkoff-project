@@ -17,7 +17,7 @@ class UserViewModel(
     private var _error: MutableLiveData<Exception> = MutableLiveData()
     val error: LiveData<Exception> = _error
 
-    suspend fun getUser(id: Int) {
+    suspend fun getUser(id: Long) {
         viewModelScope.launch {
             try {
                 val user = getUserUseCase(id)

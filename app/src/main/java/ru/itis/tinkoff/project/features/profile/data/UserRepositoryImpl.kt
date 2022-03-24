@@ -7,5 +7,5 @@ class UserRepositoryImpl (
     private val api: Api
 ) : UserRepository
 {
-    override suspend fun getUser(id: Int) = api.getProfileInfo()
+    override suspend fun getUser(id: Long) = api.getProfileInfo()
 }

@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.entity
+package ru.itis.tinkoff.project.features.profile.data
 
 data class ProfileOption (
     val id: Int,

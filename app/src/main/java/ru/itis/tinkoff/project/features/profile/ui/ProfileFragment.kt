@@ -31,7 +31,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private val viewBinding by viewBinding(ProfileFragmentBinding::bind)
     private lateinit var alertDialog: AlertDialog
     private lateinit var viewModel: UserViewModel
-    private var userId: Int = 0
+    private var userId: Long = 0
     private val REQUEST_CODE_LOAD = 1001
     private val REQUEST_CODE_TAKE_PHOTO = 1002
     private var testK: Int = 0
@@ -50,7 +50,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    private fun initUser(id : Int) {
+    private fun initUser(id : Long) {
         lifecycleScope.launch {
             viewModel.getUser(id)
         }
@@ -217,6 +217,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         with(viewBinding){
             tvName.text = user.name
             tvSurname.text = user.surname
+            tvOptionTitle.text  //TODO: add active orders initialization
         }
     }
 

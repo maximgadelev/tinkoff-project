@@ -12,7 +12,7 @@ object TestUserRepository  : UserRepository {
         "+79649680024", "andThisIsMyPassword", R.drawable.user_photo_default)
     )
 
-    override suspend fun getUser(id: Int): User {
-        return users[id]
+    override suspend fun getUser(id: Long): User {
+        return users[id.toInt()]
     }
 }

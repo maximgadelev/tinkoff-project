@@ -1,7 +1,7 @@
 package ru.itis.tinkoff.project.entity
 
 data class User (
-    val id: Int,
+    val id: Long,
     val name: String,
     val surname: String,
     val email: String,
