@@ -31,8 +31,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private val viewBinding by viewBinding(ProfileFragmentBinding::bind)
     private lateinit var alertDialog: AlertDialog
     private lateinit var viewModel: UserViewModel
+    private var userId: Int = 0
     private val REQUEST_CODE_LOAD = 1001
     private val REQUEST_CODE_TAKE_PHOTO = 1002
+    private var testK: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,7 +42,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         initFactory()
         initObservers()
         initRv()
-        initUser()
+        initUser(userId)
         with(viewBinding) {
             ivAvatar.setOnClickListener {
                 showAlert()
@@ -48,9 +50,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    private fun initUser() {
+    private fun initUser(id : Int) {
         lifecycleScope.launch {
-            viewModel.getUser(1)
+            viewModel.getUser(id)
         }
     }
 
@@ -101,7 +103,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                         Manifest.permission.READ_EXTERNAL_STORAGE
                     ) == PackageManager.PERMISSION_GRANTED)
         }
-        return null
+        return false
     }
 
     private fun checkCameraPermissions(): Boolean? {
@@ -115,7 +117,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                         Manifest.permission.CAMERA
                     ) == PackageManager.PERMISSION_GRANTED)
         }
-        return null
+        return false
     }
 
     override fun onRequestPermissionsResult(
@@ -176,16 +178,16 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         Toast.makeText(context, "Фото профиля успешно изменено", Toast.LENGTH_SHORT).show()
     }
 
-    private fun updateProfileData(): Boolean {
-        return true
-    }
-
     private fun initSwipeToRefreshLayout() {
         with(viewBinding) {
             swipeRefreshLayout.setOnRefreshListener {
-                if (updateProfileData()) {
-                    swipeRefreshLayout.isRefreshing = false
+                testK+=1
+                if(testK == 2){
+                    userId = 1
                 }
+                initUser(userId)
+                initObservers()
+                swipeRefreshLayout.isRefreshing = false
             }
             swipeRefreshLayout.setColorSchemeResources(
                 R.color.deep_orange
@@ -205,7 +207,9 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 onSuccess =
                 {
                     initUserInfo(it) },
-                onFailure = {  })
+                onFailure = {
+                    Toast.makeText(context, "Невозможно загрузить данные", Toast.LENGTH_SHORT).show()
+                })
         }
     }
 
