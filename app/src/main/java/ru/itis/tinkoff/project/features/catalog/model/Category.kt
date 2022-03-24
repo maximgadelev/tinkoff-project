@@ -1,7 +1,7 @@
 package ru.itis.tinkoff.project.features.catalog.model
 
 data class Category (
-    val id: Int,
+    val id: Long,
     val photo: Int,
     val name: String,
 ) : DisplayableItem
