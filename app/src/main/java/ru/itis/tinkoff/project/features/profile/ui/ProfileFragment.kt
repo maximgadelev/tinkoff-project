@@ -14,8 +14,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.load
+import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProfileFragmentBinding
 import ru.itis.tinkoff.project.di.DIContainer
@@ -38,11 +40,17 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         initFactory()
         initObservers()
         initRv()
-
+        initUser()
         with(viewBinding) {
             ivAvatar.setOnClickListener {
                 showAlert()
             }
+        }
+    }
+
+    private fun initUser() {
+        lifecycleScope.launch {
+            viewModel.getUser(1)
         }
     }
 

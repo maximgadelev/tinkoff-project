@@ -9,6 +9,7 @@ import ru.itis.tinkoff.project.BuildConfig
 import ru.itis.tinkoff.project.data.Api
 import ru.itis.tinkoff.project.domain.repositories.UserRepository
 import ru.itis.tinkoff.project.domain.usecases.GetUserUseCase
+import ru.itis.tinkoff.project.features.profile.data.TestUserRepository
 import ru.itis.tinkoff.project.features.profile.data.UserRepositoryImpl
 
 object DIContainer  {
@@ -41,7 +42,7 @@ object DIContainer  {
     )
 
     val getUserUseCase : GetUserUseCase = GetUserUseCase(
-     repository = userRepository,
+     repository = TestUserRepository, //don't forget to change  (userRepository)
      scope = Dispatchers.Default
     )
 }
