@@ -6,7 +6,13 @@ import ru.itis.tinkoff.project.entity.User
 interface Api {
     @GET()
     suspend fun getCategories()
+
+    @GET()
     suspend fun getProducts()
-    suspend fun getProfileInfo() : User
+
+    @GET()
+    suspend fun getProfileInfo(id: Long) : User
+
+    @GET()
     suspend fun getPromotions()
 }

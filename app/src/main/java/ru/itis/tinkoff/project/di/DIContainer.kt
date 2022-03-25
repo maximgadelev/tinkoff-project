@@ -6,7 +6,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.itis.tinkoff.project.BuildConfig
-import ru.itis.tinkoff.project.data.TestUserApi
+import ru.itis.tinkoff.project.data.Api
 import ru.itis.tinkoff.project.domain.repositories.UserRepository
 import ru.itis.tinkoff.project.domain.usecases.GetUserUseCase
 import ru.itis.tinkoff.project.features.profile.data.UserRepositoryImpl
@@ -28,13 +28,13 @@ object DIContainer  {
             .build()
     }
 
-    val api: TestUserApi by lazy {
+    val api: Api by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okhttp)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(TestUserApi::class.java)
+            .create(Api::class.java)
     }
 
     val userRepository : UserRepository = UserRepositoryImpl(
