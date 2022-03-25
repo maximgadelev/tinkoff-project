@@ -10,7 +10,7 @@ import ru.itis.tinkoff.project.entity.User
 
 class UserViewModel(
     private val getUserUseCase: GetUserUseCase
-): ViewModel() {
+) : ViewModel() {
     private var __user: MutableLiveData<Result<User>> = MutableLiveData()
     val user: LiveData<Result<User>> = __user
 

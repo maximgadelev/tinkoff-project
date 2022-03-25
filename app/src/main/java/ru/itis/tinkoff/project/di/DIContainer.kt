@@ -11,7 +11,7 @@ import ru.itis.tinkoff.project.domain.repositories.UserRepository
 import ru.itis.tinkoff.project.domain.usecases.GetUserUseCase
 import ru.itis.tinkoff.project.features.profile.data.UserRepositoryImpl
 
-object DIContainer  {
+object DIContainer {
     private const val BASE_URL = "https://url"
     private val okhttp: OkHttpClient by lazy {
         OkHttpClient.Builder()
@@ -19,9 +19,7 @@ object DIContainer  {
                 if (BuildConfig.DEBUG) {
                     it.addInterceptor(
                         HttpLoggingInterceptor()
-                            .setLevel(
-                                HttpLoggingInterceptor.Level.BODY
-                            )
+                            .setLevel(HttpLoggingInterceptor.Level.BODY)
                     )
                 }
             }
@@ -37,12 +35,9 @@ object DIContainer  {
             .create(Api::class.java)
     }
 
-    val userRepository : UserRepository = UserRepositoryImpl(
+    val userRepository: UserRepository = UserRepositoryImpl(
         api = api
     )
 
-    val getUserUseCase : GetUserUseCase = GetUserUseCase(
-     repository = userRepository,
-     scope = Dispatchers.Default
-    )
+    val getUserUseCase: GetUserUseCase = GetUserUseCase(repository = userRepository, scope = Dispatchers.Default)
 }

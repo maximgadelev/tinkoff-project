@@ -10,7 +10,7 @@ class GetUserUseCase(
     private val repository: UserRepository,
     private val scope: CoroutineDispatcher = Dispatchers.Main
 ) {
-    suspend operator fun invoke(id:Long): User =
+    suspend operator fun invoke(id: Long): User =
         withContext(scope) {
             repository.getUser(id)
         }

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.features.profile.data.ProfileOption
 
-class ProfileOptionsAdapter (
+class ProfileOptionsAdapter(
     private val list: List<ProfileOption>,
 ) : RecyclerView.Adapter<ProfileOptionHolder>() {
 
