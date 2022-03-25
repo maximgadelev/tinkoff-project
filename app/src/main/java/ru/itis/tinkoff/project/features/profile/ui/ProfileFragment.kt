@@ -34,7 +34,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private var userId: Long = 0
     private val REQUEST_CODE_LOAD = 1001
     private val REQUEST_CODE_TAKE_PHOTO = 1002
-    private var testK: Int = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -181,10 +180,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private fun initSwipeToRefreshLayout() {
         with(viewBinding) {
             swipeRefreshLayout.setOnRefreshListener {
-                testK+=1
-                if(testK == 2){
-                    userId = 1
-                }
                 initUser(userId)
                 initObservers()
                 swipeRefreshLayout.isRefreshing = false

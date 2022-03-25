@@ -8,5 +8,6 @@ data class User (
     val phoneNumber: String,
     val password: String,
     val avatarPhoto: Int?,
+    val ordersList: List<Order>,
 )
 
