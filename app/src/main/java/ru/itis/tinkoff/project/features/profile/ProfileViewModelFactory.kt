@@ -11,8 +11,7 @@ class ProfileViewModelFactory(
     override fun <T : ViewModel?> create(modelClass: Class<T>): T =
         when {
             modelClass.isAssignableFrom(UserViewModel::class.java) ->
-                UserViewModel(di.getUserUseCase)
-                        as? T ?: throw IllegalArgumentException("Unknown ViewModel class")
+                UserViewModel(di.getUserUseCase) as? T ?: throw IllegalArgumentException("Unknown ViewModel class")
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class")
         }

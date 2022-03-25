@@ -49,7 +49,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    private fun initUser(id : Long) {
+    private fun initUser(id: Long) {
         lifecycleScope.launch {
             viewModel.getUser(id)
         }
@@ -83,7 +83,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    private fun addAvatarByTakingPhoto(){
+    private fun addAvatarByTakingPhoto() {
         if (checkCameraPermissions() == true) {
             takeCameraPhoto()
         } else {
@@ -93,28 +93,26 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private fun checkGalleryPermissions(): Boolean? {
         activity?.apply {
-            return (ContextCompat.checkSelfPermission(
+            return ContextCompat.checkSelfPermission(
                 applicationContext,
                 Manifest.permission.READ_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(
-                        applicationContext,
-                        Manifest.permission.READ_EXTERNAL_STORAGE
-                    ) == PackageManager.PERMISSION_GRANTED)
+            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED
         }
         return false
     }
 
     private fun checkCameraPermissions(): Boolean? {
         activity?.apply {
-            return (ContextCompat.checkSelfPermission(
+            return ContextCompat.checkSelfPermission(
                 applicationContext,
                 Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(
-                        applicationContext,
-                        Manifest.permission.CAMERA
-                    ) == PackageManager.PERMISSION_GRANTED)
+            ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
+                applicationContext,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
         }
         return false
     }
@@ -124,17 +122,19 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        when(requestCode){
-            REQUEST_CODE_LOAD -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                chooseImageGallery()
-            } else {
-                Toast.makeText(context, "Доступ к галерее запрещен", Toast.LENGTH_SHORT).show()
-            }
-            REQUEST_CODE_TAKE_PHOTO -> if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-               takeCameraPhoto()
-            } else {
-                Toast.makeText(context, "Доступ к камере запрещен", Toast.LENGTH_SHORT).show()
-            }
+        when (requestCode) {
+            REQUEST_CODE_LOAD ->
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    chooseImageGallery()
+                } else {
+                    Toast.makeText(context, "Доступ к галерее запрещен", Toast.LENGTH_SHORT).show()
+                }
+            REQUEST_CODE_TAKE_PHOTO ->
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    takeCameraPhoto()
+                } else {
+                    Toast.makeText(context, "Доступ к камере запрещен", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 
@@ -144,25 +144,24 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         startActivityForResult(intent, REQUEST_CODE_LOAD)
     }
 
-    private fun takeCameraPhoto(){
+    private fun takeCameraPhoto() {
         val callCameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         startActivityForResult(callCameraIntent, REQUEST_CODE_TAKE_PHOTO)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when(requestCode){
+        when (requestCode) {
             REQUEST_CODE_LOAD -> {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.data?.let { loadWithCoil(it) }
                 }
             }
-            REQUEST_CODE_TAKE_PHOTO -> {
+            REQUEST_CODE_TAKE_PHOTO ->
                 if (resultCode == Activity.RESULT_OK) {
-                    with(viewBinding){
+                    with(viewBinding) {
                         ivAvatar.setImageBitmap(data?.extras?.get("data") as Bitmap)
                     }
                 }
-            }
         }
     }
 
@@ -196,23 +195,21 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    private fun initObservers(){
-        viewModel.user.observe(viewLifecycleOwner){ it ->
+    private fun initObservers() {
+        viewModel.user.observe(viewLifecycleOwner) {
             it.fold(
                 onSuccess =
-                {
-                    initUserInfo(it) },
-                onFailure = {
-                    Toast.makeText(context, "Невозможно загрузить данные", Toast.LENGTH_SHORT).show()
-                })
+                { initUserInfo(it) },
+                onFailure = { Toast.makeText(context, "Невозможно загрузить данные", Toast.LENGTH_SHORT).show() }
+            )
         }
     }
 
-    private fun initUserInfo(user : User){
-        with(viewBinding){
+    private fun initUserInfo(user: User) {
+        with(viewBinding) {
             tvName.text = user.name
             tvSurname.text = user.surname
-            tvOptionTitle.text  //TODO: add active orders initialization
+            tvOptionTitle.text // add active orders initialization later
         }
     }
 

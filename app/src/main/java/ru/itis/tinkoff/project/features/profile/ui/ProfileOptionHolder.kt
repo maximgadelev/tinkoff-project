@@ -3,9 +3,9 @@ package ru.itis.tinkoff.project.features.profile.ui
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.tinkoff.project.databinding.ItemOptionBinding
-import ru.itis.tinkoff.project.entity.ProfileOption
+import ru.itis.tinkoff.project.features.profile.data.ProfileOption
 
-class ProfileOptionHolder (
+class ProfileOptionHolder(
     item: View
 ) : RecyclerView.ViewHolder(item) {
 
@@ -17,7 +17,8 @@ class ProfileOptionHolder (
         with(binding) {
             tvOptionTitle.text = profileOption?.title
             profileOption?.icon?.let {
-                ivIconOption.setImageResource(it) }
+                ivIconOption.setImageResource(it)
+            }
         }
     }
 }
