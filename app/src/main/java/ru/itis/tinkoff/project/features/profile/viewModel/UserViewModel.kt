@@ -11,8 +11,8 @@ import ru.itis.tinkoff.project.entity.User
 class UserViewModel(
     private val getUserUseCase: GetUserUseCase
 ): ViewModel() {
-    private var _user: MutableLiveData<Result<User>> = MutableLiveData()
-    val user: LiveData<Result<User>> = _user
+    private var __user: MutableLiveData<Result<User>> = MutableLiveData()
+    val user: LiveData<Result<User>> = __user
 
     private var _error: MutableLiveData<Exception> = MutableLiveData()
     val error: LiveData<Exception> = _error
@@ -21,9 +21,9 @@ class UserViewModel(
         viewModelScope.launch {
             try {
                 val user = getUserUseCase(id)
-                _user.value = Result.success(user)
+                __user.value = Result.success(user)
             } catch (ex: Exception) {
-                _user.value = Result.failure(ex)
+                __user.value = Result.failure(ex)
                 _error.value = ex
             }
         }
