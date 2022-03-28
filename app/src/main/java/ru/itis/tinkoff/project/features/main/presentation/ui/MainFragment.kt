@@ -3,30 +3,29 @@ package ru.itis.tinkoff.project.features.main.presentation.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kotlinx.android.synthetic.main.menu_fragment.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.haroncode.aquarius.core.decorators.SpaceRuleItemDecoration
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.MenuFragmentBinding
-import ru.itis.tinkoff.project.di.DIContainer
-import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.*
+import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.CarouselRenderer
+import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.ProductCardListRenderer
+import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.SnapRenderer
+import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.TitleRenderer
 import ru.itis.tinkoff.project.features.main.utils.MenuItem
-import ru.itis.tinkoff.project.features.main.utils.MenuViewModelFactory
 import ru.itis.tinkoff.project.features.main.utils.PromotionItemSize
 import ru.itis.tinkoff.project.features.main.utils.dp
 
 @SuppressWarnings("MagicNumber")
 class MainFragment : Fragment(R.layout.menu_fragment) {
     private val viewBinding by viewBinding(MenuFragmentBinding::bind)
-    private val viewModel: MainViewModel by viewModels {
-        MenuViewModelFactory(DIContainer)
-    }
+    private val viewModel: MainViewModel by viewModel<MainViewModel>()
     private val itemAdapter by lazy {
         RenderAdapterBuilder<MenuItem>()
             .renderer(
