@@ -7,6 +7,7 @@ import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.ProductCar
 import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.SnapRenderer
 
 class EntityMapper {
+
     fun mapPromotionToSnapRenderItem(promotions: List<Promotion>): List<SnapRenderer.Promotion> {
         return promotions.map { promotion ->
             SnapRenderer.Promotion(
