@@ -8,7 +8,6 @@ import org.koin.core.logger.Level
 import ru.itis.tinkoff.project.di.appModule
 import ru.itis.tinkoff.project.di.dataModule
 import timber.log.Timber
-import java.util.logging.Logger
 
 class App : Application() {
 
