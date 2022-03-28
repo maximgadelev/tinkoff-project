@@ -13,6 +13,6 @@ class FavouritesFragment : Fragment(R.layout.favourites_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding //just for example
+        viewBinding
     }
 }
