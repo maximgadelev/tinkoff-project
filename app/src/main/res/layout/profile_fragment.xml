@@ -14,7 +14,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fragmentContainerView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/background_profile_accent"
+                android:layout_height="240dp"
                 android:background="@color/deep_yellow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/actual_orders"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/big_item_height"
+                android:layout_height="96dp"
                 android:layout_marginHorizontal="@dimen/spacing_normal"
                 android:layout_marginTop="@dimen/spacing_normal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +106,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_options"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/profile_rv_height"
+                android:layout_height="348dp"
                 android:layout_marginHorizontal="@dimen/spacing_normal"
                 android:layout_marginTop="@dimen/spacing_normal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
