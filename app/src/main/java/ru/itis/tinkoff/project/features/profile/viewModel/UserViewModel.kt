@@ -1,31 +1,28 @@
 package ru.itis.tinkoff.project.features.profile.viewModel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.itis.tinkoff.project.domain.usecases.GetUserUseCase
+import ru.itis.tinkoff.project.domain.repositories.UserRepository
 import ru.itis.tinkoff.project.entity.User
+import ru.itis.tinkoff.project.features.profile.data.UserIdRepository
 
 class UserViewModel(
-    private val getUserUseCase: GetUserUseCase
+    private val userRepository: UserRepository,
+    private val userIdRepository: UserIdRepository
 ) : ViewModel() {
-    private var __user: MutableLiveData<Result<User>> = MutableLiveData()
-    val user: LiveData<Result<User>> = __user
+    private var _user = MutableStateFlow<User>(initializeEmptyUser())
+    val user: StateFlow<User> = _user.asStateFlow()
 
-    private var _error: MutableLiveData<Exception> = MutableLiveData()
-    val error: LiveData<Exception> = _error
-
-    suspend fun getUser(id: Long) {
+    init{
         viewModelScope.launch {
-            try {
-                val user = getUserUseCase(id)
-                __user.value = Result.success(user)
-            } catch (ex: Exception) {
-                __user.value = Result.failure(ex)
-                _error.value = ex
-            }
+            val user = userRepository.getUser(userIdRepository.getUserId())
+            _user.value = user
         }
     }
+
+    fun initializeEmptyUser() = User(0, "", "", "", "", "", null, emptyList())
 }

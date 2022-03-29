@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/item_height"
+    android:layout_height="48dp"
     android:background="@drawable/light_grey_round_corners_shape"
     android:layout_marginTop="@dimen/spacing_smallest"
     android:id="@+id/iv_item_option">
