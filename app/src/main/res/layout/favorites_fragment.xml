@@ -9,10 +9,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:clipToPadding="false"
-        app:spanCount="2"
-        android:layout_marginLeft="16dp"
-        tools:listitem="@layout/item_product_card_favorites"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager" />
 </FrameLayout>

@@ -6,6 +6,8 @@ import ru.itis.tinkoff.project.data.Api
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.data.StubApi
+import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
+import ru.itis.tinkoff.project.features.favorites.presentation.ui.FavoritesViewModel
 import ru.itis.tinkoff.project.features.main.presentation.ui.MainViewModel
 
 val appModule = module {
@@ -16,10 +18,17 @@ val appModule = module {
             entityMapper = get()
         )
     }
+    viewModel<FavoritesViewModel> {
+        FavoritesViewModel(
+            favoritesRepository = get(),
+            entityMapper = get()
+        )
+    }
 }
 val dataModule = module {
     single<Api> { StubApi() }
     single<MenuRepository> { MenuRepository(api = get()) }
+    single<FavoritesRepository> { FavoritesRepository(api = get()) }
 }
 
 

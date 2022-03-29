@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.main.utils
+package ru.itis.tinkoff.project.features.common.utils
 
 import android.content.res.Resources
 

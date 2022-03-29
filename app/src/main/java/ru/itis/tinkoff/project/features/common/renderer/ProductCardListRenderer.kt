@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.main.presentation.ui.renderer
+package ru.itis.tinkoff.project.features.common.renderer
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +11,9 @@ import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
+import ru.itis.tinkoff.project.features.common.ProductCardItemType
 
-class ProductCardListRenderer<Item> :
+class ProductCardListRenderer<Item>(type: ProductCardItemType) :
     ItemBaseRenderer<Item, ProductCardListRenderer.RenderContract>(), ClickableRenderer {
 
     interface RenderContract {
@@ -27,7 +28,7 @@ class ProductCardListRenderer<Item> :
 
     private val itemAdapter by lazy {
         RenderAdapterBuilder<Product>()
-            .renderer(Product::class, ProductCardRenderer())
+            .renderer(Product::class, ProductCardRenderer(type))
             .build(DifferStrategies.withDiffUtilComparable())
     }
 
@@ -40,7 +41,10 @@ class ProductCardListRenderer<Item> :
         }
     }
 
-    override val layoutRes: Int = R.layout.item_product_card_recycler
+    override val layoutRes: Int = when (type) {
+        ProductCardItemType.MAIN -> R.layout.item_product_card_recycler
+        ProductCardItemType.FAVORITE -> R.layout.item_favorite_product_card_recycler
+    }
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): BaseViewHolder {
         val viewHolder = super.onCreateViewHolder(inflater, parent)
@@ -55,3 +59,4 @@ class ProductCardListRenderer<Item> :
         itemAdapter.differ.submitList(item.products)
     }
 }
+
