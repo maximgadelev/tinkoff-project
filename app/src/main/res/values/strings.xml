@@ -6,4 +6,5 @@
     <string name="favourites">Избранное</string>
     <string name="profile">Профиль</string>
     <string name="title">Выбор покупателей</string>
+    <string name="to_cart">В корзину</string>
 </resources>

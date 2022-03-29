@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.favorites.ui
+package ru.itis.tinkoff.project.features.favorites.presentation.ui
 
 import android.os.Bundle
 import android.view.View

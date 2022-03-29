@@ -3,7 +3,7 @@ package ru.itis.tinkoff.project.features.main.utils
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.entity.Promotion
-import ru.itis.tinkoff.project.features.main.presentation.mapper.EntityMapper
+import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 
 class MenuItemProvider(
     private val entityMapper: EntityMapper

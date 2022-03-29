@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.main.presentation.mapper
+package ru.itis.tinkoff.project.features.common.mapper
 
 import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.entity.Promotion

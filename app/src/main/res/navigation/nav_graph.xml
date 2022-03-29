@@ -18,7 +18,7 @@
         android:label="BasketFragment" />
     <fragment
         android:id="@+id/favourites"
-        android:name="ru.itis.tinkoff.project.features.favorites.ui.FavouritesFragment"
+        android:name="ru.itis.tinkoff.project.features.favorites.presentation.ui.FavouritesFragment"
         android:label="FavouritesFragment" />
     <fragment
         android:id="@+id/profile"
