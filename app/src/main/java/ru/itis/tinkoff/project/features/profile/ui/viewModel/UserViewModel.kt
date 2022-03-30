@@ -8,9 +8,11 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.domain.repositories.UserRepository
 import ru.itis.tinkoff.project.entity.User
-import ru.itis.tinkoff.project.features.profile.data.*
-import ru.itis.tinkoff.project.features.profile.ui.utils.ProfileEntityMapper
+import ru.itis.tinkoff.project.features.profile.data.ProfileOptionListItem
+import ru.itis.tinkoff.project.features.profile.data.ProfileOptionsRepository
+import ru.itis.tinkoff.project.features.profile.data.UserIdRepository
 import ru.itis.tinkoff.project.features.profile.ui.utils.OptionItemProvider
+import ru.itis.tinkoff.project.features.profile.ui.utils.ProfileEntityMapper
 
 class UserViewModel(
     private val userRepository: UserRepository,
@@ -26,7 +28,7 @@ class UserViewModel(
 
     private val itemProvider = OptionItemProvider(profileEntityMapper)
 
-    init{
+    init {
         viewModelScope.launch {
             val user = userRepository.getUser(userIdRepository.getUserId())
             _user.value = user

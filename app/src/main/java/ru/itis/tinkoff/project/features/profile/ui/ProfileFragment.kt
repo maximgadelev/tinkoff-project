@@ -13,7 +13,6 @@ import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProfileFragmentBinding
 import ru.itis.tinkoff.project.entity.User
-import ru.itis.tinkoff.project.features.profile.data.ProfileOption
 import ru.itis.tinkoff.project.features.profile.data.ProfileOptionListItem
 import ru.itis.tinkoff.project.features.profile.ui.renderer.ProfileOptionListRenderer
 import ru.itis.tinkoff.project.features.profile.ui.viewModel.UserViewModel
