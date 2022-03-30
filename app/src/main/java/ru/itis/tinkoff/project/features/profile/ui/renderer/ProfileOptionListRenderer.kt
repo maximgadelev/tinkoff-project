@@ -12,7 +12,7 @@ import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
 
-class ProfileOptionListRenderer<Item> :
+class ProfileOptionListRenderer<Item>:
     ItemBaseRenderer<Item, ProfileOptionListRenderer.RenderContract>(), ClickableRenderer {
 
     interface RenderContract {

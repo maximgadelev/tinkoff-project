@@ -112,8 +112,7 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/actual_orders"
-                tools:listitem="@layout/item_option" />
+                app:layout_constraintTop_toBottomOf="@+id/actual_orders" />
 
             <Button
                 android:id="@+id/out_btn"

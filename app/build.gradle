@@ -75,6 +75,9 @@ dependencies {
     implementation("io.coil-kt:coil:2.0.0-rc02")
     implementation "io.insert-koin:koin-android:3.1.5"
     implementation "io.insert-koin:koin-core:3.1.5"
+
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
 
 detekt {
