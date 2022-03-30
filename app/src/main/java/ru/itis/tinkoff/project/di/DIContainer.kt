@@ -27,6 +27,5 @@ val dataModule = module {
     single<Api> { TestUserApi() }
     single<UserRepository> { UserRepositoryImpl(api = get()) }
     single<UserIdRepository> { UserIdRepository() }
-    single<ProfileOptionsRepository> { ProfileOptionsRepository()}
+    single<ProfileOptionsRepository> { ProfileOptionsRepository() }
 }
-

@@ -5,11 +5,11 @@ import ru.itis.tinkoff.project.entity.User
 
 class TestUserApi : Api {
     override suspend fun getCategories() {
-
+        //
     }
 
     override suspend fun getProducts() {
-
+        //
     }
 
     override suspend fun getProfileInfo(id: Long): User {
@@ -17,6 +17,6 @@ class TestUserApi : Api {
     }
 
     override suspend fun getPromotions() {
-
+        //
     }
 }

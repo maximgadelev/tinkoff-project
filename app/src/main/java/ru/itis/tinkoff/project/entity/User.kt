@@ -10,4 +10,3 @@ data class User(
     val avatarPhoto: Int?,
     val ordersList: List<Order>,
 )
-
