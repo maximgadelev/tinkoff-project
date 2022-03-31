@@ -39,5 +39,3 @@ val dataModule = module {
     single<UserIdRepository>{UserIdRepository()}
     single<ProfileOptionsRepository>{ ProfileOptionsRepository() }
 }
-
-
