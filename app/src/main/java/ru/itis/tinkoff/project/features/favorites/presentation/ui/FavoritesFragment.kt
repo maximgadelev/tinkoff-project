@@ -20,20 +20,25 @@ import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItem
 class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
 
     private val viewBinding by viewBinding(FavoritesFragmentBinding::bind)
-    private val viewModel: FavoritesViewModel by viewModel<FavoritesViewModel>()
+    private val viewModel: FavoritesViewModel by viewModel()
     private val itemAdapter by lazy {
         RenderAdapterBuilder<FavoritesItem>()
             .renderer(
                 FavoritesItem.ProductListFavoritesItem::class,
-                ProductCardListRenderer(ProductCardItemType.FAVORITE)
+                ProductCardListRenderer(ProductCardItemType.FAVORITE),
             ).build(DifferStrategies.withDiffUtilComparable())
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createFavoritesProductList()
         viewModel.item.onEach {
             itemAdapter.differ.submitList(it)
+        }
+            .launchIn(lifecycleScope)
+        viewModel.productsListSize.onEach {
+            viewBinding.textViewProducts.text = getString(R.string.number_of_products, it)
         }
             .launchIn(lifecycleScope)
     }

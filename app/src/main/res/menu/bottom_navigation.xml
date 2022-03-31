@@ -14,7 +14,7 @@
         android:title="@string/basket" />
     <item
         android:id="@+id/favourites"
-        android:icon="@drawable/ic_favorite_24"
+        android:icon="@drawable/ic_favorite_24_transparent"
         android:title="@string/favourites" />
     <item
         android:id="@+id/profile"
