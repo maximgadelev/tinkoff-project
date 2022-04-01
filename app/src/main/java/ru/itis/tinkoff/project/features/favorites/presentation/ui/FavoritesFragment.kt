@@ -9,10 +9,8 @@ import kotlinx.android.synthetic.main.favorites_fragment.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import org.koin.core.component.getScopeId
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
-import ru.haroncode.aquarius.core.clicker.DefaultClicker
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.FavoritesFragmentBinding
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
@@ -52,4 +50,3 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         }
     }
 }
-
