@@ -33,5 +33,3 @@ val dataModule = module {
     single<UserRepository>{ UserRepositoryImpl(api = get()) }
     single<UserIdRepository>{UserIdRepository()}
 }
-
-
