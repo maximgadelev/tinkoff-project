@@ -3,7 +3,6 @@ package ru.itis.tinkoff.project.features.favorites.utils
 import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 
-
 class FavoritesItemProvider(
     private val entityMapper: EntityMapper
 ) {
