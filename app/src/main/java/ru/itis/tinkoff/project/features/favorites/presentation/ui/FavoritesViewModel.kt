@@ -17,8 +17,9 @@ class FavoritesViewModel(
     private val _item = MutableStateFlow<List<FavoritesItem>>(emptyList())
     val item = _item.asStateFlow()
     private val itemProvider = FavoritesItemProvider(entityMapper)
-    private val _productsListSize = MutableStateFlow<Int>(0)
+    private val _productsListSize = MutableStateFlow(0)
     val productsListSize = _productsListSize.asStateFlow()
+
 
     init {
         onViewCreated()
@@ -28,7 +29,7 @@ class FavoritesViewModel(
         viewModelScope.launch {
             val products = favoritesRepository.getProducts()
             val items = itemProvider.getItems(products)
-            _productsListSize.value=products.size
+            _productsListSize.value = products.size
             _item.value = items
         }
     }

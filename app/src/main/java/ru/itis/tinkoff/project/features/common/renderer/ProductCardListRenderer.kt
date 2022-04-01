@@ -3,6 +3,7 @@ package ru.itis.tinkoff.project.features.common.renderer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
@@ -17,13 +18,16 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
     ItemBaseRenderer<Item, ProductCardListRenderer.RenderContract>(), ClickableRenderer {
 
     interface RenderContract {
+        @get:IdRes
+        val id: Int?
+            get() = null
         val products: List<Product>
     }
 
     data class Product(
         override val name: String,
         override val image: String,
-        override val price: String
+        override val price: String,
     ) : ProductCardRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {
