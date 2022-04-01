@@ -2,8 +2,9 @@ package ru.itis.tinkoff.project.features.main.utils
 
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
-import ru.itis.tinkoff.project.features.common.renderer.ProductCardRenderer
-import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.*
+import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.CarouselRenderer
+import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.SnapRenderer
+import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.TitleRenderer
 
 sealed class MenuItem : ComparableItem {
 
