@@ -45,7 +45,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             rvOptions.adapter = itemAdapter
         }
         viewModel.option.onEach {
-            itemAdapter.differ.submitList(it)
+            itemAdapter.differ.submitList(listOf(it))
         }.launchIn(lifecycleScope)
     }
 

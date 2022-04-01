@@ -1,9 +1,9 @@
 package ru.itis.tinkoff.project.features.profile.data
 
 class UserIdRepository {
-    val id: Long = 0
+    val id: Int = 0
 
-    fun getUserId(): Long {
+    fun getUserId(): Int {
         return id
     }
 }

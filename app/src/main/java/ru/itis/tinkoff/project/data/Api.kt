@@ -11,7 +11,7 @@ interface Api {
     suspend fun getProducts(): List<Product>
 
     @GET("profileInfo")
-    suspend fun getProfileInfo(id: Long): User
+    suspend fun getProfileInfo(id: Int): User
 
     @GET("promotions")
     suspend fun getPromotions(): List<Promotion>

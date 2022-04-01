@@ -16,17 +16,17 @@ class ProfileOptionListRenderer<Item> :
     ItemBaseRenderer<Item, ProfileOptionListRenderer.RenderContract>(), ClickableRenderer {
 
     interface RenderContract {
-        val profileOptions: List<ProfileOption>
+        val profileOptions: List<ProfileOptionItem>
     }
 
-    data class ProfileOption(
+    data class ProfileOptionItem(
         override val title: String,
         override val icon: Int,
     ) : ProfileOptionRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {
-        RenderAdapterBuilder<ProfileOption>()
-            .renderer(ProfileOption::class, ProfileOptionRenderer())
+        RenderAdapterBuilder<ProfileOptionItem>()
+            .renderer(ProfileOptionItem::class, ProfileOptionRenderer())
             .build(DifferStrategies.withDiffUtilComparable())
     }
 

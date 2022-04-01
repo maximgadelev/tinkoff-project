@@ -10,7 +10,7 @@ private const val IMAGE_URL_PROMOTION =
     "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg"
 private const val IMAGE_URL_PRODUCT =
     "https://markshmidt.ru/wa-data/public/shop/products/04/05/504/images/1108/1108.970.jpg"
-private const val USER_ID : Long = 0
+private const val USER_ID : Int = 0
 private const val USER_NAME = "Ivan"
 private const val USER_SURNAME = "Ivanov"
 private const val USER_EMAIL = "some_email@.com"
@@ -27,8 +27,8 @@ class StubApi : Api {
         return getTestProducts()
     }
 
-    override suspend fun getProfileInfo(id: Long): User {
-    return User(USER_ID, USER_NAME, USER_SURNAME, USER_EMAIL, USER_PHONE_NUMBER, USER_PASSWORD, null, emptyList())
+    override suspend fun getProfileInfo(id: Int): User {
+    return User(USER_ID, USER_NAME, USER_SURNAME, USER_EMAIL, USER_PHONE_NUMBER, USER_PASSWORD, null)
     }
 
     override suspend fun getPromotions(): List<Promotion> {

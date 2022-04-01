@@ -1,14 +1,22 @@
 package ru.itis.tinkoff.project.features.profile.ui.utils
 
-import ru.itis.tinkoff.project.features.profile.data.ProfileOption
+import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.features.profile.data.ProfileOptionListItem
+import ru.itis.tinkoff.project.features.profile.ui.renderer.ProfileOptionListRenderer
 
-class OptionItemProvider(
-    private val profileEntityMapper: ProfileEntityMapper
-) {
-    fun getItemList(options: List<ProfileOption>): List<ProfileOptionListItem> {
-        val resultList = mutableListOf<ProfileOptionListItem>()
-        resultList += ProfileOptionListItem(profileEntityMapper.mapOptionToOptionList(options))
-        return resultList
+class OptionItemProvider {
+    fun getItemList(): ProfileOptionListItem {
+        return ProfileOptionListItem(
+            profileOptions = listOf(
+                ProfileOptionListRenderer.ProfileOptionItem(
+                    "Мои заказы",
+                    R.drawable.ic_outline_shopping_bag_24
+                ),
+                ProfileOptionListRenderer.ProfileOptionItem(
+                    "Помощь",
+                    R.drawable.ic_outline_help_outline_24
+                ),
+            )
+        )
     }
 }

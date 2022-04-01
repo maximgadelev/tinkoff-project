@@ -6,7 +6,8 @@ import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
 
-class ProfileOptionRenderer<Item> : ItemBaseRenderer<Item, ProfileOptionRenderer.RenderContract>(), ClickableRenderer {
+class ProfileOptionRenderer<Item> :
+    ItemBaseRenderer<Item, ProfileOptionRenderer.RenderContract>(), ClickableRenderer {
 
     interface RenderContract {
         val title: String
