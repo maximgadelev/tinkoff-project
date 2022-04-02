@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/menu"
-        android:name="ru.itis.tinkoff.project.features.main.presentation.ui.MainFragment"
+        android:name="ru.itis.tinkoff.project.features.main.ui.MainFragment"
         android:label="MenuFragment" />
     <fragment
         android:id="@+id/catalog"
@@ -18,7 +18,7 @@
         android:label="BasketFragment" />
     <fragment
         android:id="@+id/favourites"
-        android:name="ru.itis.tinkoff.project.features.favorites.presentation.ui.FavoritesFragment"
+        android:name="ru.itis.tinkoff.project.features.favorites.ui.FavoritesFragment"
         android:label="FavouritesFragment" />
     <fragment
         android:id="@+id/profile"

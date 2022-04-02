@@ -7,8 +7,8 @@ import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.data.StubApi
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
-import ru.itis.tinkoff.project.features.favorites.presentation.ui.FavoritesViewModel
-import ru.itis.tinkoff.project.features.main.presentation.ui.MainViewModel
+import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
+import ru.itis.tinkoff.project.features.main.ui.MainViewModel
 
 val appModule = module {
     single<EntityMapper> { EntityMapper() }

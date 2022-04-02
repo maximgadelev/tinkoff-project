@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.main.presentation.ui
+package ru.itis.tinkoff.project.features.main.ui
 
 import android.os.Bundle
 import android.view.View
@@ -15,11 +15,11 @@ import ru.haroncode.aquarius.core.decorators.SpaceRuleItemDecoration
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.MenuFragmentBinding
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
-import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.CarouselRenderer
+import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.common.utils.dp
-import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.SnapRenderer
-import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.TitleRenderer
+import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
+import ru.itis.tinkoff.project.features.main.ui.renderer.TitleRenderer
 import ru.itis.tinkoff.project.features.main.utils.MenuItem
 import ru.itis.tinkoff.project.features.main.utils.PromotionItemSize
 

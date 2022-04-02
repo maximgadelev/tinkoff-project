@@ -1,7 +1,8 @@
-package ru.itis.tinkoff.project.features.favorites.utils
+package ru.itis.tinkoff.project.features.favorites.ui
 
 import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
+import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItem
 
 class FavoritesItemProvider(
     private val entityMapper: EntityMapper

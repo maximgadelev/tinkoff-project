@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.favorites.presentation.ui
+package ru.itis.tinkoff.project.features.favorites.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,17 +8,16 @@ import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItem
-import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItemProvider
 
 class FavoritesViewModel(
     private val favoritesRepository: FavoritesRepository,
     private val entityMapper: EntityMapper
 ) : ViewModel() {
     private val _item = MutableStateFlow<List<FavoritesItem>>(emptyList())
-    val item = _item.asStateFlow()
     private val itemProvider = FavoritesItemProvider(entityMapper)
     private val _productsListSize = MutableStateFlow(0)
     val productsListSize = _productsListSize.asStateFlow()
+    val item = _item.asStateFlow()
 
 
     init {

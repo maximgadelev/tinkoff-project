@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="125dp"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center">
 
     <androidx.cardview.widget.CardView
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="Дольче "
+                tools:text="Дольче "
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +58,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="6 783"
+                tools:text="6 783"
                 android:textColor="#FF7120"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
