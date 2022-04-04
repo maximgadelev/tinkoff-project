@@ -1,7 +1,10 @@
 package ru.itis.tinkoff.project.features.common.renderer
 
 import coil.load
-import kotlinx.android.synthetic.main.item_product_card_main.view.*
+import kotlinx.android.synthetic.main.item_product_card_cart.view.*
+import kotlinx.android.synthetic.main.item_product_card_main.view.productImageView
+import kotlinx.android.synthetic.main.item_product_card_main.view.productPriceTextView
+import kotlinx.android.synthetic.main.item_product_card_main.view.productTitleTextView
 import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
@@ -16,11 +19,13 @@ class ProductCardRenderer<Item>(
         val name: String
         val image: String
         val price: String
+        val company: String
     }
 
     override val layoutRes: Int = when (type) {
         ProductCardItemType.FAVORITE -> R.layout.item_product_card_favorites
         ProductCardItemType.MAIN -> R.layout.item_product_card_main
+        ProductCardItemType.CART -> R.layout.item_product_card_cart
     }
 
 
@@ -29,6 +34,9 @@ class ProductCardRenderer<Item>(
             viewHolder.itemView.productImageView.load(item.image)
             itemView.productTitleTextView.text = item.name
             itemView.productPriceTextView.text = item.price
+            if (layoutRes == R.layout.item_product_card_cart) {
+                viewHolder.itemView.cartProductCompanyTextView.text = item.company
+            }
         }
     }
 }

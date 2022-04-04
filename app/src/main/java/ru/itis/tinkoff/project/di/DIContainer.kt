@@ -6,6 +6,8 @@ import ru.itis.tinkoff.project.data.Api
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.data.StubApi
+import ru.itis.tinkoff.project.features.cart.data.CartRepository
+import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
 import ru.itis.tinkoff.project.features.main.ui.MainViewModel
@@ -24,11 +26,18 @@ val appModule = module {
             entityMapper = get()
         )
     }
+    viewModel<CartFragmentViewModel> {
+        CartFragmentViewModel(
+            cartRepository = get(),
+            entityMapper = get()
+        )
+    }
 }
 val dataModule = module {
     single<Api> { StubApi() }
     single<MenuRepository> { MenuRepository(api = get()) }
     single<FavoritesRepository> { FavoritesRepository(api = get()) }
+    single<CartRepository> { CartRepository(api = get()) }
 }
 
 

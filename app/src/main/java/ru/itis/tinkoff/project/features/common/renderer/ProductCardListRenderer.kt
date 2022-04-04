@@ -28,6 +28,7 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
         override val name: String,
         override val image: String,
         override val price: String,
+        override val company:String
     ) : ProductCardRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {
@@ -48,6 +49,7 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
     override val layoutRes: Int = when (type) {
         ProductCardItemType.MAIN -> R.layout.item_product_card_recycler
         ProductCardItemType.FAVORITE -> R.layout.item_favorite_product_card_recycler
+        ProductCardItemType.CART->R.layout.item_cart_product_card_recycler
     }
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): BaseViewHolder {

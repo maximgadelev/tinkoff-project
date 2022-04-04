@@ -33,6 +33,7 @@ class EntityMapper {
                 product.name,
                 product.image,
                 product.price.toString() + " Р",
+                product.companyName
             )
         }
     }
