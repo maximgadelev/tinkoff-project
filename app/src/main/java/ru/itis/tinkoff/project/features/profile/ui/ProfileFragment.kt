@@ -46,7 +46,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         with(viewBinding) {
             rvOptions.adapter = itemAdapter
         }
-        itemAdapter.differ.submitList(listOf(optionItemProvider.getItemList()))
+        itemAdapter.differ.submitList(listOf(optionItemProvider.getItemList(context)))
     }
 
     private fun fillUserInfo(user: User) {

@@ -13,4 +13,6 @@
     <string name="option_icon">Option icon</string>
     <string name="active_orders">Нет активных заказов</string>
     <string name="cant_load_data">Невозможно загрузить данные</string>
+    <string name="my_orders">"Мои заказы"</string>
+    <string name="help">"Помощь"</string>
 </resources>
