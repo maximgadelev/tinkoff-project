@@ -78,7 +78,7 @@
                 android:translationZ="@dimen/elevation_size">
 
             <ImageView
-                android:id="@+id/iv_icon_option"
+                android:id="@+id/iv_icon_option_act_orders"
                 style="@style/LargeIconSize"
                 android:layout_marginStart="@dimen/spacing_normal"
                 android:layout_marginVertical="@dimen/spacing_small"
@@ -91,28 +91,29 @@
                 app:tint="@color/very_dark_blue" />
 
             <TextView
-                android:id="@+id/tv_option_title"
+                android:id="@+id/tv_option_title_act_orders"
                 style="@style/TextStyleMedium.SmallTextBlack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_normal"
                 android:gravity="center_vertical"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_icon_option"
-                app:layout_constraintStart_toEndOf="@+id/iv_icon_option"
-                app:layout_constraintTop_toTopOf="@+id/iv_icon_option"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_icon_option_act_orders"
+                app:layout_constraintStart_toEndOf="@+id/iv_icon_option_act_orders"
+                app:layout_constraintTop_toTopOf="@+id/iv_icon_option_act_orders"
                 android:text="@string/active_orders"/>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_options"
                 android:layout_width="match_parent"
-                android:layout_height="348dp"
+                android:layout_height="344dp"
                 android:layout_marginHorizontal="@dimen/spacing_normal"
                 android:layout_marginTop="@dimen/spacing_normal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/actual_orders" />
+                app:layout_constraintTop_toBottomOf="@+id/actual_orders"
+                tools:listitem="@layout/item_option"/>
 
             <Button
                 android:id="@+id/out_btn"

@@ -13,7 +13,7 @@ import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProfileFragmentBinding
 import ru.itis.tinkoff.project.entity.User
-import ru.itis.tinkoff.project.features.profile.data.ProfileOptionListItem
+import ru.itis.tinkoff.project.features.profile.data.ProfileOptionItem
 import ru.itis.tinkoff.project.features.profile.ui.renderer.ProfileOptionListRenderer
 import ru.itis.tinkoff.project.features.profile.ui.utils.OptionItemProvider
 import ru.itis.tinkoff.project.features.profile.ui.viewModel.UserViewModel
@@ -24,8 +24,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private val viewModel: UserViewModel by viewModel()
     private val optionItemProvider = OptionItemProvider()
     private val itemAdapter by lazy {
-        RenderAdapterBuilder<ProfileOptionListItem>()
-            .renderer(ProfileOptionListItem::class, ProfileOptionListRenderer())
+        RenderAdapterBuilder<ProfileOptionItem>()
+            .renderer(ProfileOptionItem::class, ProfileOptionListRenderer())
             .build(DifferStrategies.withDiffUtilComparable())
     }
 
@@ -46,14 +46,14 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         with(viewBinding) {
             rvOptions.adapter = itemAdapter
         }
-        itemAdapter.differ.submitList(listOf(optionItemProvider.getItemList(context)))
+        itemAdapter.differ.submitList(optionItemProvider.getItemList(context))
     }
 
     private fun fillUserInfo(user: User) {
         with(viewBinding) {
             tvName.text = user.name
             tvSurname.text = user.surname
-            tvOptionTitle.text // add active orders initialization later
+            tvOptionTitleActOrders.text // add active orders initialization later
         }
     }
 }
