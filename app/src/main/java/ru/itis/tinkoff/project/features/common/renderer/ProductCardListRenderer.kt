@@ -1,11 +1,10 @@
-package ru.itis.tinkoff.project.features.main.presentation.ui.renderer
+package ru.itis.tinkoff.project.features.common.renderer
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.annotation.IdRes
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
 import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
@@ -13,26 +12,27 @@ import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.SnapRenderer.RenderContract
-import ru.itis.tinkoff.project.features.main.utils.PromotionItemSize
+import ru.itis.tinkoff.project.features.common.ProductCardItemType
 
-class SnapRenderer<Item>(
-    size: PromotionItemSize,
-    private val isSnap: Boolean
-) : ItemBaseRenderer<Item, RenderContract>(), ClickableRenderer {
+class ProductCardListRenderer<Item>(type: ProductCardItemType) :
+    ItemBaseRenderer<Item, ProductCardListRenderer.RenderContract>(), ClickableRenderer {
 
     interface RenderContract {
-        val promotions: List<Promotion>
+        @get:IdRes
+        val id: Int?
+            get() = null
+        val products: List<Product>
     }
 
-    data class Promotion(
+    data class Product(
+        override val name: String,
         override val image: String,
-        override val name: String
-    ) : PromotionRender.RenderContract, ComparableItem
+        override val price: String,
+    ) : ProductCardRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {
-        RenderAdapterBuilder<Promotion>()
-            .renderer(Promotion::class, PromotionRender(size))
+        RenderAdapterBuilder<Product>()
+            .renderer(Product::class, ProductCardRenderer(type))
             .build(DifferStrategies.withDiffUtilComparable())
     }
 
@@ -45,12 +45,10 @@ class SnapRenderer<Item>(
         }
     }
 
-    override val layoutRes: Int =
-        if (isSnap) {
-            R.layout.item_snap
-        } else {
-            R.layout.item_static_three_promotion_list
-        }
+    override val layoutRes: Int = when (type) {
+        ProductCardItemType.MAIN -> R.layout.item_product_card_recycler
+        ProductCardItemType.FAVORITE -> R.layout.item_favorite_product_card_recycler
+    }
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): BaseViewHolder {
         val viewHolder = super.onCreateViewHolder(inflater, parent)
@@ -58,15 +56,11 @@ class SnapRenderer<Item>(
         if (recyclerView.adapter == null) {
             recyclerView.adapter = itemAdapter
         }
-        if (isSnap) {
-            val snapHelper: SnapHelper = LinearSnapHelper()
-            snapHelper.attachToRecyclerView(recyclerView)
-        }
         return viewHolder
     }
 
     override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
-        itemAdapter.differ.submitList(item.promotions)
+        itemAdapter.differ.submitList(item.products)
     }
 }
 

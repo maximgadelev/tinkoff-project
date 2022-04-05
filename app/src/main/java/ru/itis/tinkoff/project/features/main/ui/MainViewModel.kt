@@ -1,14 +1,13 @@
-package ru.itis.tinkoff.project.features.main.presentation.ui
+package ru.itis.tinkoff.project.features.main.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.main.data.MenuRepository
-import ru.itis.tinkoff.project.features.main.presentation.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.main.utils.MenuItem
-import ru.itis.tinkoff.project.features.main.utils.MenuItemProvider
 
 class MainViewModel(
     private val menuRepository: MenuRepository,

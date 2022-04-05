@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_favorites_32_fill" android:state_selected="true" />
+    <item android:drawable="@drawable/ic_favorite_32_transparent" android:state_selected="false" />
+</selector>

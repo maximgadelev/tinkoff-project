@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="125dp"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center">
 
     <androidx.cardview.widget.CardView
@@ -20,14 +21,22 @@
 
             <ImageView
                 android:id="@+id/productImageView"
-                android:layout_width="88dp"
+                android:layout_width="match_parent"
                 android:layout_height="88dp"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="8dp"
-                android:src="@color/black"
+                android:padding="4dp"
+                android:src="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageButton
+                android:id="@+id/imageButtonLikeMain"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/favorites_icon_selector"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/productTitleTextView"
@@ -35,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="Дольче "
+                tools:text="Дольче "
                 android:textColor="@color/black"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +58,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="6 783"
+                tools:text="6 783"
                 android:textColor="#FF7120"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"

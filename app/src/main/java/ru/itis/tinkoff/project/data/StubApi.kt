@@ -8,7 +8,7 @@ import java.math.BigDecimal
 
 private const val PRICE = 5999
 private const val NAME_PROMOTION = "8 марта"
-private const val NAME_PRODUCT = "ФЕН"
+private const val NAME_PRODUCT = "Фен MARTA MT-143"
 private const val IMAGE_URL_PROMOTION =
     "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg"
 private const val IMAGE_URL_PRODUCT =
