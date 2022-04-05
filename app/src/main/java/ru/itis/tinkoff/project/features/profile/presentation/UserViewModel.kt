@@ -1,10 +1,9 @@
-package ru.itis.tinkoff.project.features.profile.ui.viewModel
+package ru.itis.tinkoff.project.features.profile.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.domain.repositories.UserRepository
 import ru.itis.tinkoff.project.entity.User
@@ -14,15 +13,13 @@ class UserViewModel(
     private val userRepository: UserRepository,
     private val userIdRepository: UserIdRepository,
 ) : ViewModel() {
-    private var _user = MutableStateFlow<User>(initializeEmptyUser())
-    val user: StateFlow<User> = _user.asStateFlow()
+    private var _user = MutableSharedFlow<User>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    val user: SharedFlow<User> = _user.asSharedFlow()
 
     init {
         viewModelScope.launch {
             val user = userRepository.getUser(userIdRepository.getUserId())
-            _user.value = user
+            _user.emit(user)
         }
     }
-
-    private fun initializeEmptyUser() = User(0, "", "", "", "", "", null)
 }
