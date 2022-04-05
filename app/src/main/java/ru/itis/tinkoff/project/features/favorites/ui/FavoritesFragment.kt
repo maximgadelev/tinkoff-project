@@ -29,7 +29,6 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
             ).build(DifferStrategies.withDiffUtilComparable())
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createFavoritesProductList()

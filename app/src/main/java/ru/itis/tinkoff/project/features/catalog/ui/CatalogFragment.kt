@@ -13,6 +13,6 @@ class CatalogFragment : Fragment(R.layout.catalog_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding //just for example
+        viewBinding
     }
 }

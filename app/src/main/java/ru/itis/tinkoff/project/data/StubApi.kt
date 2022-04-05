@@ -20,7 +20,6 @@ private const val PROFILE_IMAGE =
 
 class StubApi : Api {
 
-
     override suspend fun getCategories(): List<Category> {
         return emptyList()
     }
@@ -45,7 +44,8 @@ class StubApi : Api {
         Promotion(
             NAME_PROMOTION,
             IMAGE_URL_PROMOTION
-        ), Promotion(
+        ),
+        Promotion(
             NAME_PROMOTION,
             IMAGE_URL_PROMOTION
         ),
@@ -78,7 +78,8 @@ class StubApi : Api {
             NAME_PRODUCT,
             IMAGE_URL_PRODUCT,
             BigDecimal(PRICE)
-        ), Product(
+        ),
+        Product(
             NAME_PRODUCT,
             IMAGE_URL_PRODUCT,
             BigDecimal(PRICE)
@@ -102,4 +103,3 @@ class StubApi : Api {
             PROFILE_IMAGE
         )
 }
-

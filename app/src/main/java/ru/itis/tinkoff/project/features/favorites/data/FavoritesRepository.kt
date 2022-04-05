@@ -11,4 +11,3 @@ class FavoritesRepository(
         return api.getProducts()
     }
 }
-

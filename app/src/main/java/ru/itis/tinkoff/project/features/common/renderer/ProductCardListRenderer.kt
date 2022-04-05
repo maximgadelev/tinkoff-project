@@ -63,4 +63,3 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
         itemAdapter.differ.submitList(item.products)
     }
 }
-

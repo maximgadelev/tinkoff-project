@@ -19,7 +19,6 @@ class FavoritesViewModel(
     val productsListSize = _productsListSize.asStateFlow()
     val item = _item.asStateFlow()
 
-
     init {
         onViewCreated()
     }
