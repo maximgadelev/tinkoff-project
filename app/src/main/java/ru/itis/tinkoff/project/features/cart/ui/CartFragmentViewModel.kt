@@ -16,9 +16,14 @@ class CartFragmentViewModel(
     private val _item = MutableStateFlow<List<CartItem>>(emptyList())
     private val itemProvider = CartItemProvider(entityMapper)
     private val _productsListSize = MutableStateFlow(0)
+    private val _orderPrice = MutableStateFlow(0)
+    private val _orderDiscount = MutableStateFlow(0)
+    private val _orderTotalPrice = MutableStateFlow(0)
     val productsListSize = _productsListSize.asStateFlow()
     val item = _item.asStateFlow()
-
+    val orderPrice = _orderPrice.asStateFlow()
+    val orderDiscount = _orderDiscount.asStateFlow()
+    val orderTotalPrice = _orderTotalPrice.asStateFlow()
 
     init {
         onViewCreated()
@@ -30,6 +35,9 @@ class CartFragmentViewModel(
             val items = itemProvider.getItems(products)
             _productsListSize.value = products.size
             _item.value = items
+            _orderPrice.value = products.sumOf { it.price.toInt() }
+            _orderDiscount.value = 280//for example
+            _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
         }
     }
 }

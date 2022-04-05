@@ -32,7 +32,7 @@ class EntityMapper {
             ProductCardListRenderer.Product(
                 product.name,
                 product.image,
-                product.price.toString() + " Р",
+                product.price.toString() + " ₽",
                 product.companyName
             )
         }

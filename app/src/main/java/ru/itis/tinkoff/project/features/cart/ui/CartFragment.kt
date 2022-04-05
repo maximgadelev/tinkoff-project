@@ -16,7 +16,6 @@ import ru.itis.tinkoff.project.databinding.CartFragmentBinding
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
-import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
 
 class CartFragment : Fragment(R.layout.cart_fragment) {
 
@@ -34,20 +33,38 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding
         createCartProductsList()
-        viewModel.item.onEach {
-            itemAdapter.differ.submitList(it)
-        }
-            .launchIn(lifecycleScope)
-        viewModel.productsListSize.onEach {
-            viewBinding.textViewProducts.text = getString(R.string.number_of_products, it)
-        }
-            .launchIn(lifecycleScope)
+        createCartMainInformation()
     }
 
     private fun createCartProductsList() {
         with(recyclerView) {
             setHasFixedSize(true)
             adapter = itemAdapter
+        }
+    }
+
+    private fun createCartMainInformation() {
+        with(viewModel) {
+            item.onEach {
+                itemAdapter.differ.submitList(it)
+            }
+                .launchIn(lifecycleScope)
+            productsListSize.onEach {
+                viewBinding.textViewProducts.text = getString(R.string.number_of_products, it)
+            }
+                .launchIn(lifecycleScope)
+            orderPrice.onEach {
+                viewBinding.orderPriceCountTextView.text = getString(R.string.price_in_ruble, it)
+            }
+                .launchIn(lifecycleScope)
+            orderDiscount.onEach {
+                viewBinding.discountCountTextView.text = getString(R.string.discount_in_ruble, it)
+            }
+                .launchIn(lifecycleScope)
+            orderTotalPrice.onEach {
+                viewBinding.totalPriceCountTextView.text = getString(R.string.price_in_ruble, it)
+            }
+                .launchIn(lifecycleScope)
         }
     }
 }
