@@ -1,7 +1,10 @@
 package ru.itis.tinkoff.project.features.main.utils
 
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
-import ru.itis.tinkoff.project.features.main.presentation.ui.renderer.*
+import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
+import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
+import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
+import ru.itis.tinkoff.project.features.main.ui.renderer.TitleRenderer
 
 sealed class MenuItem : ComparableItem {
 
@@ -13,11 +16,6 @@ sealed class MenuItem : ComparableItem {
         override val titleRes: Int?,
     ) : MenuItem(), TitleRenderer.RenderContract
 
-    data class ProductMenuItem(
-        override val name: String,
-        override val image: String,
-        override val price: String,
-    ) : MenuItem(), ProductCardRenderer.RenderContract
 
     data class SnapMenuItem(
         override val promotions: List<SnapRenderer.Promotion>,

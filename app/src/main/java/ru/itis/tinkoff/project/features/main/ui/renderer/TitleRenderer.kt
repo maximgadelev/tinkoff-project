@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.main.presentation.ui.renderer
+package ru.itis.tinkoff.project.features.main.ui.renderer
 
 import androidx.annotation.StringRes
 import kotlinx.android.synthetic.main.item_title.view.*
