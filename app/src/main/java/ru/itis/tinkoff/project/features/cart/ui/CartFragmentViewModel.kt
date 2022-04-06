@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
-
+@SuppressWarnings("MagicNumber")
 class CartFragmentViewModel(
     private val cartRepository: CartRepository,
     private val entityMapper: EntityMapper
