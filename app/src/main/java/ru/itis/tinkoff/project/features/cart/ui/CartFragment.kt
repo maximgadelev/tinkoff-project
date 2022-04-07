@@ -8,10 +8,10 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import kotlinx.android.synthetic.main.favorites_fragment.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.itis.tinkoff.project.databinding.CartFragmentBinding
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
