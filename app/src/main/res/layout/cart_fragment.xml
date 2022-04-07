@@ -146,10 +146,15 @@
 
             <Button
                 android:id="@+id/toMakingOrderButton"
-                style="@style/ButtonStyle"
                 android:layout_width="360dp"
                 android:layout_height="50dp"
-                android:text="Перейти к оформлению"
+                android:elevation="4dp"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/to_order_registration"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:cornerRadius="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

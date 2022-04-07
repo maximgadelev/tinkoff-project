@@ -16,4 +16,5 @@
     <string name="total_price">Итоговая сумма</string>
     <string name="price_in_ruble">%1$d ₽</string>
     <string name="discount_in_ruble">-%1$d ₽</string>
+    <string name="to_order_registration">Перейти к оформлению</string>
 </resources>
