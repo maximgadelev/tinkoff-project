@@ -10,7 +10,7 @@ private const val IMAGE_URL_PROMOTION =
     "https://kartinkin.net/uploads/posts/2021-07/1625779006_25-kartinkin-com-p-krutie-oranzhevie-oboi-krasivie-27.jpg"
 private const val IMAGE_URL_PRODUCT =
     "https://markshmidt.ru/wa-data/public/shop/products/04/05/504/images/1108/1108.970.jpg"
-private const val USER_ID : Int = 0
+private const val USER_ID: Int = 0
 private const val USER_NAME = "Ivan"
 private const val USER_SURNAME = "Ivanov"
 private const val USER_EMAIL = "some_email@.com"

@@ -38,7 +38,7 @@ val appModule = module {
 val dataModule = module {
     single<Api> { StubApi() }
     single<MenuRepository> { MenuRepository(api = get()) }
-    single<UserRepository>{ UserRepositoryImpl(api = get()) }
-    single<UserIdRepository>{UserIdRepository()}
+    single<UserRepository> { UserRepositoryImpl(api = get()) }
+    single<UserIdRepository> { UserIdRepository() }
     single<FavoritesRepository> { FavoritesRepository(api = get()) }
 }
