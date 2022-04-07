@@ -15,9 +15,9 @@ import ru.haroncode.aquarius.core.decorators.SpaceRuleItemDecoration
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.MenuFragmentBinding
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
-import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.common.utils.dp
+import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.TitleRenderer
 import ru.itis.tinkoff.project.features.main.utils.MenuItem
@@ -34,7 +34,10 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
                 SnapRenderer(PromotionItemSize.SQUARE_200, true)
             )
             .renderer(MenuItem.Title::class, TitleRenderer())
-            .renderer(MenuItem.ProductListMenuItem::class, ProductCardListRenderer(ProductCardItemType.MAIN))
+            .renderer(
+                MenuItem.ProductListMenuItem::class,
+                ProductCardListRenderer(ProductCardItemType.MAIN)
+            )
             .renderer(
                 MenuItem.CarouselMenuItem::class,
                 CarouselRenderer(PromotionItemSize.LONG)
@@ -87,5 +90,4 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
             addItemDecoration(carouselDecoration)
         }
     }
-
 }

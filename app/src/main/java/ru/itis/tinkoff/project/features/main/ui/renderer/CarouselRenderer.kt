@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
+import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
-import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer.RenderContract
 import ru.itis.tinkoff.project.features.main.utils.PromotionItemSize
 
@@ -19,7 +19,6 @@ class CarouselRenderer<Item>(size: PromotionItemSize) : ItemBaseRenderer<Item, R
 
     interface RenderContract {
         val promotions: List<Promotion>
-
     }
 
     data class Promotion(

@@ -15,5 +15,4 @@ class MenuRepository(
     suspend fun getProducts(): List<Product> {
         return api.getProducts()
     }
-
 }

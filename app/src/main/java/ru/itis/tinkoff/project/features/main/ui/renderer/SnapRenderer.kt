@@ -69,4 +69,3 @@ class SnapRenderer<Item>(
         itemAdapter.differ.submitList(item.promotions)
     }
 }
-

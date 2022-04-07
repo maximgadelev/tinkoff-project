@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'io.gitlab.arturbosch.detekt' version "1.18.1"
+    id 'io.gitlab.arturbosch.detekt' version "1.19.0"
 }
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
@@ -78,10 +78,13 @@ dependencies {
 
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.19.0"
 }
 
 detekt {
-    source = files(projectDir)
+    input = files("src")
+    buildUponDefaultConfig = true
     config = files("${project.rootDir}/config/detekt/detekt.yml")
     parallel = true
     reports {

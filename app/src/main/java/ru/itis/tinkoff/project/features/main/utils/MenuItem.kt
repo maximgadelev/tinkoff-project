@@ -16,7 +16,6 @@ sealed class MenuItem : ComparableItem {
         override val titleRes: Int?,
     ) : MenuItem(), TitleRenderer.RenderContract
 
-
     data class SnapMenuItem(
         override val promotions: List<SnapRenderer.Promotion>,
     ) : MenuItem(), SnapRenderer.RenderContract
