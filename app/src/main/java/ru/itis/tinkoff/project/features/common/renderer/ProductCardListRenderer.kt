@@ -28,7 +28,7 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
         override val name: String,
         override val image: String,
         override val price: String,
-        override val company:String
+        override val company: String
     ) : ProductCardRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {

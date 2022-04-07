@@ -37,7 +37,7 @@ class CartFragmentViewModel(
             _productsListSize.value = products.size
             _item.value = items
             _orderPrice.value = products.sumOf { it.price.toInt() }
-            _orderDiscount.value = 280//for example
+            _orderDiscount.value = 280
             _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
         }
     }
