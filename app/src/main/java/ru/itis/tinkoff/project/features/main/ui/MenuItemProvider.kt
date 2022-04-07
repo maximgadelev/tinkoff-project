@@ -25,4 +25,3 @@ class MenuItemProvider(
         return resultList
     }
 }
-

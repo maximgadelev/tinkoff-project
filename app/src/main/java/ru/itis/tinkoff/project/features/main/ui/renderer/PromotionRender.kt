@@ -21,7 +21,6 @@ class PromotionRender<Item>(size: PromotionItemSize) : ItemBaseRenderer<Item, Re
         PromotionItemSize.SQUARE_100 -> R.layout.item_promotion_square_100dp
     }
 
-
     override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
         when (layoutRes) {
             R.layout.item_promotion_long ->
@@ -32,7 +31,6 @@ class PromotionRender<Item>(size: PromotionItemSize) : ItemBaseRenderer<Item, Re
 
             R.layout.item_promotion_square_100dp ->
                 viewHolder.itemView.imageView_square_100.load(item.image)
-
         }
     }
 }
