@@ -1,7 +1,7 @@
 package ru.itis.tinkoff.project.features.cart.ui
 
-import android.view.View
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
