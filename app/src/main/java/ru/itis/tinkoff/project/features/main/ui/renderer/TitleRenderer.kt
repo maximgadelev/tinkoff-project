@@ -25,5 +25,4 @@ class TitleRenderer<Item> : ItemBaseRenderer<Item, TitleRenderer.RenderContract>
             else -> title
         }
     }
-
 }

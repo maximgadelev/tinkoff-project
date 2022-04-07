@@ -276,10 +276,8 @@ formatting:
     active: true
     autoCorrect: true
   ArgumentListWrapping:
-    active: true
-    autoCorrect: true
-    indentSize: 4
-    maxLineLength: 120
+    active: false
+    autoCorrect: false
   ChainWrapping:
     active: true
     autoCorrect: true
@@ -300,10 +298,8 @@ formatting:
     autoCorrect: true
     layout: '*,java.**,javax.**,kotlin.**,^'
   Indentation:
-    active: true
-    autoCorrect: true
-    indentSize: 4
-    continuationIndentSize: 4
+    active: false
+    autoCorrect: false
   MaximumLineLength:
     active: true
     maxLineLength: 120
@@ -348,7 +344,7 @@ formatting:
     active: true
     autoCorrect: true
   NoWildcardImports:
-    active: true
+    active: false
   PackageName:
     active: true
     autoCorrect: true

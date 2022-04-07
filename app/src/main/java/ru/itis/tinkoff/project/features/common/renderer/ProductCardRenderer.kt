@@ -28,7 +28,6 @@ class ProductCardRenderer<Item>(
         ProductCardItemType.CART -> R.layout.item_product_card_cart
     }
 
-
     override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
         with(viewHolder) {
             viewHolder.itemView.productImageView.load(item.image)
@@ -40,4 +39,3 @@ class ProductCardRenderer<Item>(
         }
     }
 }
-

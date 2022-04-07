@@ -21,7 +21,6 @@ private const val PRODUCT_COMPANY = "Burger King"
 
 class StubApi : Api {
 
-
     override suspend fun getCategories(): List<Category> {
         return emptyList()
     }
@@ -46,7 +45,8 @@ class StubApi : Api {
         Promotion(
             NAME_PROMOTION,
             IMAGE_URL_PROMOTION
-        ), Promotion(
+        ),
+        Promotion(
             NAME_PROMOTION,
             IMAGE_URL_PROMOTION
         ),
@@ -83,7 +83,8 @@ class StubApi : Api {
             IMAGE_URL_PRODUCT,
             BigDecimal(PRICE),
             PRODUCT_COMPANY
-        ), Product(
+        ),
+        Product(
             NAME_PRODUCT,
             IMAGE_URL_PRODUCT,
             BigDecimal(PRICE),
@@ -110,4 +111,3 @@ class StubApi : Api {
             PROFILE_IMAGE
         )
 }
-
