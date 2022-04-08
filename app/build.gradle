@@ -22,9 +22,6 @@ android {
     }
 
     buildTypes {
-        debug {
-                buildConfigField "String", "API_URL", "\"market-app-technokratos.herokuapp.com/\""
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

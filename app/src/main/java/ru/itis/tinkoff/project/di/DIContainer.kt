@@ -5,7 +5,6 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.itis.tinkoff.project.BuildConfig
 import ru.itis.tinkoff.project.data.Api
 import ru.itis.tinkoff.project.data.StubApi
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
@@ -15,6 +14,7 @@ import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.ui.MainViewModel
 import ru.itis.tinkoff.project.network.BaseInterceptor
 
+const val API_URL = "market-app-technokratos.herokuapp.com/"
 val appModule = module {
     single<EntityMapper> { EntityMapper() }
     viewModel<MainViewModel> {
@@ -42,7 +42,7 @@ val networkModule = module {
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-    return Retrofit.Builder().baseUrl(BuildConfig.API_URL).client(okHttpClient)
+    return Retrofit.Builder().baseUrl(API_URL).client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create()).build()
 }
 
