@@ -42,7 +42,7 @@ val networkModule = module {
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-    return Retrofit.Builder().baseUrl(BuildConfig.API_URL).client(okHttpClient)
+    return Retrofit.Builder().baseUrl(BuildConfig.VERSION_NAME).client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create()).build()
 }
 
