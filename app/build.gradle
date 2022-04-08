@@ -23,9 +23,13 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
-            buildConfigField "String", "API_URL", "\"market-app-technokratos.herokuapp.com/\""
-            debuggable true
+            try {
+                minifyEnabled false
+                buildConfigField "String", "API_URL", "\"market-app-technokratos.herokuapp.com/\""
+                debuggable true
+            } catch (e) {
+                throw e
+            }
         }
         release {
             minifyEnabled false
