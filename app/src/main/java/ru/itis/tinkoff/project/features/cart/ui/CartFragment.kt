@@ -13,9 +13,8 @@ import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.CartFragmentBinding
+import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductListRenderer
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
-import ru.itis.tinkoff.project.features.common.ProductCardItemType
-import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 
 class CartFragment : Fragment(R.layout.cart_fragment) {
 
@@ -25,7 +24,7 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
         RenderAdapterBuilder<CartItem>()
             .renderer(
                 CartItem.ProductListCartItem::class,
-                ProductCardListRenderer(ProductCardItemType.CART)
+                CartProductListRenderer()
             ).build(DifferStrategies.withDiffUtilComparable())
     }
 

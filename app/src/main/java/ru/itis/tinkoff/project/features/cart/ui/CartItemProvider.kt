@@ -10,7 +10,7 @@ class CartItemProvider(
     fun getItems(products: List<Product>): List<CartItem> {
         val resultList = mutableListOf<CartItem>()
         resultList += CartItem.ProductListCartItem(
-            entityMapper.mapProductToProductList(
+            entityMapper.mapProductToCartProductList(
                 products
             )
         )
