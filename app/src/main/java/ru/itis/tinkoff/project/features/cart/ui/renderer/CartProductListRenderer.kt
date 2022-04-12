@@ -1,10 +1,8 @@
-package ru.itis.tinkoff.project.features.common.renderer
+package ru.itis.tinkoff.project.features.cart.ui.renderer
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
@@ -12,11 +10,9 @@ import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.features.common.ProductCardItemType
 
-class ProductCardListRenderer<Item>(type: ProductCardItemType) :
-    ItemBaseRenderer<Item, ProductCardListRenderer.RenderContract>(), ClickableRenderer {
-
+class CartProductListRenderer<Item> :
+    ItemBaseRenderer<Item, CartProductListRenderer.RenderContract>(), ClickableRenderer {
     interface RenderContract {
         @get:IdRes
         val id: Int?
@@ -29,27 +25,15 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
         override val image: String,
         override val price: String,
         override val company: String
-    ) : ProductCardRenderer.RenderContract, ComparableItem
+    ) : CartProductRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {
-        RenderAdapterBuilder<Product>()
-            .renderer(Product::class, ProductCardRenderer(type))
+        RenderAdapterBuilder<CartProductListRenderer.Product>()
+            .renderer(CartProductListRenderer.Product::class, CartProductRenderer())
             .build(DifferStrategies.withDiffUtilComparable())
     }
-
-    override fun bindClickListener(
-        viewHolder: RecyclerView.ViewHolder,
-        listener: (RecyclerView.ViewHolder, View) -> Unit
-    ) {
-        viewHolder.itemView.setOnClickListener {
-            listener(viewHolder, it)
-        }
-    }
-
-    override val layoutRes: Int = when (type) {
-        ProductCardItemType.MAIN -> R.layout.item_product_card_recycler
-        ProductCardItemType.FAVORITE -> R.layout.item_favorite_product_card_recycler
-    }
+    override val layoutRes: Int
+        get() = R.layout.item_cart_product_card_recycler
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): BaseViewHolder {
         val viewHolder = super.onCreateViewHolder(inflater, parent)
@@ -60,7 +44,10 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
         return viewHolder
     }
 
-    override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
+    override fun onBindView(
+        viewHolder: BaseViewHolder,
+        item: CartProductListRenderer.RenderContract
+    ) {
         itemAdapter.differ.submitList(item.products)
     }
 }

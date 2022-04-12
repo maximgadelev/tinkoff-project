@@ -17,6 +17,7 @@ private const val PROFILE_NAME = "Ivan"
 private const val PROFILE_SURNAME = "Ivanov"
 private const val PROFILE_IMAGE =
     "https://markshmidt.ru/wa-data/public/shop/products/04/05/504/images/1108/1108.970.jpg"
+private const val PRODUCT_COMPANY = "Burger King"
 
 class StubApi : Api {
 
@@ -67,32 +68,39 @@ class StubApi : Api {
         Product(
             NAME_PRODUCT,
             IMAGE_URL_PRODUCT,
-            BigDecimal(PRICE)
+            BigDecimal(PRICE),
+            PRODUCT_COMPANY
         ),
         Product(
             NAME_PRODUCT,
             IMAGE_URL_PRODUCT,
-            BigDecimal(PRICE)
+            BigDecimal(PRICE),
+            PRODUCT_COMPANY
+
         ),
         Product(
             NAME_PRODUCT,
             IMAGE_URL_PRODUCT,
-            BigDecimal(PRICE)
+            BigDecimal(PRICE),
+            PRODUCT_COMPANY
         ),
         Product(
             NAME_PRODUCT,
             IMAGE_URL_PRODUCT,
-            BigDecimal(PRICE)
+            BigDecimal(PRICE),
+            PRODUCT_COMPANY
         ),
         Product(
             NAME_PRODUCT,
             IMAGE_URL_PRODUCT,
-            BigDecimal(PRICE)
+            BigDecimal(PRICE),
+            PRODUCT_COMPANY
         ),
         Product(
             NAME_PRODUCT,
             IMAGE_URL_PRODUCT,
-            BigDecimal(PRICE)
+            BigDecimal(PRICE),
+            PRODUCT_COMPANY
         )
     )
 

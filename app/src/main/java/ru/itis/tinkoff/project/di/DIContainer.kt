@@ -4,6 +4,8 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import ru.itis.tinkoff.project.data.Api
 import ru.itis.tinkoff.project.data.StubApi
+import ru.itis.tinkoff.project.features.cart.data.CartRepository
+import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
@@ -24,9 +26,16 @@ val appModule = module {
             entityMapper = get()
         )
     }
+    viewModel<CartFragmentViewModel> {
+        CartFragmentViewModel(
+            cartRepository = get(),
+            entityMapper = get()
+        )
+    }
 }
 val dataModule = module {
     single<Api> { StubApi() }
     single<MenuRepository> { MenuRepository(api = get()) }
     single<FavoritesRepository> { FavoritesRepository(api = get()) }
+    single<CartRepository> { CartRepository(api = get()) }
 }
