@@ -5,8 +5,8 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import ru.itis.tinkoff.project.data.Api
-import ru.itis.tinkoff.project.data.StubApi
+import ru.itis.tinkoff.project.data.api.Api
+import ru.itis.tinkoff.project.data.mapper.ResponseMapper
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
@@ -14,8 +14,9 @@ import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
 import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.ui.MainViewModel
+import ru.itis.tinkoff.project.network.AuthInterceptor
 
-const val API_URL = "market-app-technokratos.herokuapp.com/"
+const val API_URL = "https://market-app-technokratos.herokuapp.com/"
 val appModule = module {
     single<EntityMapper> { EntityMapper() }
     viewModel<MainViewModel> {
@@ -38,13 +39,14 @@ val appModule = module {
     }
 }
 val dataModule = module {
-    single<Api> { StubApi() }
-    single<MenuRepository> { MenuRepository(api = get()) }
-    single<FavoritesRepository> { FavoritesRepository(api = get()) }
-    single<CartRepository> { CartRepository(api = get()) }
+    single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
+    single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }
+    single<CartRepository> { CartRepository(api = get(), ResponseMapper()) }
 }
 val networkModule = module {
-    single<OkHttpClient> { provideOkHttpClient() }
+    single<Api> { createApi(get()) }
+    factory<AuthInterceptor> { AuthInterceptor() }
+    single<OkHttpClient> { provideOkHttpClient(get()) }
     single<Retrofit> { provideRetrofit(get()) }
 }
 
@@ -53,6 +55,9 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         .addConverterFactory(MoshiConverterFactory.create()).build()
 }
 
-fun provideOkHttpClient(): OkHttpClient {
-    return OkHttpClient().newBuilder().build()
+fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
+    return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
+}
+fun createApi(retrofit: Retrofit): Api {
+    return retrofit.create(Api::class.java)
 }

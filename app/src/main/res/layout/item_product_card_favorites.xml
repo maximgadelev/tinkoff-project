@@ -56,12 +56,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:layout_marginBottom="28dp"
                 android:fontFamily="@font/roboto"
                 android:text="6 783 Р"
                 android:textColor="#FF7120"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productTitleTextView" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/buttonToCardFavorite"

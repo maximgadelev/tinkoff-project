@@ -7,6 +7,7 @@ import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
 
+const val PRODUCT_NAME_MAX_SIZE = 25
 class EntityMapper {
 
     fun mapPromotionToSnapRenderItem(promotions: List<Promotion>): List<SnapRenderer.Promotion> {
@@ -30,7 +31,7 @@ class EntityMapper {
     fun mapProductToProductList(products: List<Product>): List<ProductCardListRenderer.Product> {
         return products.map { product ->
             ProductCardListRenderer.Product(
-                product.name,
+                replaceProductName(product.name),
                 product.image,
                 product.price.toString() + " ₽",
                 product.companyName
@@ -48,4 +49,10 @@ class EntityMapper {
             )
         }
     }
+private fun replaceProductName(string: String): String {
+    if (string.length> PRODUCT_NAME_MAX_SIZE) {
+        return string.replaceRange(string.length / 2 until string.length, "..")
+    }
+    return string
+}
 }
