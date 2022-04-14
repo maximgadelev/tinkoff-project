@@ -1,5 +1,6 @@
 package ru.itis.tinkoff.project.features.cart.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -42,6 +43,7 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
         }
     }
 
+    @SuppressLint("StringFormatInvalid")
     private fun createCartMainInformation() {
         with(viewModel) {
             item.onEach {

@@ -9,6 +9,8 @@ import ru.itis.tinkoff.project.data.Api
 import ru.itis.tinkoff.project.data.StubApi
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
+import ru.itis.tinkoff.project.features.catalog.data.CategoryRepository
+import ru.itis.tinkoff.project.features.catalog.presentation.ui.viewModel.CategoryViewModel
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
@@ -36,12 +38,19 @@ val appModule = module {
             entityMapper = get()
         )
     }
+
+    viewModel<CategoryViewModel> {
+        CategoryViewModel(
+            categoryRepository = get()
+        )
+    }
 }
 val dataModule = module {
     single<Api> { StubApi() }
     single<MenuRepository> { MenuRepository(api = get()) }
     single<FavoritesRepository> { FavoritesRepository(api = get()) }
     single<CartRepository> { CartRepository(api = get()) }
+    single<CategoryRepository> { CategoryRepository(api = get()) }
 }
 val networkModule = module {
     single<OkHttpClient> { provideOkHttpClient() }

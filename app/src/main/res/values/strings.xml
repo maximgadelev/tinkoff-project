@@ -1,9 +1,32 @@
 <resources>
-    <string name="app_name">tinkoff-project</string>
+    <string name="app_name">Primula</string>
     <string name="menu">Меню</string>
     <string name="catalog">Каталог</string>
     <string name="basket">Корзина</string>
     <string name="favourites">Избранное</string>
     <string name="profile">Профиль</string>
-    <string name="search_bar_hint">Поиск товаров</string>
+    <string name="title">Выбор покупателей</string>
+    <string name="go_out">Выйти</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="go_to_option">Go to option</string>
+    <string name="option_icon">Option icon</string>
+    <string name="active_orders">Нет активных заказов</string>
+    <string name="cant_load_data">Невозможно загрузить данные</string>
+    <string name="my_orders">"Мои заказы"</string>
+    <string name="help">"Помощь"</string>
+    <string name="to_cart">В корзину</string>
+    <string name="Favorite">Избранное</string>
+    <string name="number_of_products">%1$d товаров</string>
+    <string name="search_bar_hint">поиск...</string>
+    <string name="product_name">название продукта</string>
+    <string name="producer">производитель</string>
+    <string name="cart">Корзина</string>
+    <string name="total">Итого</string>
+    <string name="order_price">Сумма заказа</string>
+    <string name="discount">Скидка</string>
+    <string name="total_price">Итоговая сумма</string>
+    <string name="price_in_ruble">%1$d ₽</string>
+    <string name="discount_in_ruble">-%1$d ₽</string>
+    <string name="to_order_registration">Перейти к оформлению</string>
 </resources>

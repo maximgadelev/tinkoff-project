@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.catalog.presentation.ui.utils
+package ru.itis.tinkoff.project.features.catalog.presentation.ui
 
 import android.content.Context
 import ru.itis.tinkoff.project.entity.Category
