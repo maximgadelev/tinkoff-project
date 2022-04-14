@@ -2,8 +2,10 @@ package ru.itis.tinkoff.project.features.cart.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
@@ -14,6 +16,11 @@ class CartFragmentViewModel(
     private val cartRepository: CartRepository,
     private val entityMapper: EntityMapper
 ) : ViewModel() {
+    sealed class Event {
+        data class ErrorEvent(val message: String) : Event()
+    }
+
+    private val eventChannel = Channel<Event>()
     private val _item = MutableStateFlow<List<CartItem>>(emptyList())
     private val itemProvider = CartItemProvider(entityMapper)
     private val _productsListSize = MutableStateFlow(0)
@@ -25,6 +32,7 @@ class CartFragmentViewModel(
     val orderPrice = _orderPrice.asStateFlow()
     val orderDiscount = _orderDiscount.asStateFlow()
     val orderTotalPrice = _orderTotalPrice.asStateFlow()
+    val eventFlow = eventChannel.receiveAsFlow()
 
     init {
         onViewCreated()
@@ -32,13 +40,17 @@ class CartFragmentViewModel(
 
     private fun onViewCreated() {
         viewModelScope.launch {
-            val products = cartRepository.getProducts()
-            val items = itemProvider.getItems(products)
-            _productsListSize.value = products.size
-            _item.value = items
-            _orderPrice.value = products.sumOf { it.price.toInt() }
-            _orderDiscount.value = 280
-            _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
+            try {
+                val products = cartRepository.getProducts()
+                val items = itemProvider.getItems(products)
+                _productsListSize.value = products.size
+                _item.value = items
+                _orderPrice.value = products.sumOf { it.price.toInt() }
+                _orderDiscount.value = 280
+                _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
+            } catch (ex: Exception) {
+                eventChannel.send(Event.ErrorEvent("Server is blocked"))
+            }
         }
     }
 }

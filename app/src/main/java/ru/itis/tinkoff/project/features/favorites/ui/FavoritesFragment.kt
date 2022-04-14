@@ -1,5 +1,6 @@
 package ru.itis.tinkoff.project.features.favorites.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -31,7 +32,24 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launchWhenStarted {
+            viewModel.eventFlow.collect {
+                when (it) {
+                    is FavoritesViewModel.Event.ErrorEvent -> showDialog()
+                }
+            }
+        }
         createFavoritesProductList()
+        createMainInformation()
+    }
+
+    private fun createFavoritesProductList() {
+        with(recyclerView) {
+            setHasFixedSize(true)
+            adapter = itemAdapter
+        }
+    }
+    private fun createMainInformation() {
         viewModel.item.onEach {
             itemAdapter.differ.submitList(it)
         }
@@ -41,11 +59,10 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         }
             .launchIn(lifecycleScope)
     }
-
-    private fun createFavoritesProductList() {
-        with(recyclerView) {
-            setHasFixedSize(true)
-            adapter = itemAdapter
-        }
+    private fun showDialog() {
+        val builder = AlertDialog.Builder(context)
+        with(builder) {
+            setTitle("Сервер недоступен")
+        }.show()
     }
 }
