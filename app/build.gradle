@@ -80,6 +80,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     
     detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.19.0"
+    implementation("com.squareup.moshi:moshi:1.11.0")
+    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
 }
 
 detekt {

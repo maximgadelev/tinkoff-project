@@ -1,10 +1,15 @@
 package ru.itis.tinkoff.project.di
 
+import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
 import ru.itis.tinkoff.project.data.Api
 import ru.itis.tinkoff.project.data.StubApi
 import ru.itis.tinkoff.project.domain.repositories.UserRepository
+import ru.itis.tinkoff.project.features.cart.data.CartRepository
+import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
@@ -14,6 +19,7 @@ import ru.itis.tinkoff.project.features.profile.data.UserIdRepository
 import ru.itis.tinkoff.project.features.profile.data.UserRepositoryImpl
 import ru.itis.tinkoff.project.features.profile.ui.UserViewModel
 
+const val API_URL = "market-app-technokratos.herokuapp.com/"
 val appModule = module {
     single<EntityMapper> { EntityMapper() }
     viewModel<MainViewModel> {
@@ -34,6 +40,12 @@ val appModule = module {
             entityMapper = get()
         )
     }
+    viewModel<CartFragmentViewModel> {
+        CartFragmentViewModel(
+            cartRepository = get(),
+            entityMapper = get()
+        )
+    }
 }
 val dataModule = module {
     single<Api> { StubApi() }
@@ -41,4 +53,18 @@ val dataModule = module {
     single<UserRepository> { UserRepositoryImpl(api = get()) }
     single<UserIdRepository> { UserIdRepository() }
     single<FavoritesRepository> { FavoritesRepository(api = get()) }
+    single<CartRepository> { CartRepository(api = get()) }
+}
+val networkModule = module {
+    single<OkHttpClient> { provideOkHttpClient() }
+    single<Retrofit> { provideRetrofit(get()) }
+}
+
+fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    return Retrofit.Builder().baseUrl(API_URL).client(okHttpClient)
+        .addConverterFactory(MoshiConverterFactory.create()).build()
+}
+
+fun provideOkHttpClient(): OkHttpClient {
+    return OkHttpClient().newBuilder().build()
 }

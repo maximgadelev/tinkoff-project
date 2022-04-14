@@ -7,6 +7,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import ru.itis.tinkoff.project.di.appModule
 import ru.itis.tinkoff.project.di.dataModule
+import ru.itis.tinkoff.project.di.networkModule
 import timber.log.Timber
 
 class App : Application() {
@@ -16,7 +17,7 @@ class App : Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@App)
-            modules(listOf(appModule, dataModule))
+            modules(listOf(appModule, dataModule, networkModule))
         }
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())

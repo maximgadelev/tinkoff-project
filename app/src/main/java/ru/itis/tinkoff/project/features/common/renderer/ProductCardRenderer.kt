@@ -16,6 +16,7 @@ class ProductCardRenderer<Item>(
         val name: String
         val image: String
         val price: String
+        val company: String
     }
 
     override val layoutRes: Int = when (type) {
