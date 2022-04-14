@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.catalog
+package ru.itis.tinkoff.project.features.catalog.presentation.ui
 
 import android.os.Bundle
 import android.view.View
@@ -7,12 +7,15 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.CatalogFragmentBinding
 
-class CatalogFragment : Fragment(R.layout.catalog_fragment) {
-
+class CategoryFragment : Fragment(R.layout.category_fragment) {
     private val viewBinding by viewBinding(CatalogFragmentBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding //just for example
+        init()
+    }
+
+    private fun init() {
+
     }
 }
