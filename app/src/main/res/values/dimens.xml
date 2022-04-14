@@ -12,7 +12,6 @@
     <dimen name="spacing_tiny">6dp</dimen>
     <dimen name="spacing_tiniest">4dp</dimen>
 
-    <dimen name="corner_radius_small">10dp</dimen>
     <dimen name="corner_radius_normal">15dp</dimen>
 
     <dimen name="text_huge">28sp</dimen>

@@ -6,4 +6,7 @@
     <string name="favourites">Избранное</string>
     <string name="profile">Профиль</string>
     <string name="title">Выбор покупателей</string>
+    <string name="search_bar_hint">Поиск товаров</string>
+    <string name="product_name">Название товара</string>
+    <string name="producer">Производитель</string>
 </resources>
