@@ -12,7 +12,7 @@ class ProfileOptionListRenderer<Item> :
     ItemBaseRenderer<Item, ProfileOptionListRenderer.RenderContract>(), ClickableRenderer {
 
     interface RenderContract {
-        val title: String
+        val title: Int
         val icon: Int
     }
 
@@ -27,7 +27,7 @@ class ProfileOptionListRenderer<Item> :
 
     override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
         with(viewHolder) {
-            itemView.tv_option_title.text = item.title
+            itemView.tv_option_title.text = itemView.context?.resources?.getString(item.title)
             itemView.iv_icon_option.load(item.icon)
         }
     }

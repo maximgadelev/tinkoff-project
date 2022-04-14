@@ -13,10 +13,9 @@ import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProfileFragmentBinding
 import ru.itis.tinkoff.project.entity.User
-import ru.itis.tinkoff.project.features.profile.data.ProfileOptionItem
-import ru.itis.tinkoff.project.features.profile.presentation.UserViewModel
 import ru.itis.tinkoff.project.features.profile.ui.renderer.ProfileOptionListRenderer
 import ru.itis.tinkoff.project.features.profile.ui.utils.OptionItemProvider
+import ru.itis.tinkoff.project.features.profile.ui.utils.ProfileOptionItem
 
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
@@ -46,7 +45,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         with(viewBinding) {
             rvOptions.adapter = itemAdapter
         }
-        itemAdapter.differ.submitList(optionItemProvider.getItemList(context))
+        itemAdapter.differ.submitList(optionItemProvider.getItemList())
     }
 
     private fun fillUserInfo(user: User) {

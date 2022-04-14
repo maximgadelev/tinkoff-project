@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features.profile.presentation
+package ru.itis.tinkoff.project.features.profile.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

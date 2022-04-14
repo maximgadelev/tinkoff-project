@@ -12,7 +12,7 @@ import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.ui.MainViewModel
 import ru.itis.tinkoff.project.features.profile.data.UserIdRepository
 import ru.itis.tinkoff.project.features.profile.data.UserRepositoryImpl
-import ru.itis.tinkoff.project.features.profile.presentation.UserViewModel
+import ru.itis.tinkoff.project.features.profile.ui.UserViewModel
 
 val appModule = module {
     single<EntityMapper> { EntityMapper() }

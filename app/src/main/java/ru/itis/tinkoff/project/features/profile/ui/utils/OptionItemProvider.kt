@@ -1,18 +1,16 @@
 package ru.itis.tinkoff.project.features.profile.ui.utils
 
-import android.content.Context
 import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.features.profile.data.ProfileOptionItem
 
 class OptionItemProvider {
-    fun getItemList(context: Context?): List<ProfileOptionItem> {
+    fun getItemList(): List<ProfileOptionItem> {
         return listOf(
             ProfileOptionItem(
-                context?.resources?.getString(R.string.my_orders).toString(),
+                R.string.my_orders,
                 R.drawable.ic_outline_shopping_bag_24
             ),
             ProfileOptionItem(
-                context?.resources?.getString(R.string.help).toString(),
+                R.string.help,
                 R.drawable.ic_outline_help_outline_24
             ),
         )
