@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
+import ru.itis.tinkoff.project.features.common.utils.ErrorEvent
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItem
 
@@ -15,10 +16,7 @@ class FavoritesViewModel(
     private val favoritesRepository: FavoritesRepository,
     private val entityMapper: EntityMapper
 ) : ViewModel() {
-    sealed class Event {
-        data class ErrorEvent(val message: String) : Event()
-    }
-    private val eventChannel = Channel<Event>()
+    private val eventChannel = Channel<ErrorEvent>()
     private val _item = MutableStateFlow<List<FavoritesItem>>(emptyList())
     private val itemProvider = FavoritesItemProvider(entityMapper)
     private val _productsListSize = MutableStateFlow(0)
@@ -38,7 +36,7 @@ class FavoritesViewModel(
                 _productsListSize.value = products.size
                 _item.value = items
             } catch (ex: Exception) {
-                eventChannel.send(Event.ErrorEvent("Server is blocked"))
+                eventChannel.send(ErrorEvent)
             }
         }
     }

@@ -20,5 +20,5 @@ data class ProductResponse(
     @Json(name = "price")
     val price: Int,
     @Json(name = "rating")
-    val rating: Any?
+    val rating: Double? // в jsonke у бека пока null рейтинг по дефолту
 )

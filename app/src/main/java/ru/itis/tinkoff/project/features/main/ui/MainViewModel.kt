@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
+import ru.itis.tinkoff.project.features.common.utils.ErrorEvent
 import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.utils.MenuItem
 
@@ -15,11 +16,7 @@ class MainViewModel(
     private val menuRepository: MenuRepository,
     private val entityMapper: EntityMapper
 ) : ViewModel() {
-    sealed class Event {
-        data class ErrorEvent(val message: String) : Event()
-    }
-
-    private val eventChannel = Channel<Event>()
+    private val eventChannel = Channel<ErrorEvent>()
     private val _item = MutableStateFlow<List<MenuItem>>(emptyList())
     private val itemProvider = MenuItemProvider(entityMapper)
     val item = _item.asStateFlow()
@@ -37,7 +34,7 @@ class MainViewModel(
                 val items = itemProvider.getItemList(products, promotions)
                 _item.value = items
             } catch (ex: Exception) {
-                eventChannel.send(Event.ErrorEvent("Server is blocked"))
+                eventChannel.send(ErrorEvent)
             }
         }
     }

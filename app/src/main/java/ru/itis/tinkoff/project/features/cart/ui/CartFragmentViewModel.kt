@@ -10,17 +10,15 @@ import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
+import ru.itis.tinkoff.project.features.common.utils.ErrorEvent
 
 @SuppressWarnings("MagicNumber")
 class CartFragmentViewModel(
     private val cartRepository: CartRepository,
     private val entityMapper: EntityMapper
 ) : ViewModel() {
-    sealed class Event {
-        data class ErrorEvent(val message: String) : Event()
-    }
 
-    private val eventChannel = Channel<Event>()
+    private val eventChannel = Channel<ErrorEvent>()
     private val _item = MutableStateFlow<List<CartItem>>(emptyList())
     private val itemProvider = CartItemProvider(entityMapper)
     private val _productsListSize = MutableStateFlow(0)
@@ -49,7 +47,7 @@ class CartFragmentViewModel(
                 _orderDiscount.value = 280
                 _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
             } catch (ex: Exception) {
-                eventChannel.send(Event.ErrorEvent("Server is blocked"))
+                eventChannel.send(ErrorEvent)
             }
         }
     }

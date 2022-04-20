@@ -34,9 +34,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
             viewModel.eventFlow.collect {
-                when (it) {
-                    is FavoritesViewModel.Event.ErrorEvent -> showDialog()
-                }
+                    showDialog()
             }
         }
         createFavoritesProductList()
@@ -62,7 +60,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
     private fun showDialog() {
         val builder = AlertDialog.Builder(context)
         with(builder) {
-            setTitle("Сервер недоступен")
+            setTitle(R.string.server_blocked)
         }.show()
     }
 }

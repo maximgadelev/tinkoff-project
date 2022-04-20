@@ -55,9 +55,7 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
         createMainList()
         lifecycleScope.launchWhenStarted {
             viewModel.eventFlow.collect {
-                when (it) {
-                    is MainViewModel.Event.ErrorEvent -> showDialog()
-                }
+                    showDialog()
             }
         }
         viewModel.item.onEach {
@@ -102,7 +100,7 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
     private fun showDialog() {
         val builder = AlertDialog.Builder(context)
         with(builder) {
-            setTitle("Сервер недоступен")
+            setTitle(R.string.server_blocked)
         }.show()
     }
 }
