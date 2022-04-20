@@ -1,3 +1,5 @@
 package ru.itis.tinkoff.project.features.common
 
-object ErrorEvent
+object ErrorEvent {
+var title = "Error"
+}
