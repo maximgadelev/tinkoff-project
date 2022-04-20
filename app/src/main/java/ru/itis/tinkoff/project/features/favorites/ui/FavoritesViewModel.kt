@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
-import ru.itis.tinkoff.project.features.common.utils.ErrorEvent
+import ru.itis.tinkoff.project.features.common.ErrorEvent
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItem
 

@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
-import ru.itis.tinkoff.project.features.common.utils.ErrorEvent
+import ru.itis.tinkoff.project.features.common.ErrorEvent
 
 @SuppressWarnings("MagicNumber")
 class CartFragmentViewModel(
