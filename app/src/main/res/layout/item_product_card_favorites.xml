@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
 
     android:gravity="center">
 
@@ -45,9 +46,11 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="Часы наручные CASIO"
+                tools:text="Часы наручные CASIO"
                 android:textColor="@color/black"
                 android:textSize="14sp"
+                android:maxLines="2"
+                android:ellipsize="end"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/productImageView" />
 
@@ -56,12 +59,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
+                android:layout_marginBottom="28dp"
                 android:fontFamily="@font/roboto"
                 android:text="6 783 Р"
                 android:textColor="#FF7120"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productTitleTextView" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <Button
                 android:id="@+id/buttonToCardFavorite"

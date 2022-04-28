@@ -1,5 +1,6 @@
 package ru.itis.tinkoff.project.features.cart.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import kotlinx.android.synthetic.main.favorites_fragment.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
@@ -30,7 +32,11 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewBinding
+        lifecycleScope.launch {
+            viewModel.eventFlow.collect {
+                showDialog()
+            }
+        }
         createCartProductsList()
         createCartMainInformation()
     }
@@ -65,5 +71,12 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
             }
                 .launchIn(lifecycleScope)
         }
+    }
+
+    private fun showDialog() {
+        val builder = AlertDialog.Builder(context)
+        with(builder) {
+            setTitle(R.string.server_blocked)
+        }.show()
     }
 }
