@@ -41,7 +41,8 @@ val appModule = module {
 
     viewModel<CategoryViewModel> {
         CategoryViewModel(
-            categoryRepository = get()
+            categoryRepository = get(),
+            entityMapper = get()
         )
     }
 }

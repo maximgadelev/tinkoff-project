@@ -9,5 +9,4 @@ class CategoryRepository(
     suspend fun getCategories(): List<Category> {
         return api.getCategories()
     }
-
 }

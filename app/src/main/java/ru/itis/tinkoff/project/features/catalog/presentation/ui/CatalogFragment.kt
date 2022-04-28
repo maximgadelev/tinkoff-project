@@ -10,20 +10,21 @@ import kotlinx.coroutines.flow.onEach
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.entity.Category
-import ru.itis.tinkoff.project.features.catalog.presentation.ui.renderer.CategoryListRenderer
+import ru.itis.tinkoff.project.features.catalog.presentation.ui.renderer.CategoryRenderer
 import ru.itis.tinkoff.project.features.catalog.presentation.ui.viewModel.CategoryViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.itis.tinkoff.project.databinding.CatalogFragmentBinding
+import ru.itis.tinkoff.project.features.catalog.presentation.ui.renderer.CatalogRenderer
+import ru.itis.tinkoff.project.features.catalog.utils.CatalogListItem
 
 class CatalogFragment : Fragment(R.layout.catalog_fragment) {
 
     private val viewBinding by viewBinding(CatalogFragmentBinding::bind)
     private val viewModel: CategoryViewModel by viewModel()
-
     private val itemAdapter by lazy {
-        RenderAdapterBuilder<Category>()
-            .renderer(Category::class, CategoryListRenderer())
+        RenderAdapterBuilder<CatalogListItem>()
+            .renderer(CatalogListItem.CategoryListItem::class, CategoryRenderer())
+            .renderer(CatalogListItem::class, CatalogRenderer())
             .build(DifferStrategies.withDiffUtilComparable())
     }
 
