@@ -1,3 +1,4 @@
 package ru.itis.tinkoff.project.features.common
 
-object ErrorEvent
+@SuppressWarnings("EmptyClassBlock", "NoEmptyClassBody")
+object ErrorEvent { }
