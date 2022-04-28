@@ -5,7 +5,6 @@ import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.entity.Promotion
 import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductListRenderer
 import ru.itis.tinkoff.project.features.catalog.presentation.ui.renderer.CatalogRenderer
-import ru.itis.tinkoff.project.features.catalog.presentation.ui.renderer.CategoryRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
