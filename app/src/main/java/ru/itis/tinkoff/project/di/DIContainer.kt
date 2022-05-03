@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -14,9 +15,9 @@ import ru.itis.tinkoff.project.data.api.Api
 import ru.itis.tinkoff.project.data.api.TokenApi
 import ru.itis.tinkoff.project.data.database.local.PreferenceManager
 import ru.itis.tinkoff.project.data.mapper.ResponseMapper
+import ru.itis.tinkoff.project.data.repository.TokenRepository
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
-import ru.itis.tinkoff.project.data.repository.TokenRepository
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
@@ -53,18 +54,20 @@ val dataModule = module {
     single<CartRepository> { CartRepository(api = get(), ResponseMapper()) }
     single<TokenRepository> {
         TokenRepository(
-            api = get(), PreferenceManager(
+            tokenApi = get(), PreferenceManager(
                 provideSharedPreferences(androidApplication())
             )
         )
     }
 }
 val networkModule = module {
-    single<TokenApi> { createTokenApi(provideRetrofit(provideAnotherOkHttp(HttpLoggingInterceptor()))) }
-    single<Api> { createApi(get()) }
-    single<OkHttpClient> { provideOkHttpClient(get()) }
+    single<TokenApi> { createTokenApi(provideRetrofit(get(named("TokenApiClient")))) }
+    single<Api> { createApi(provideRetrofit(get(named("ApiClient")))) }
+    single(named("ApiClient")) { provideOkHttpClient(get()) }
     single<Retrofit> { provideRetrofit(get()) }
     single<AuthInterceptor> { AuthInterceptor(get()) }
+    single<HttpLoggingInterceptor> { HttpLoggingInterceptor() }
+    single(named("TokenApiClient")) { provideOkHttpClientForTokenApi(get()) }
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -75,9 +78,12 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
 fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
     return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
 }
-fun provideAnotherOkHttp(interceptor:HttpLoggingInterceptor): OkHttpClient {
-    return OkHttpClient().newBuilder().addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)).build()
+
+fun provideOkHttpClientForTokenApi(interceptor: HttpLoggingInterceptor): OkHttpClient {
+    return OkHttpClient().newBuilder()
+        .addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)).build()
 }
+
 fun createApi(retrofit: Retrofit): Api {
     return retrofit.create(Api::class.java)
 }
