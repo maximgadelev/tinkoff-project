@@ -6,12 +6,14 @@ import okhttp3.Response
 import ru.itis.tinkoff.project.data.repository.TokenRepository
 import javax.net.ssl.HttpsURLConnection
 
+private const val AUTHORIZATION = "Authorization"
+
 class AuthInterceptor(
     private val tokenRepository: TokenRepository
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()
-        requestBuilder.addHeader("Authorization", "Bearer ${tokenRepository.getToken()}")
+        requestBuilder.addHeader(AUTHORIZATION, "Bearer ${tokenRepository.getToken()}")
         var response = chain.proceed(requestBuilder.build())
         if (response.code == HttpsURLConnection.HTTP_UNAUTHORIZED) {
             response.close()
@@ -24,8 +26,8 @@ class AuthInterceptor(
                         "qwerty"
                     ) // т.к рефреш токен может устареть,то опять требует залогинится
                 }
-                requestBuilder.removeHeader("Authorization")
-                    .addHeader("Authorization", "Bearer ${tokenRepository.getToken()}")
+                requestBuilder.removeHeader(AUTHORIZATION)
+                    .addHeader(AUTHORIZATION, "Bearer ${tokenRepository.getToken()}")
                 response = chain.proceed(requestBuilder.build())
             }
         }
