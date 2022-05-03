@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -66,8 +65,7 @@ val networkModule = module {
     single(named("ApiClient")) { provideOkHttpClient(get()) }
     single<Retrofit> { provideRetrofit(get()) }
     single<AuthInterceptor> { AuthInterceptor(get()) }
-    single<HttpLoggingInterceptor> { HttpLoggingInterceptor() }
-    single(named("TokenApiClient")) { provideOkHttpClientForTokenApi(get()) }
+    single(named("TokenApiClient")) { provideOkHttpClientForTokenApi() }
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -79,9 +77,8 @@ fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
     return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
 }
 
-fun provideOkHttpClientForTokenApi(interceptor: HttpLoggingInterceptor): OkHttpClient {
-    return OkHttpClient().newBuilder()
-        .addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)).build()
+fun provideOkHttpClientForTokenApi(): OkHttpClient {
+    return OkHttpClient().newBuilder().build()
 }
 
 fun createApi(retrofit: Retrofit): Api {
