@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.data
+package ru.itis.tinkoff.project.data.request
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

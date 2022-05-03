@@ -16,7 +16,7 @@ import ru.itis.tinkoff.project.data.database.local.PreferenceManager
 import ru.itis.tinkoff.project.data.mapper.ResponseMapper
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
-import ru.itis.tinkoff.project.features.common.data.TokenRepository
+import ru.itis.tinkoff.project.data.repository.TokenRepository
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel

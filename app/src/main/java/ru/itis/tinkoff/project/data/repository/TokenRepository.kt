@@ -1,15 +1,15 @@
-package ru.itis.tinkoff.project.features.common.data
+package ru.itis.tinkoff.project.data.repository
 
-import ru.itis.tinkoff.project.data.LoginRequest
 import ru.itis.tinkoff.project.data.api.TokenApi
 import ru.itis.tinkoff.project.data.database.local.PreferenceManager
+import ru.itis.tinkoff.project.data.request.LoginRequest
 import ru.itis.tinkoff.project.data.response.TokenResponse
 
 class TokenRepository(
     private val api: TokenApi,
     private var preferenceManager: PreferenceManager
 ) {
-    suspend fun getToken(login: String, password: String): TokenResponse {
+    suspend fun loginAndGetToken(login: String, password: String): TokenResponse {
         val response = api.getToken(LoginRequest(login, password))
         response.accessToken?.let { preferenceManager.storeToken(it) }
         response.refreshToken?.let { preferenceManager.storeRefreshToken(it) }

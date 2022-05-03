@@ -1,8 +1,7 @@
 package ru.itis.tinkoff.project.data.api
 
-import androidx.annotation.RawRes
 import retrofit2.http.*
-import ru.itis.tinkoff.project.data.LoginRequest
+import ru.itis.tinkoff.project.data.request.LoginRequest
 import ru.itis.tinkoff.project.data.response.TokenResponse
 
 interface TokenApi {
