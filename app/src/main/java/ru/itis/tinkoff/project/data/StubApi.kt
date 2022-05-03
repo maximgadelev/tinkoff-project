@@ -3,7 +3,6 @@ package ru.itis.tinkoff.project.data
 import ru.itis.tinkoff.project.data.api.Api
 import ru.itis.tinkoff.project.data.response.ProductResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
-import ru.itis.tinkoff.project.data.response.TokenResponse
 import ru.itis.tinkoff.project.entity.Category
 import ru.itis.tinkoff.project.entity.Profile
 
@@ -29,8 +28,6 @@ class StubApi : Api {
     override suspend fun getPromotions(): List<PromotionResponse> {
         return emptyList()
     }
-
-
     private fun getTestProfile() =
         Profile(
             PROFILE_NAME,
