@@ -26,10 +26,10 @@ class AuthInterceptor(
                         "qwerty"
                     ) // т.к рефреш токен может устареть,то опять требует залогинится
                 }
-                requestBuilder.removeHeader(AUTHORIZATION)
-                    .addHeader(AUTHORIZATION, "Bearer ${tokenRepository.getToken()}")
-                response = chain.proceed(requestBuilder.build())
             }
+            requestBuilder.removeHeader(AUTHORIZATION)
+                .addHeader(AUTHORIZATION, "Bearer ${tokenRepository.getToken()}")
+            response = chain.proceed(requestBuilder.build())
         }
         return response
     }
