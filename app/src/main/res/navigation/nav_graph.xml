@@ -24,4 +24,8 @@
         android:id="@+id/profile"
         android:name="ru.itis.tinkoff.project.features.profile.ui.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/productPageFragment"
+        android:name="ru.itis.tinkoff.project.features.productPage.ui.ProductPageFragment"
+        android:label="ProductPageFragment" />
 </navigation>
