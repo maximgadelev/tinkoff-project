@@ -14,7 +14,7 @@ class ProductCardRenderer<Item>(
 
     interface RenderContract {
         val name: String
-        val image: String
+        val image: List<String>
         val price: String
         val company: String
     }
@@ -26,7 +26,7 @@ class ProductCardRenderer<Item>(
 
     override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
         with(viewHolder) {
-            viewHolder.itemView.productImageView.load(item.image)
+            viewHolder.itemView.productImageView.load(item.image[0])
             itemView.productTitleTextView.text = item.name
             itemView.productPriceTextView.text = item.price
         }

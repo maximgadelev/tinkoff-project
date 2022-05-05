@@ -8,9 +8,10 @@ import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.entity.Promotion
 
 class ResponseMapper {
-    fun mapProductResponseToProduct(productResponses: List<ProductResponse>): List<Product> {
+    fun mapProductsResponseToProducts(productResponses: List<ProductResponse>): List<Product> {
         return productResponses.map { productResponse ->
             Product(
+                productResponse.id,
                 productResponse.name,
                 checkImageList(productResponse.img),
                 productResponse.price.toBigDecimal(),
@@ -28,12 +29,26 @@ class ResponseMapper {
         }
     }
 
-    private fun checkImageList(list: List<String>): String {
+    fun mapProductResponseToProduct(productResponse: ProductResponse): Product {
+        return Product(
+            productResponse.id,
+            productResponse.name,
+            checkImageList(productResponse.img),
+            productResponse.price.toBigDecimal(),
+            "New Company"
+        )
+    }
+
+    private fun checkImageList(list: List<String>): List<String> {
         return if (list.isEmpty()) {
-            return Uri.parse("android.resource://ru.itis.tinkoff.project/" + R.drawable.no_product)
-                .toString()
+            val newList = mutableListOf<String>()
+            newList.add(
+                Uri.parse("android.resource://ru.itis.tinkoff.project/" + R.drawable.no_product)
+                    .toString()
+            )
+            newList
         } else {
-            list[0]
+            list
         }
     }
 }

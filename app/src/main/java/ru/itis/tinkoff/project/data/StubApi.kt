@@ -28,6 +28,11 @@ class StubApi : Api {
     override suspend fun getPromotions(): List<PromotionResponse> {
         return emptyList()
     }
+
+    override suspend fun getProductById(id: Int): ProductResponse {
+        TODO("Not yet implemented")
+    }
+
     private fun getTestProfile() =
         Profile(
             PROFILE_NAME,

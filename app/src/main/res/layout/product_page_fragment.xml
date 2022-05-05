@@ -41,23 +41,16 @@
         app:layout_constraintTop_toTopOf="@+id/imageButton_back" />
 
 
-    <!--    <androidx.recyclerview.widget.RecyclerView-->
-    <!--        android:id="@+id/recyclerView_images_product_page"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/toolbar2"-->
-    <!--        tools:listitem="@layout/item_product_page_image" />-->
-    <ImageView
-        android:id="@+id/imageView_product_page"
-        android:layout_width="412dp"
-        android:layout_height="240dp"
-        android:scaleType="centerCrop"
-        android:src="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView_images_product_page"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+            tools:listitem="@layout/item_product_page_image" />
+
 
     <Button
         android:id="@+id/button_to_feedback"
@@ -72,7 +65,7 @@
         android:textSize="12sp"
         app:cornerRadius="15dp"
         app:layout_constraintBottom_toTopOf="@+id/textView_product_page_price"
-        app:layout_constraintStart_toStartOf="@+id/imageView_product_page" />
+        app:layout_constraintStart_toStartOf="@+id/recyclerView_images_product_page" />
 
     <TextView
         android:id="@+id/textView_product_page_price"
@@ -84,8 +77,8 @@
         android:text="78614 Р"
         android:textColor="@color/black"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView_product_page"
-        app:layout_constraintTop_toBottomOf="@id/imageView_product_page" />
+        app:layout_constraintStart_toStartOf="@+id/recyclerView_images_product_page"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_images_product_page" />
 
     <TextView
         android:id="@+id/textView_product_brand"

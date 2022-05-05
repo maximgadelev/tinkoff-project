@@ -6,6 +6,7 @@ import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductListRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
+import ru.itis.tinkoff.project.features.productPage.ui.renderer.ProductImageListRenderer
 
 class EntityMapper {
 

@@ -26,7 +26,7 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
 
     data class Product(
         override val name: String,
-        override val image: String,
+        override val image: List<String>,
         override val price: String,
         override val company: String
     ) : ProductCardRenderer.RenderContract, ComparableItem

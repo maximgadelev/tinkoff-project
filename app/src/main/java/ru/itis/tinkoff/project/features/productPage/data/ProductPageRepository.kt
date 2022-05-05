@@ -1,15 +1,14 @@
-package ru.itis.tinkoff.project.features.cart.data
+package ru.itis.tinkoff.project.features.productPage.data
 
 import ru.itis.tinkoff.project.data.api.Api
 import ru.itis.tinkoff.project.data.mapper.ResponseMapper
 import ru.itis.tinkoff.project.entity.Product
 
-class CartRepository(
+class ProductPageRepository(
     private val api: Api,
     private val mapper: ResponseMapper
 ) {
-
-    suspend fun getProducts(): List<Product> {
-        return mapper.mapProductsResponseToProducts(api.getProducts())
+    suspend fun getProductById(id: Int): Product {
+        return mapper.mapProductResponseToProduct(api.getProductById(id))
     }
 }

@@ -22,6 +22,8 @@ import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
 import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.ui.MainViewModel
+import ru.itis.tinkoff.project.features.productPage.data.ProductPageRepository
+import ru.itis.tinkoff.project.features.productPage.ui.ProductPageViewModel
 import ru.itis.tinkoff.project.network.AuthInterceptor
 
 const val API_URL = "https://market-app-technokratos.herokuapp.com/"
@@ -46,11 +48,17 @@ val appModule = module {
             entityMapper = get()
         )
     }
+    viewModel<ProductPageViewModel> {
+        ProductPageViewModel(
+            get()
+        )
+    }
 }
 val dataModule = module {
     single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
     single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }
     single<CartRepository> { CartRepository(api = get(), ResponseMapper()) }
+    single<ProductPageRepository> { ProductPageRepository(get(), ResponseMapper()) }
     single<TokenRepository> {
         TokenRepository(
             tokenApi = get(), PreferenceManager(
