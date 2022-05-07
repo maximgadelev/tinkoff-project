@@ -13,7 +13,7 @@ class AuthInterceptor(
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()
-        requestBuilder.addHeader(AUTHORIZATION, "Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOjMsInBhc3N3b3JkIjoiJDJhJDEwJHIzcFZWMVdCN3lqdlc5NlpCOHVnZ2ViS2dZR3NLa3lIM3pnbVg5RkpEQkRZdUZock5BYjZDIiwicm9sZSI6IlJPTEVfQ0xJRU5UIiwic3RhdGUiOiJDT05GSVJNRUQiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUxOTE4NTQxLCJpYXQiOjE2NTE5MTQ5NDEsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.uDHdHwL3OBDAKmQXxtDEBZdM3vpKgKVUy5ec9LPDgDO1Bj2qiD0gsJnoNCFZazr6vnUrCowTRCTqvdgMj8M8lA"}")
+        requestBuilder.addHeader(AUTHORIZATION, "Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOjMsInBhc3N3b3JkIjoiJDJhJDEwJHIzcFZWMVdCN3lqdlc5NlpCOHVnZ2ViS2dZR3NLa3lIM3pnbVg5RkpEQkRZdUZock5BYjZDIiwicm9sZSI6IlJPTEVfQ0xJRU5UIiwic3RhdGUiOiJDT05GSVJNRUQiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUxOTUyNDQwLCJpYXQiOjE2NTE5NDg4NDAsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.PH_rYySF9-IRNV17lbFt2MNDdOjHhQH34p_bP5jK-OozTbUQII8eJwu0d4mgg3TwfKBnDfgq3yQnfaitCM94cw"}")
         var response = chain.proceed(requestBuilder.build())
 //        if (response.code == HttpsURLConnection.HTTP_UNAUTHORIZED) {
 //            response.close()

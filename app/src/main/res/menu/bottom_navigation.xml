@@ -5,7 +5,7 @@
         android:icon="@drawable/ic_home_24"
         android:title="@string/menu" />
     <item
-        android:id="@+id/productPageFragment"
+        android:id="@+id/catalog"
         android:icon="@drawable/ic_search_24"
         android:title="@string/catalog" />
     <item

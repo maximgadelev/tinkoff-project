@@ -13,6 +13,7 @@ class CartProductRenderer<Item> : ItemBaseRenderer<Item, CartProductRenderer.Ren
     ClickableRenderer {
 
     interface RenderContract {
+        val id: Int
         val name: String
         val image: List<String>
         val price: String

@@ -31,19 +31,21 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.onViewCreated(1)
-        with(recyclerView_images_product_page) {
-            setHasFixedSize(true)
-            adapter = itemAdapter
-        }
+        val id = arguments?.getInt("id")
+        id?.let { viewModel.onViewCreated(it) }
+        createMainInformation()
+    }
+
+    private fun createMainInformation() {
         viewModel.mainProduct.onEach {
+            viewBinding.recyclerViewImagesProductPage.adapter = itemAdapter
             viewBinding.textViewProductPagePrice.text =
                 getString(R.string.price_in_ruble, it.price.toInt())
             viewBinding.textViewProductPagePriceSecond.text =
                 getString(R.string.price_in_ruble, it.price.toInt())
             viewBinding.textViewProductBrand.text = it.companyName
             viewBinding.textViewProductName.text = it.name
-            viewBinding.pager.adapter = PagerAdapter(this,it.description,it.name)
+            viewBinding.pager.adapter = PagerAdapter(this, it.description, it.name)
             TabLayoutMediator(viewBinding.tabLayout, viewBinding.pager) { tab, position ->
                 if (position == 0) {
                     tab.text = getString(R.string.description)
