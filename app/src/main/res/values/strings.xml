@@ -22,4 +22,5 @@
     <string name="description">Описание</string>
     <string name="charactreristics">Характеристика</string>
     <string name="add_to_cart">Добавить в корзину</string>
+    <string name="no_desc">У данного товара отсутствует описание</string>
 </resources>

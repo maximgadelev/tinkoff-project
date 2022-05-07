@@ -16,6 +16,7 @@ class ProductCardRenderer<Item>(
         val name: String
         val image: List<String>
         val price: String
+        val description: String
         val company: String
     }
 

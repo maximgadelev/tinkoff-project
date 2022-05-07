@@ -24,6 +24,7 @@ class CartProductListRenderer<Item> :
         override val name: String,
         override val image: List<String>,
         override val price: String,
+        override val description: String,
         override val company: String
     ) : CartProductRenderer.RenderContract, ComparableItem
 

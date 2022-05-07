@@ -7,5 +7,6 @@ data class Product(
     val name: String,
     val image: List<String>,
     val price: BigDecimal,
+    val description: String,
     val companyName: String,
 )

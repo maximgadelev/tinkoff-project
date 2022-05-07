@@ -53,6 +53,7 @@ val appModule = module {
             get()
         )
     }
+
 }
 val dataModule = module {
     single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }

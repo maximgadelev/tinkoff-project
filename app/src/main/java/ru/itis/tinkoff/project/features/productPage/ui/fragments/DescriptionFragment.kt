@@ -11,5 +11,8 @@ class DescriptionFragment : Fragment(R.layout.description_fragment) {
     private val viewBinding by viewBinding(DescriptionFragmentBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        arguments?.takeIf { it.containsKey("description") }?.apply {
+            viewBinding.textViewProductDescription.text = getString("description")
+        }
     }
 }

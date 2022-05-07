@@ -15,6 +15,7 @@ class ResponseMapper {
                 productResponse.name,
                 checkImageList(productResponse.img),
                 productResponse.price.toBigDecimal(),
+                productResponse.description,
                 "New Company" // заглушка,на беке еще нет этого поля
             )
         }
@@ -35,6 +36,7 @@ class ResponseMapper {
             productResponse.name,
             checkImageList(productResponse.img),
             productResponse.price.toBigDecimal(),
+            productResponse.description,
             "New Company"
         )
     }

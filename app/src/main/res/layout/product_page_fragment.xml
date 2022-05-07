@@ -93,7 +93,7 @@
         app:layout_constraintTop_toBottomOf="@id/textView_product_page_price" />
 
     <TextView
-        android:id="@+id/textView_product_description"
+        android:id="@+id/textView_product_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="18dp"
@@ -114,7 +114,7 @@
         android:layout_marginTop="4dp"
         android:src="@drawable/ic_baseline_check_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_product_description" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_product_name" />
 
     <TextView
         android:id="@+id/textView_is_inStock"

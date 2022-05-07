@@ -31,23 +31,30 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val pagerAdapter = PagerAdapter(this)
         viewModel.onViewCreated(1)
         with(recyclerView_images_product_page) {
             setHasFixedSize(true)
             adapter = itemAdapter
         }
+        viewModel.mainProduct.onEach {
+            viewBinding.textViewProductPagePrice.text =
+                getString(R.string.price_in_ruble, it.price.toInt())
+            viewBinding.textViewProductPagePriceSecond.text =
+                getString(R.string.price_in_ruble, it.price.toInt())
+            viewBinding.textViewProductBrand.text = it.companyName
+            viewBinding.textViewProductName.text = it.name
+            viewBinding.pager.adapter = PagerAdapter(this,it.description,it.name)
+            TabLayoutMediator(viewBinding.tabLayout, viewBinding.pager) { tab, position ->
+                if (position == 0) {
+                    tab.text = getString(R.string.description)
+                } else {
+                    tab.text = getString(R.string.charactreristics)
+                }
+            }.attach()
+        }.launchIn(lifecycleScope)
         viewModel.item.onEach {
             itemAdapter.differ.submitList(it)
         }
             .launchIn(lifecycleScope)
-        viewBinding.pager.adapter = pagerAdapter
-        TabLayoutMediator(viewBinding.tabLayout, viewBinding.pager) { tab, position ->
-            if (position == 0) {
-                tab.text = getString(R.string.description)
-            } else {
-                tab.text = getString(R.string.charactreristics)
-            }
-        }.attach()
     }
 }
