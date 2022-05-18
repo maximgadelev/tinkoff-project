@@ -3,10 +3,16 @@ package ru.itis.tinkoff.project.features.productPage.ui.adapter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.features.productPage.ui.fragments.CharacteristicsFragment
 import ru.itis.tinkoff.project.features.productPage.ui.fragments.DescriptionFragment
+import java.io.Serializable
 
-class PagerAdapter(fragment: Fragment, val dataDesc: String, val dataCharacter: String) :
+class PagerAdapter(
+    fragment: Fragment,
+    val dataDesc: String,
+    val dataCharacter: List<Characteristic>
+) :
     FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 2
     override fun createFragment(position: Int): Fragment {
@@ -17,6 +23,10 @@ class PagerAdapter(fragment: Fragment, val dataDesc: String, val dataCharacter: 
             }
             return fragment
         }
-        return CharacteristicsFragment()
+        val fragment = CharacteristicsFragment()
+        fragment.arguments = Bundle().apply {
+            putSerializable("characteristic", dataCharacter as Serializable)
+        }
+        return fragment
     }
 }

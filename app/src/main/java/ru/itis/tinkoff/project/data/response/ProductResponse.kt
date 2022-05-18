@@ -8,7 +8,7 @@ data class ProductResponse(
     @Json(name = "category")
     val categoryResponse: CategoryResponse,
     @Json(name = "characteristic")
-    val characteristic: Characteristic,
+    val characteristicResponse: List<CharacteristicResponse>,
     @Json(name = "description")
     val description: String,
     @Json(name = "id")

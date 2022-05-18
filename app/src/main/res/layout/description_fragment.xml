@@ -15,5 +15,5 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="4dp"
         tools:text="Описание продукта"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

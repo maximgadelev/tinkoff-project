@@ -16,6 +16,7 @@ import ru.haroncode.aquarius.core.clicker.DefaultClicker
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
+import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 
 class ProductCardListRenderer<Item>(type: ProductCardItemType) :
@@ -33,6 +34,7 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
         override val id: Int,
         override val name: String,
         override val image: List<String>,
+        override val characteristics: List<Characteristic>,
         override val price: String,
         override val description: String,
         override val company: String

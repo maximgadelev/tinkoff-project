@@ -7,6 +7,7 @@ import kotlinx.android.synthetic.main.item_product_card_main.view.*
 import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
+import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 
 class ProductCardRenderer<Item>(
@@ -18,6 +19,7 @@ class ProductCardRenderer<Item>(
         val id: Int
         val name: String
         val image: List<String>
+        val characteristics: List<Characteristic>
         val price: String
         val description: String
         val company: String

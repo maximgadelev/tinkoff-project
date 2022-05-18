@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.product_page_fragment.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -45,7 +44,8 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
                 getString(R.string.price_in_ruble, it.price.toInt())
             viewBinding.textViewProductBrand.text = it.companyName
             viewBinding.textViewProductName.text = it.name
-            viewBinding.pager.adapter = PagerAdapter(this, it.description, it.name)
+            viewBinding.pager.adapter =
+                PagerAdapter(this, it.description, it.characteristic)
             TabLayoutMediator(viewBinding.tabLayout, viewBinding.pager) { tab, position ->
                 if (position == 0) {
                     tab.text = getString(R.string.description)

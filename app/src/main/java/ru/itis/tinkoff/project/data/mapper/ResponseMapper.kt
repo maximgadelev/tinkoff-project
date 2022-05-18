@@ -2,8 +2,10 @@ package ru.itis.tinkoff.project.data.mapper
 
 import android.net.Uri
 import ru.itis.tinkoff.project.R
+import ru.itis.tinkoff.project.data.response.CharacteristicResponse
 import ru.itis.tinkoff.project.data.response.ProductResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
+import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.entity.Promotion
 
@@ -14,6 +16,7 @@ class ResponseMapper {
                 productResponse.id,
                 productResponse.name,
                 checkImageList(productResponse.img),
+                mapCharacteristic(productResponse.characteristicResponse),
                 productResponse.price.toBigDecimal(),
                 productResponse.description,
                 "New Company" // заглушка,на беке еще нет этого поля
@@ -35,6 +38,7 @@ class ResponseMapper {
             productResponse.id,
             productResponse.name,
             checkImageList(productResponse.img),
+            mapCharacteristic(productResponse.characteristicResponse),
             productResponse.price.toBigDecimal(),
             productResponse.description,
             "New Company"
@@ -51,6 +55,15 @@ class ResponseMapper {
             newList
         } else {
             list
+        }
+    }
+
+    private fun mapCharacteristic(characteristics: List<CharacteristicResponse>): List<Characteristic> {
+        return characteristics.map { characteristicResponse ->
+            Characteristic(
+                characteristicResponse.characteristic,
+                characteristicResponse.type
+            )
         }
     }
 }

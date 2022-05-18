@@ -2,6 +2,7 @@ package ru.itis.tinkoff.project.features.main.utils
 
 import android.view.Menu
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
+import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
@@ -35,9 +36,10 @@ sealed class MenuItem : ComparableItem {
         override val id: Int,
         override val name: String,
         override val image: List<String>,
+        override val characteristics: List<Characteristic>,
         override val price: String,
         override val description: String,
-        override val company: String
+        override val company: String,
 
     ) : MenuItem(), ProductCardRenderer.RenderContract
 }
