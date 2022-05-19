@@ -2,7 +2,6 @@ package ru.itis.tinkoff.project.features.main.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -13,13 +12,11 @@ import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
-import ru.haroncode.aquarius.core.clicker.DefaultClicker
 import ru.haroncode.aquarius.core.decorators.SpaceRuleItemDecoration
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.MenuFragmentBinding
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
-import ru.itis.tinkoff.project.features.common.renderer.ProductCardRenderer
 import ru.itis.tinkoff.project.features.common.utils.dp
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
@@ -41,7 +38,6 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
             .renderer(
                 MenuItem.ProductListMenuItem::class,
                 ProductCardListRenderer(ProductCardItemType.MAIN),
-                DefaultClicker(::onClickButton)
             )
             .renderer(
                 MenuItem.CarouselMenuItem::class,
@@ -59,7 +55,7 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
         createMainList()
         lifecycleScope.launchWhenStarted {
             viewModel.eventFlow.collect {
-                    showDialog()
+                showDialog()
             }
         }
         viewModel.item.onEach {
@@ -100,9 +96,7 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
             addItemDecoration(carouselDecoration)
         }
     }
-fun onClickButton(renderContract:ProductCardListRenderer.RenderContract){
-    Log.e("123","123")
-}
+
     private fun showDialog() {
         val builder = AlertDialog.Builder(context)
         with(builder) {

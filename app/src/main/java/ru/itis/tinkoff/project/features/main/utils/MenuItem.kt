@@ -1,6 +1,5 @@
 package ru.itis.tinkoff.project.features.main.utils
 
-import android.view.Menu
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer

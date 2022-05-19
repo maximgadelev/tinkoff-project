@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_carousel.view.*
@@ -19,6 +18,7 @@ import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 
+@SuppressWarnings("LateinitUsage")
 class ProductCardListRenderer<Item>(type: ProductCardItemType) :
     ItemBaseRenderer<Item, ProductCardListRenderer.RenderContract>(), ClickableRenderer {
     private lateinit var viewHolder: RecyclerView.ViewHolder
@@ -72,7 +72,7 @@ class ProductCardListRenderer<Item>(type: ProductCardItemType) :
         itemAdapter.differ.submitList(item.products)
     }
 
-    fun onClickButton(renderContract: ProductCardRenderer.RenderContract) {
+    private fun onClickButton(renderContract: ProductCardRenderer.RenderContract) {
         val bundle = Bundle()
         bundle.putInt("id", renderContract.id)
         viewHolder.itemView.findNavController()
