@@ -13,24 +13,24 @@ class AuthInterceptor(
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()
-        requestBuilder.addHeader(AUTHORIZATION, "Bearer ${"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOjMsInBhc3N3b3JkIjoiJDJhJDEwJHIzcFZWMVdCN3lqdlc5NlpCOHVnZ2ViS2dZR3NLa3lIM3pnbVg5RkpEQkRZdUZock5BYjZDIiwicm9sZSI6IlJPTEVfQ0xJRU5UIiwic3RhdGUiOiJDT05GSVJNRUQiLCJ0eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjUyODkyODc1LCJpYXQiOjE2NTI4ODkyNzUsImVtYWlsIjoiYWRtaW5AbWFpbC5jb20ifQ.NXzlj9U2QYFXr4YMb9rATcvuCPP5kwW_FV2WH-huPItqM8FMvxE8DvBnJBVEa9WdB7WBRrxN_EFu3BKqF-OeYQ"}")
+        requestBuilder.addHeader(AUTHORIZATION, "Bearer ${tokenRepository.getToken()}")
         var response = chain.proceed(requestBuilder.build())
-//        if (response.code == HttpsURLConnection.HTTP_UNAUTHORIZED) {
-//            response.close()
-//            runBlocking {
-//                try {
-//                    tokenRepository.refreshToken()
-//                } catch (ex: Exception) {
-//                    tokenRepository.loginAndGetToken(
-//                        "admin@mail.com",
-//                        "qwerty"
-//                    ) // т.к рефреш токен может устареть,то опять требует залогинится
-//                }
-//            }
-//            requestBuilder.removeHeader(AUTHORIZATION)
-//                .addHeader(AUTHORIZATION, "Bearer ${tokenRepository.getToken()}")
-//            response = chain.proceed(requestBuilder.build())
-//        }
+        if (response.code == HttpsURLConnection.HTTP_UNAUTHORIZED) {
+            response.close()
+            runBlocking {
+                try {
+                    tokenRepository.refreshToken()
+                } catch (ex: Exception) {
+                    tokenRepository.loginAndGetToken(
+                        "admin@mail.com",
+                        "qwerty"
+                    ) // т.к рефреш токен может устареть,то опять требует залогинится
+                }
+            }
+            requestBuilder.removeHeader(AUTHORIZATION)
+                .addHeader(AUTHORIZATION, "Bearer ${tokenRepository.getToken()}")
+            response = chain.proceed(requestBuilder.build())
+        }
         return response
     }
 }
