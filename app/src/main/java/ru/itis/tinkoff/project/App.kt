@@ -1,8 +1,6 @@
 package ru.itis.tinkoff.project
 
-import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -24,12 +22,5 @@ class App : Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         }
-    }
-    companion object {
-        @SuppressLint("StaticFieldLeak")
-        private var context: Context? = null
-
-        val applicationContext: Context?
-            get() = context
     }
 }
