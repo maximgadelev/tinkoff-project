@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/menu">
+    app:startDestination="@id/authorizationFragment">
 
     <fragment
         android:id="@+id/menu"
@@ -32,4 +32,12 @@
         android:id="@+id/productPageFragment"
         android:name="ru.itis.tinkoff.project.features.productPage.ui.fragments.ProductPageFragment"
         android:label="ProductPageFragment" />
+    <fragment
+        android:id="@+id/authorizationFragment"
+        android:name="ru.itis.tinkoff.project.features.authorization.ui.AuthorizationFragment"
+        android:label="AuthorizationFragment" >
+        <action
+            android:id="@+id/action_authorizationFragment_to_menu"
+            app:destination="@id/menu" />
+    </fragment>
 </navigation>
