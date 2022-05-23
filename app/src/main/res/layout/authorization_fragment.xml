@@ -85,7 +85,7 @@
                 android:id="@+id/TextInput_password"
                 android:layout_width="320dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:hint="@string/password"
                 app:boxCornerRadiusBottomEnd="18dp"
                 app:boxCornerRadiusBottomStart="18dp"
@@ -101,6 +101,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/EditText_password"
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>

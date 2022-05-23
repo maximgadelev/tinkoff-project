@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -25,6 +26,8 @@ import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.ui.MainViewModel
 import ru.itis.tinkoff.project.features.productPage.data.ProductPageRepository
 import ru.itis.tinkoff.project.features.productPage.ui.ProductPageViewModel
+import ru.itis.tinkoff.project.features.registration.data.RegistrationRepository
+import ru.itis.tinkoff.project.features.registration.ui.RegistrationFragmentViewModel
 import ru.itis.tinkoff.project.network.AuthInterceptor
 
 const val API_URL = "https://market-app-technokratos.herokuapp.com/"
@@ -54,13 +57,19 @@ val appModule = module {
             get()
         )
     }
-    viewModel<AuthorizationViewModel>{
+    viewModel<AuthorizationViewModel> {
         AuthorizationViewModel(
+            get()
+        )
+    }
+    viewModel<RegistrationFragmentViewModel> {
+        RegistrationFragmentViewModel(
             get()
         )
     }
 }
 val dataModule = module {
+    single<RegistrationRepository> { RegistrationRepository(get()) }
     single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
     single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }
     single<CartRepository> { CartRepository(api = get(), ResponseMapper()) }
@@ -79,7 +88,8 @@ val networkModule = module {
     single(named("ApiClient")) { provideOkHttpClient(get()) }
     single<Retrofit> { provideRetrofit(get()) }
     single<AuthInterceptor> { AuthInterceptor(get()) }
-    single(named("TokenApiClient")) { provideOkHttpClientForTokenApi() }
+    single(named("TokenApiClient")) { provideOkHttpClientForTokenApi(get()) }
+    single { HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY) }
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -91,8 +101,8 @@ fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
     return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
 }
 
-fun provideOkHttpClientForTokenApi(): OkHttpClient {
-    return OkHttpClient().newBuilder().build()
+fun provideOkHttpClientForTokenApi(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    return OkHttpClient().newBuilder().addInterceptor(httpLoggingInterceptor).build()
 }
 
 fun createApi(retrofit: Retrofit): Api {
