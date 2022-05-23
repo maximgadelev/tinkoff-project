@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import ru.itis.tinkoff.project.features.common.Event
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
-import ru.itis.tinkoff.project.features.common.ErrorEvent
 import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.utils.MenuItem
 
@@ -16,7 +16,7 @@ class MainViewModel(
     private val menuRepository: MenuRepository,
     private val entityMapper: EntityMapper
 ) : ViewModel() {
-    private val eventChannel = Channel<ErrorEvent>()
+    private val eventChannel = Channel<Event>()
     private val _item = MutableStateFlow<List<MenuItem>>(emptyList())
     private val itemProvider = MenuItemProvider(entityMapper)
     val item = _item.asStateFlow()
@@ -34,7 +34,7 @@ class MainViewModel(
                 val items = itemProvider.getItemList(products, promotions)
                 _item.value = items
             } catch (ex: Exception) {
-                eventChannel.send(ErrorEvent)
+                eventChannel.send(Event.ExceptionEvent)
             }
         }
     }

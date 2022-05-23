@@ -29,4 +29,5 @@
     <string name="password">Пароль</string>
     <string name="no_valid_email_or_password">Неправильный пароль или логин</string>
     <string name="enter">Войти</string>
+    <string name="enter_fragment_title">Вход</string>
 </resources>

@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import ru.itis.tinkoff.project.features.common.Event
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
-import ru.itis.tinkoff.project.features.common.ErrorEvent
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItem
 
@@ -16,7 +16,7 @@ class FavoritesViewModel(
     private val favoritesRepository: FavoritesRepository,
     private val entityMapper: EntityMapper
 ) : ViewModel() {
-    private val eventChannel = Channel<ErrorEvent>()
+    private val eventChannel = Channel<Event>()
     private val _item = MutableStateFlow<List<FavoritesItem>>(emptyList())
     private val itemProvider = FavoritesItemProvider(entityMapper)
     private val _productsListSize = MutableStateFlow(0)
@@ -36,7 +36,7 @@ class FavoritesViewModel(
                 _productsListSize.value = products.size
                 _item.value = items
             } catch (ex: Exception) {
-                eventChannel.send(ErrorEvent)
+                eventChannel.send(Event.ExceptionEvent)
             }
         }
     }

@@ -6,19 +6,20 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.data.repository.TokenRepository
-import ru.itis.tinkoff.project.features.common.ErrorEvent
+import ru.itis.tinkoff.project.features.common.Event
 
 class AuthorizationViewModel(
     private val tokenRepository: TokenRepository
 ) : ViewModel() {
-    private val eventChannel = Channel<ErrorEvent>()
+    private val eventChannel = Channel<Event>()
     val eventFlow = eventChannel.receiveAsFlow()
     fun loginUser(login: String, password: String) {
         viewModelScope.launch {
             try {
                 tokenRepository.loginAndGetToken(login, password)
+                eventChannel.send(Event.NavigateToMenuEvent)
             } catch (ex: Exception) {
-                eventChannel.send(ErrorEvent)
+                eventChannel.send(Event.ExceptionEvent)
             }
         }
     }
