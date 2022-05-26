@@ -27,8 +27,11 @@ class ResponseMapper {
     fun mapPromotionsResponseToPromotion(promotionResponses: List<PromotionResponse>): List<Promotion> {
         return promotionResponses.map { promotionResponse ->
             Promotion(
+                promotionResponse.id,
                 promotionResponse.name,
-                promotionResponse.img
+                promotionResponse.isActive,
+                promotionResponse.img,
+                mapProductsResponseToProducts(promotionResponse.products)
             )
         }
     }

@@ -40,4 +40,5 @@
     <string name="button_registration_name">Зарегистрироваться</string>
     <string name="enter_to_profile">Войти в профиль</string>
     <string name="empty_profile_description">Войдите или зарегистрируйтесь, чтобы сохранять товары и просматривать заказы</string>
+    <string name="promotion_fragment_title">Акция</string>
 </resources>

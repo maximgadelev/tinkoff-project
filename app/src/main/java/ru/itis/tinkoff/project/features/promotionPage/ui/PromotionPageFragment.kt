@@ -1,33 +1,36 @@
-package ru.itis.tinkoff.project.features.favorites.ui
+package ru.itis.tinkoff.project.features.promotionPage.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import kotlinx.android.synthetic.main.favorites_fragment.*
+import coil.load
+import kotlinx.android.synthetic.main.promotion_page_fragment.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.databinding.FavoritesFragmentBinding
+import ru.itis.tinkoff.project.databinding.MenuFragmentBinding
+import ru.itis.tinkoff.project.databinding.PromotionPageFragmentBinding
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardRenderer
-import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItem
+import ru.itis.tinkoff.project.features.promotionPage.utils.PromotionPageItem
 
-class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
-
-    private val viewBinding by viewBinding(FavoritesFragmentBinding::bind)
-    private val viewModel: FavoritesViewModel by viewModel()
+class PromotionPageFragment : Fragment(R.layout.promotion_page_fragment) {
+    private val viewBinding by viewBinding(PromotionPageFragmentBinding::bind)
+    private val viewModel: PromotionPageViewModel by viewModel<PromotionPageViewModel>()
     private val itemAdapter by lazy {
-        RenderAdapterBuilder<FavoritesItem>()
+        RenderAdapterBuilder<PromotionPageItem>()
             .renderer(
-                FavoritesItem.ProductListFavoritesItem::class,
+                PromotionPageItem.ProductListPromotionPageItem::class,
                 ProductCardListRenderer(ProductCardItemType.FAVORITE,(::onClickButton))
             ).build(DifferStrategies.withDiffUtilComparable())
     }
@@ -36,29 +39,29 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
             viewModel.eventFlow.collect {
-                    showDialog()
+                showDialog()
             }
         }
-        createFavoritesProductList()
+        val id = arguments?.getInt("id")
+        id?.let { viewModel.onViewCreated(it) }
+        createProductList()
+        viewBinding.ImageViewTitle.load(arguments?.getString("image"))
         createMainInformation()
     }
 
-    private fun createFavoritesProductList() {
+    private fun createProductList() {
         with(recyclerView) {
             setHasFixedSize(true)
             adapter = itemAdapter
         }
     }
+
     private fun createMainInformation() {
         viewModel.item.onEach {
             itemAdapter.differ.submitList(it)
-        }
-            .launchIn(lifecycleScope)
-        viewModel.productsListSize.onEach {
-            viewBinding.textViewProducts.text = getString(R.string.number_of_products, it)
-        }
-            .launchIn(lifecycleScope)
+        }.launchIn(lifecycleScope)
     }
+
     private fun showDialog() {
         val builder = AlertDialog.Builder(context)
         with(builder) {

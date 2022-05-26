@@ -26,6 +26,8 @@ import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.ui.MainViewModel
 import ru.itis.tinkoff.project.features.productPage.data.ProductPageRepository
 import ru.itis.tinkoff.project.features.productPage.ui.ProductPageViewModel
+import ru.itis.tinkoff.project.features.promotionPage.data.PromotionRepository
+import ru.itis.tinkoff.project.features.promotionPage.ui.PromotionPageViewModel
 import ru.itis.tinkoff.project.features.registration.data.RegistrationRepository
 import ru.itis.tinkoff.project.features.registration.ui.RegistrationFragmentViewModel
 import ru.itis.tinkoff.project.network.AuthInterceptor
@@ -67,8 +69,15 @@ val appModule = module {
             get()
         )
     }
+    viewModel<PromotionPageViewModel> {
+        PromotionPageViewModel(
+            get(),
+            get()
+        )
+    }
 }
 val dataModule = module {
+    single<PromotionRepository> { PromotionRepository(get(), ResponseMapper()) }
     single<RegistrationRepository> { RegistrationRepository(get()) }
     single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
     single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }

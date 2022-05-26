@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_menu_to_productPageFragment"
             app:destination="@id/productPageFragment" />
+        <action
+            android:id="@+id/action_menu_to_promotionPageFragment"
+            app:destination="@id/promotionPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/catalog"
@@ -59,4 +62,8 @@
             android:id="@+id/action_emptyProfileFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/promotionPageFragment"
+        android:name="ru.itis.tinkoff.project.features.promotionPage.ui.PromotionPageFragment"
+        android:label="PromotionPageFragment" />
 </navigation>
