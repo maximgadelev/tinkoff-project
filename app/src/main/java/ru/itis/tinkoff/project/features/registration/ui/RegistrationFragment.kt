@@ -18,6 +18,9 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
     private val viewModel: RegistrationFragmentViewModel by viewModel()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.imageButtonBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         viewBinding.ButtonRegistration.setOnClickListener {
             viewModel.registerUser(
                 viewBinding.EditTextName.text.toString(),

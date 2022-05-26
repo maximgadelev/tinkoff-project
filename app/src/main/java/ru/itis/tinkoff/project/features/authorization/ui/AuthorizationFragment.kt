@@ -19,6 +19,9 @@ class AuthorizationFragment : Fragment(R.layout.authorization_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.TextViewValid.visibility = View.GONE
+        viewBinding.imageButtonBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         viewBinding.ButtonEnter.setOnClickListener {
             viewModel.loginUser(
                 viewBinding.EditTextEmail.text.toString(),
