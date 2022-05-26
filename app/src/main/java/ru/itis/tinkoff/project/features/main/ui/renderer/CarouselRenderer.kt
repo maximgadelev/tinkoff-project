@@ -37,7 +37,7 @@ class CarouselRenderer<Item>(
 
     private val itemAdapter by lazy {
         RenderAdapterBuilder<Promotion>()
-            .renderer(Promotion::class, PromotionRender(size),DefaultClicker(listener))
+            .renderer(Promotion::class, PromotionRender(size), DefaultClicker(listener))
             .build(DifferStrategies.withDiffUtilComparable())
     }
 

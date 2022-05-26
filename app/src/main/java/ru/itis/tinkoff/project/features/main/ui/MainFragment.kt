@@ -121,5 +121,4 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
         findNavController()
             .navigate(R.id.action_menu_to_promotionPageFragment, bundle)
     }
-
 }
