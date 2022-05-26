@@ -7,7 +7,11 @@
     <fragment
         android:id="@+id/menu"
         android:name="ru.itis.tinkoff.project.features.main.ui.MainFragment"
-        android:label="MenuFragment" />
+        android:label="MenuFragment" >
+        <action
+            android:id="@+id/action_menu_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/catalog"
         android:name="ru.itis.tinkoff.project.features.catalog.CatalogFragment"
@@ -24,4 +28,8 @@
         android:id="@+id/profile"
         android:name="ru.itis.tinkoff.project.features.profile.ui.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/productPageFragment"
+        android:name="ru.itis.tinkoff.project.features.productPage.ui.fragments.ProductPageFragment"
+        android:label="ProductPageFragment" />
 </navigation>

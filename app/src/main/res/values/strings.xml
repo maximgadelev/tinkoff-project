@@ -18,4 +18,10 @@
     <string name="discount_in_ruble">-%1$d ₽</string>
     <string name="to_order_registration">Перейти к оформлению</string>
     <string name="server_blocked">Сервер недоступен</string>
+    <string name="feedbacks">Отзывы</string>
+    <string name="description">Описание</string>
+    <string name="charactreristics">Характеристика</string>
+    <string name="add_to_cart">Добавить в корзину</string>
+    <string name="no_desc">У данного товара отсутствует описание</string>
+    <string name="in_stock">В наличии</string>
 </resources>

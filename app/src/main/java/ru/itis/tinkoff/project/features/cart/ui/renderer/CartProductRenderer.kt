@@ -8,14 +8,18 @@ import kotlinx.android.synthetic.main.item_product_card_cart.view.productTitleTe
 import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
+import ru.itis.tinkoff.project.entity.Characteristic
 
 class CartProductRenderer<Item> : ItemBaseRenderer<Item, CartProductRenderer.RenderContract>(),
     ClickableRenderer {
 
     interface RenderContract {
+        val id: Int
         val name: String
-        val image: String
+        val image: List<String>
+        val characteristics:List<Characteristic>
         val price: String
+        val description: String
         val company: String
     }
 
@@ -24,7 +28,7 @@ class CartProductRenderer<Item> : ItemBaseRenderer<Item, CartProductRenderer.Ren
 
     override fun onBindView(viewHolder: BaseViewHolder, item: CartProductRenderer.RenderContract) {
         with(viewHolder) {
-            viewHolder.itemView.productImageView.load(item.image)
+            viewHolder.itemView.productImageView.load(item.image[0])
             itemView.productTitleTextView.text = item.name
             itemView.productPriceTextView.text = item.price
             itemView.cartProductCompanyTextView.text = item.company

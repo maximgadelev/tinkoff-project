@@ -15,6 +15,6 @@ class MenuRepository(
     }
 
     suspend fun getProducts(): List<Product> {
-        return mapper.mapProductResponseToProduct(api.getProducts())
+        return mapper.mapProductsResponseToProducts(api.getProducts())
     }
 }

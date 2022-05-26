@@ -37,7 +37,7 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
             .renderer(MenuItem.Title::class, TitleRenderer())
             .renderer(
                 MenuItem.ProductListMenuItem::class,
-                ProductCardListRenderer(ProductCardItemType.MAIN)
+                ProductCardListRenderer(ProductCardItemType.MAIN),
             )
             .renderer(
                 MenuItem.CarouselMenuItem::class,
@@ -55,7 +55,7 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
         createMainList()
         lifecycleScope.launchWhenStarted {
             viewModel.eventFlow.collect {
-                    showDialog()
+                showDialog()
             }
         }
         viewModel.item.onEach {

@@ -8,7 +8,7 @@ data class ProductResponse(
     @Json(name = "category")
     val categoryResponse: CategoryResponse,
     @Json(name = "characteristic")
-    val characteristic: Characteristic,
+    val characteristicResponse: List<CharacteristicResponse>,
     @Json(name = "description")
     val description: String,
     @Json(name = "id")
@@ -20,5 +20,5 @@ data class ProductResponse(
     @Json(name = "price")
     val price: Int,
     @Json(name = "rating")
-    val rating: Double? // в jsonke у бека пока null рейтинг по дефолту
+    val rating: Double?
 )

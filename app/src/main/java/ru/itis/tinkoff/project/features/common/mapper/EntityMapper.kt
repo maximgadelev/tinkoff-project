@@ -30,9 +30,12 @@ class EntityMapper {
     fun mapProductToProductList(products: List<Product>): List<ProductCardListRenderer.Product> {
         return products.map { product ->
             ProductCardListRenderer.Product(
+                product.id,
                 product.name,
                 product.image,
+                product.characteristic,
                 product.price.toString() + " ₽",
+                product.description,
                 product.companyName
             )
         }
@@ -41,9 +44,12 @@ class EntityMapper {
     fun mapProductToCartProductList(products: List<Product>): List<CartProductListRenderer.Product> {
         return products.map { product ->
             CartProductListRenderer.Product(
+                product.id,
                 product.name,
                 product.image,
+                product.characteristic,
                 product.price.toString() + " ₽",
+                product.description,
                 product.companyName
             )
         }
