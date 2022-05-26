@@ -21,6 +21,7 @@ class AuthorizationFragment : Fragment(R.layout.authorization_fragment) {
         viewBinding.imageButtonBack.setOnClickListener {
             findNavController().popBackStack()
         }
+        viewBinding.TextViewValid.visibility = View.GONE
         viewBinding.ButtonEnter.setOnClickListener {
             viewModel.loginUser(
                 viewBinding.EditTextEmail.text.toString(),
