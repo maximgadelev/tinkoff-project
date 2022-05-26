@@ -1,11 +1,8 @@
 package ru.itis.tinkoff.project.features.main.ui.renderer
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.findFragment
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
@@ -19,17 +16,14 @@ import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.features.common.renderer.PromotionRender
-import ru.itis.tinkoff.project.features.main.ui.MainFragment
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer.RenderContract
 import ru.itis.tinkoff.project.features.main.utils.PromotionItemSize
 
-@SuppressWarnings("LateinitUsage")
 class SnapRenderer<Item>(
     size: PromotionItemSize,
     private val isSnap: Boolean,
     private val listener: (PromotionRender.RenderContract) -> Unit
 ) : ItemBaseRenderer<Item, RenderContract>(), ClickableRenderer {
-    private lateinit var viewHolder: RecyclerView.ViewHolder
 
     interface RenderContract {
         val promotions: List<Promotion>
@@ -66,7 +60,7 @@ class SnapRenderer<Item>(
         }
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): BaseViewHolder {
-        viewHolder = super.onCreateViewHolder(inflater, parent)
+        val viewHolder = super.onCreateViewHolder(inflater, parent)
         val recyclerView = viewHolder.itemView.recyclerView
         if (recyclerView.adapter == null) {
             recyclerView.adapter = itemAdapter
@@ -75,18 +69,10 @@ class SnapRenderer<Item>(
             val snapHelper: SnapHelper = LinearSnapHelper()
             snapHelper.attachToRecyclerView(recyclerView)
         }
-        return viewHolder as BaseViewHolder
+        return viewHolder
     }
 
     override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
         itemAdapter.differ.submitList(item.promotions)
-    }
-
-    fun onClickButton(renderContract: PromotionRender.RenderContract) {
-        val bundle = Bundle()
-        bundle.putInt("id", renderContract.id)
-        bundle.putString("image", renderContract.image)
-        viewHolder.itemView.findNavController()
-            .navigate(R.id.action_menu_to_promotionPageFragment, bundle)
     }
 }
