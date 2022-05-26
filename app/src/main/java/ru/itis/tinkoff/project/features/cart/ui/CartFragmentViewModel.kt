@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
+import ru.itis.tinkoff.project.features.common.Event
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
-import ru.itis.tinkoff.project.features.common.ErrorEvent
 
 @SuppressWarnings("MagicNumber")
 class CartFragmentViewModel(
@@ -18,7 +18,7 @@ class CartFragmentViewModel(
     private val entityMapper: EntityMapper
 ) : ViewModel() {
 
-    private val eventChannel = Channel<ErrorEvent>()
+    private val eventChannel = Channel<Event>()
     private val _item = MutableStateFlow<List<CartItem>>(emptyList())
     private val itemProvider = CartItemProvider(entityMapper)
     private val _productsListSize = MutableStateFlow(0)
@@ -47,7 +47,7 @@ class CartFragmentViewModel(
                 _orderDiscount.value = 280
                 _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
             } catch (ex: Exception) {
-                eventChannel.send(ErrorEvent)
+                eventChannel.send(Event.ExceptionEvent)
             }
         }
     }

@@ -24,4 +24,10 @@
     <string name="add_to_cart">Добавить в корзину</string>
     <string name="no_desc">У данного товара отсутствует описание</string>
     <string name="in_stock">В наличии</string>
+    <string name="email">Электронная почта</string>
+    <string name="authorization_title">Войдите,чтобы начать покупки</string>
+    <string name="password">Пароль</string>
+    <string name="no_valid_email_or_password">Неправильный пароль или логин</string>
+    <string name="enter">Войти</string>
+    <string name="enter_fragment_title">Вход</string>
 </resources>

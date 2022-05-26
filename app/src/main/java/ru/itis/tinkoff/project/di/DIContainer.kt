@@ -15,6 +15,7 @@ import ru.itis.tinkoff.project.data.api.TokenApi
 import ru.itis.tinkoff.project.data.database.local.PreferenceManager
 import ru.itis.tinkoff.project.data.mapper.ResponseMapper
 import ru.itis.tinkoff.project.data.repository.TokenRepository
+import ru.itis.tinkoff.project.features.authorization.ui.AuthorizationViewModel
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
@@ -50,6 +51,11 @@ val appModule = module {
     }
     viewModel<ProductPageViewModel> {
         ProductPageViewModel(
+            get()
+        )
+    }
+    viewModel<AuthorizationViewModel>{
+        AuthorizationViewModel(
             get()
         )
     }

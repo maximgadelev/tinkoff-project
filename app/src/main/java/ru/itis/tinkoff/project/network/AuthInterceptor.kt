@@ -18,18 +18,11 @@ class AuthInterceptor(
         if (response.code == HttpsURLConnection.HTTP_UNAUTHORIZED) {
             response.close()
             runBlocking {
-                try {
-                    tokenRepository.refreshToken()
-                } catch (ex: Exception) {
-                    tokenRepository.loginAndGetToken(
-                        "admin@mail.com",
-                        "qwerty"
-                    ) // т.к рефреш токен может устареть,то опять требует залогинится
-                }
+                tokenRepository.refreshToken()
+                requestBuilder.removeHeader(AUTHORIZATION)
+                    .addHeader(AUTHORIZATION, "Bearer ${tokenRepository.getToken()}")
+                response = chain.proceed(requestBuilder.build())
             }
-            requestBuilder.removeHeader(AUTHORIZATION)
-                .addHeader(AUTHORIZATION, "Bearer ${tokenRepository.getToken()}")
-            response = chain.proceed(requestBuilder.build())
         }
         return response
     }
