@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
+import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.clicker.DefaultClicker
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
@@ -17,11 +18,11 @@ import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 
 @SuppressWarnings("LateinitUsage")
+
 class ProductCardListRenderer<Item>(
     type: ProductCardItemType,
     listener: (ProductCardRenderer.RenderContract) -> Unit
-) :
-    ItemBaseRenderer<Item, ProductCardListRenderer.RenderContract>() {
+) : ItemBaseRenderer<Item, ProductCardListRenderer.RenderContract>() {
     private lateinit var viewHolder: RecyclerView.ViewHolder
 
     interface RenderContract {
@@ -43,6 +44,7 @@ class ProductCardListRenderer<Item>(
 
     private val itemAdapter by lazy {
         RenderAdapterBuilder<Product>()
+
             .renderer(Product::class, ProductCardRenderer(type), DefaultClicker(listener))
             .build(DifferStrategies.withDiffUtilComparable())
     }
@@ -62,5 +64,12 @@ class ProductCardListRenderer<Item>(
 
     override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
         itemAdapter.differ.submitList(item.products)
+    }
+
+    private fun onClickButton(renderContract: ProductCardRenderer.RenderContract) {
+        val bundle = Bundle()
+        bundle.putInt("id", renderContract.id)
+        viewHolder.itemView.findNavController()
+            .navigate(R.id.action_menu_to_productPageFragment, bundle)
     }
 }

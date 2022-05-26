@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
     app:startDestination="@id/emptyProfileFragment">
-
     <fragment
         android:id="@+id/menu"
         android:name="ru.itis.tinkoff.project.features.main.ui.MainFragment"
@@ -11,9 +10,6 @@
         <action
             android:id="@+id/action_menu_to_productPageFragment"
             app:destination="@id/productPageFragment" />
-        <action
-            android:id="@+id/action_menu_to_promotionPageFragment"
-            app:destination="@id/promotionPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/catalog"
