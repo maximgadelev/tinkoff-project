@@ -26,6 +26,7 @@
     <ImageView
         android:id="@+id/ImageView_title"
         android:layout_width="420dp"
+        android:scaleType="fitXY"
         android:layout_height="224dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"

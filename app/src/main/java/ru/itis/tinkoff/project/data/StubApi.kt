@@ -45,7 +45,7 @@ class StubApi : Api {
     }
 
     override suspend fun getProductByPromotionId(id: Int): List<ProductResponse> {
-        TODO("Not yet implemented")
+        return emptyList()
     }
 
     private fun getTestProfile() =

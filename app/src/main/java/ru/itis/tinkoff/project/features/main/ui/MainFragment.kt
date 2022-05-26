@@ -44,7 +44,7 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
             )
             .renderer(
                 MenuItem.CarouselMenuItem::class,
-                CarouselRenderer(PromotionItemSize.LONG)
+                CarouselRenderer(PromotionItemSize.LONG, ::onClickPromotion)
             )
             .renderer(
                 MenuItem.ThreePromotionsCardMenuItem::class,
@@ -121,4 +121,5 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
         findNavController()
             .navigate(R.id.action_menu_to_promotionPageFragment, bundle)
     }
+
 }
