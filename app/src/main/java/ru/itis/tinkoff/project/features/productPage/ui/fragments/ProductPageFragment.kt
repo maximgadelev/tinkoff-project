@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.launchIn
@@ -36,6 +37,9 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
     }
 
     private fun createMainInformation() {
+        viewBinding.imageButtonBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         viewModel.mainProduct.onEach {
             viewBinding.recyclerViewImagesProductPage.adapter = itemAdapter
             viewBinding.textViewProductPagePrice.text =

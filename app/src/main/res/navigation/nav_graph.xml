@@ -22,11 +22,19 @@
     <fragment
         android:id="@+id/cart"
         android:name="ru.itis.tinkoff.project.features.cart.ui.CartFragment"
-        android:label="BasketFragment" />
+        android:label="BasketFragment" >
+        <action
+            android:id="@+id/action_cart_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favourites"
         android:name="ru.itis.tinkoff.project.features.favorites.ui.FavoritesFragment"
-        android:label="FavouritesFragment" />
+        android:label="FavouritesFragment" >
+        <action
+            android:id="@+id/action_favourites_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profile"
         android:name="ru.itis.tinkoff.project.features.profile.ui.ProfileFragment"
@@ -65,5 +73,9 @@
     <fragment
         android:id="@+id/promotionPageFragment"
         android:name="ru.itis.tinkoff.project.features.promotionPage.ui.PromotionPageFragment"
-        android:label="PromotionPageFragment" />
+        android:label="PromotionPageFragment" >
+        <action
+            android:id="@+id/action_promotionPageFragment_to_productPageFragment"
+            app:destination="@id/productPageFragment" />
+    </fragment>
 </navigation>

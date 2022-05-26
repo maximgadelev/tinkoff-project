@@ -28,7 +28,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         RenderAdapterBuilder<FavoritesItem>()
             .renderer(
                 FavoritesItem.ProductListFavoritesItem::class,
-                ProductCardListRenderer(ProductCardItemType.FAVORITE,(::onClickButton))
+                ProductCardListRenderer(ProductCardItemType.FAVORITE, ::onClickButton)
             ).build(DifferStrategies.withDiffUtilComparable())
     }
 
@@ -36,7 +36,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
             viewModel.eventFlow.collect {
-                    showDialog()
+                showDialog()
             }
         }
         createFavoritesProductList()
@@ -49,6 +49,7 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
             adapter = itemAdapter
         }
     }
+
     private fun createMainInformation() {
         viewModel.item.onEach {
             itemAdapter.differ.submitList(it)
@@ -59,16 +60,18 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         }
             .launchIn(lifecycleScope)
     }
+
     private fun showDialog() {
         val builder = AlertDialog.Builder(context)
         with(builder) {
             setTitle(R.string.server_blocked)
         }.show()
     }
+
     private fun onClickButton(renderContract: ProductCardRenderer.RenderContract) {
         val bundle = Bundle()
         bundle.putInt("id", renderContract.id)
         findNavController()
-            .navigate(R.id.action_menu_to_productPageFragment, bundle)
+            .navigate(R.id.action_favourites_to_productPageFragment, bundle)
     }
 }

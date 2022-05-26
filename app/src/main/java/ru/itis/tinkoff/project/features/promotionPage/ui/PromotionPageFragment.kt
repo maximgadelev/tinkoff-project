@@ -2,9 +2,7 @@ package ru.itis.tinkoff.project.features.promotionPage.ui
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -17,7 +15,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.databinding.MenuFragmentBinding
 import ru.itis.tinkoff.project.databinding.PromotionPageFragmentBinding
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
@@ -31,7 +28,7 @@ class PromotionPageFragment : Fragment(R.layout.promotion_page_fragment) {
         RenderAdapterBuilder<PromotionPageItem>()
             .renderer(
                 PromotionPageItem.ProductListPromotionPageItem::class,
-                ProductCardListRenderer(ProductCardItemType.FAVORITE,(::onClickButton))
+                ProductCardListRenderer(ProductCardItemType.FAVORITE,::onClickButton)
             ).build(DifferStrategies.withDiffUtilComparable())
     }
 
@@ -72,6 +69,6 @@ class PromotionPageFragment : Fragment(R.layout.promotion_page_fragment) {
         val bundle = Bundle()
         bundle.putInt("id", renderContract.id)
         findNavController()
-            .navigate(R.id.action_menu_to_productPageFragment, bundle)
+            .navigate(R.id.action_promotionPageFragment_to_productPageFragment, bundle)
     }
 }
