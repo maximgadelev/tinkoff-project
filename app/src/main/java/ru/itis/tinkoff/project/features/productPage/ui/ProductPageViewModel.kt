@@ -14,7 +14,7 @@ import ru.itis.tinkoff.project.features.productPage.utils.ProductPageItem
 class ProductPageViewModel(
     private val productPageRepository: ProductPageRepository,
 ) : ViewModel() {
-    private val eventChannel = Channel<Event>()
+    private val eventChannel = Channel<ErrorEvent>()
     private val _item = MutableStateFlow<List<ProductPageItem>>(emptyList())
     private val itemProvider = ProductPageItemProvider()
     private val _mainProduct =
