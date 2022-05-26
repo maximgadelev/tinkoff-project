@@ -18,6 +18,9 @@ class AuthorizationFragment : Fragment(R.layout.authorization_fragment) {
     private val viewBinding by viewBinding(AuthorizationFragmentBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewBinding.imageButtonBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         viewBinding.TextViewValid.visibility = View.GONE
         viewBinding.ButtonEnter.setOnClickListener {
             viewModel.loginUser(

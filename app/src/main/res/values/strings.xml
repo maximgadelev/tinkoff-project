@@ -30,4 +30,14 @@
     <string name="no_valid_email_or_password">Неправильный пароль или логин</string>
     <string name="enter">Войти</string>
     <string name="enter_fragment_title">Вход</string>
+    <string name="registration_title">Регистрация</string>
+    <string name="create_account_title">Создание аккаунта</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="no_valid_password">Пароль должен состоять из латинских букв и цифр и содержать 8 и более символов</string>
+    <string name="accept_the_rights">Я согласен на обработку моих персональных данных</string>
+    <string name="button_registration_name">Зарегистрироваться</string>
+    <string name="enter_to_profile">Войти в профиль</string>
+    <string name="empty_profile_description">Войдите или зарегистрируйтесь, чтобы сохранять товары и просматривать заказы</string>
 </resources>

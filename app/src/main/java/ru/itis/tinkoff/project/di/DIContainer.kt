@@ -25,6 +25,8 @@ import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.ui.MainViewModel
 import ru.itis.tinkoff.project.features.productPage.data.ProductPageRepository
 import ru.itis.tinkoff.project.features.productPage.ui.ProductPageViewModel
+import ru.itis.tinkoff.project.features.registration.data.RegistrationRepository
+import ru.itis.tinkoff.project.features.registration.ui.RegistrationFragmentViewModel
 import ru.itis.tinkoff.project.network.AuthInterceptor
 
 const val API_URL = "https://market-app-technokratos.herokuapp.com/"
@@ -54,13 +56,19 @@ val appModule = module {
             get()
         )
     }
-    viewModel<AuthorizationViewModel>{
+    viewModel<AuthorizationViewModel> {
         AuthorizationViewModel(
+            get()
+        )
+    }
+    viewModel<RegistrationFragmentViewModel> {
+        RegistrationFragmentViewModel(
             get()
         )
     }
 }
 val dataModule = module {
+    single<RegistrationRepository> { RegistrationRepository(get()) }
     single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
     single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }
     single<CartRepository> { CartRepository(api = get(), ResponseMapper()) }

@@ -2,8 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/authorizationFragment">
-
+    app:startDestination="@id/emptyProfileFragment">
     <fragment
         android:id="@+id/menu"
         android:name="ru.itis.tinkoff.project.features.main.ui.MainFragment"
@@ -35,8 +34,28 @@
     <fragment
         android:id="@+id/authorizationFragment"
         android:name="ru.itis.tinkoff.project.features.authorization.ui.AuthorizationFragment"
-        android:label="AuthorizationFragment" />
+        android:label="AuthorizationFragment" >
         <action
             android:id="@+id/action_authorizationFragment_to_menu"
             app:destination="@id/menu" />
+    </fragment>
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="ru.itis.tinkoff.project.features.registration.ui.RegistrationFragment"
+        android:label="RegistrationFragment" >
+        <action
+            android:id="@+id/action_registrationFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/emptyProfileFragment"
+        android:name="ru.itis.tinkoff.project.features.emptyProfile.EmptyProfileFragment"
+        android:label="EmptyProfileFragment" >
+        <action
+            android:id="@+id/action_emptyProfileFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+        <action
+            android:id="@+id/action_emptyProfileFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
 </navigation>
