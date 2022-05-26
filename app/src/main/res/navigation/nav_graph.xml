@@ -10,6 +10,9 @@
         <action
             android:id="@+id/action_menu_to_productPageFragment"
             app:destination="@id/productPageFragment" />
+        <action
+            android:id="@+id/action_menu_to_promotionPageFragment"
+            app:destination="@id/promotionPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/catalog"
