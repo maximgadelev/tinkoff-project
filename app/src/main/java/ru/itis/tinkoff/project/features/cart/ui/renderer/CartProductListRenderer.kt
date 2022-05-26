@@ -6,13 +6,16 @@ import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.haroncode.aquarius.core.clicker.ClickableRenderer
+import ru.haroncode.aquarius.core.clicker.DefaultClicker
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.entity.Characteristic
 
-class CartProductListRenderer<Item> :
-    ItemBaseRenderer<Item, CartProductListRenderer.RenderContract>(), ClickableRenderer {
+class CartProductListRenderer<Item>(
+    private val listener: (CartProductRenderer.RenderContract)->Unit
+):
+ItemBaseRenderer<Item, CartProductListRenderer.RenderContract>(), ClickableRenderer {
     interface RenderContract {
         val products: List<Product>
     }
@@ -29,11 +32,15 @@ class CartProductListRenderer<Item> :
 
     private val itemAdapter by lazy {
         RenderAdapterBuilder<CartProductListRenderer.Product>()
-            .renderer(CartProductListRenderer.Product::class, CartProductRenderer())
+            .renderer(
+                CartProductListRenderer.Product::class,
+                CartProductRenderer(),
+                DefaultClicker(listener)
+            )
             .build(DifferStrategies.withDiffUtilComparable())
     }
     override val layoutRes: Int
-        get() = R.layout.item_cart_product_card_recycler
+    get() = R.layout.item_cart_product_card_recycler
 
     override fun onCreateViewHolder(inflater: LayoutInflater, parent: ViewGroup): BaseViewHolder {
         val viewHolder = super.onCreateViewHolder(inflater, parent)

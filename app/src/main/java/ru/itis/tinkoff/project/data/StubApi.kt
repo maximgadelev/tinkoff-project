@@ -44,6 +44,10 @@ class StubApi : Api {
         ) // просто,чтоб пока конфликтов у девочек не было,потом уберем stubApi
     }
 
+    override suspend fun getProductByPromotionId(id: Int): List<ProductResponse> {
+        return emptyList()
+    }
+
     private fun getTestProfile() =
         Profile(
             PROFILE_NAME,

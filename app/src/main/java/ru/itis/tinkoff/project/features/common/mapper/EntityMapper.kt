@@ -12,8 +12,11 @@ class EntityMapper {
     fun mapPromotionToSnapRenderItem(promotions: List<Promotion>): List<SnapRenderer.Promotion> {
         return promotions.map { promotion ->
             SnapRenderer.Promotion(
+                promotion.id,
+                promotion.name,
+                promotion.isActive,
                 promotion.image,
-                promotion.name
+                promotion.products
             )
         }
     }
@@ -21,8 +24,11 @@ class EntityMapper {
     fun mapPromotionToCarouselRenderItem(promotions: List<Promotion>): List<CarouselRenderer.Promotion> {
         return promotions.map { promotion ->
             CarouselRenderer.Promotion(
+                promotion.id,
+                promotion.name,
+                promotion.isActive,
                 promotion.image,
-                promotion.name
+                promotion.products
             )
         }
     }

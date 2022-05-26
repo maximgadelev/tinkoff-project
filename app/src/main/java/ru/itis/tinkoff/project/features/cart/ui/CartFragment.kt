@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kotlinx.android.synthetic.main.favorites_fragment.*
 import kotlinx.coroutines.flow.launchIn
@@ -16,6 +17,7 @@ import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.CartFragmentBinding
 import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductListRenderer
+import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductRenderer
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
 
 class CartFragment : Fragment(R.layout.cart_fragment) {
@@ -26,7 +28,7 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
         RenderAdapterBuilder<CartItem>()
             .renderer(
                 CartItem.ProductListCartItem::class,
-                CartProductListRenderer()
+                CartProductListRenderer(::onClickProduct)
             ).build(DifferStrategies.withDiffUtilComparable())
     }
 
@@ -78,5 +80,11 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
         with(builder) {
             setTitle(R.string.server_blocked)
         }.show()
+    }
+    private fun onClickProduct(renderContract: CartProductRenderer.RenderContract) {
+        val bundle = Bundle()
+        bundle.putInt("id", renderContract.id)
+        findNavController()
+            .navigate(R.id.action_cart_to_productPageFragment, bundle)
     }
 }
