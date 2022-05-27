@@ -41,6 +41,8 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
         }
         createCartProductsList()
         createCartMainInformation()
+        showOrHideLoading()
+        refreshFragment()
     }
 
     private fun createCartProductsList() {
@@ -81,10 +83,28 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
             setTitle(R.string.server_blocked)
         }.show()
     }
+
     private fun onClickProduct(renderContract: CartProductRenderer.RenderContract) {
         val bundle = Bundle()
         bundle.putInt("id", renderContract.id)
         findNavController()
             .navigate(R.id.action_cart_to_productPageFragment, bundle)
+    }
+
+    private fun showOrHideLoading() {
+        viewModel.isLoading.onEach {
+            if (it) {
+                viewBinding.progress.visibility = View.VISIBLE
+            } else {
+                viewBinding.progress.visibility = View.GONE
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun refreshFragment() {
+        viewBinding.refreshLayout.setOnRefreshListener {
+            viewModel.onViewCreated()
+            viewBinding.refreshLayout.isRefreshing = false
+        }
     }
 }

@@ -41,6 +41,8 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         }
         createFavoritesProductList()
         createMainInformation()
+        showOrHideLoading()
+        refreshFragment()
     }
 
     private fun createFavoritesProductList() {
@@ -73,5 +75,22 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         bundle.putInt("id", renderContract.id)
         findNavController()
             .navigate(R.id.action_favourites_to_productPageFragment, bundle)
+    }
+
+    private fun showOrHideLoading() {
+        viewModel.isLoading.onEach {
+            if (it) {
+                viewBinding.progress.visibility = View.VISIBLE
+            } else {
+                viewBinding.progress.visibility = View.GONE
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun refreshFragment() {
+        viewBinding.refreshLayout.setOnRefreshListener {
+            viewModel.onViewCreated()
+            viewBinding.refreshLayout.isRefreshing = false
+        }
     }
 }

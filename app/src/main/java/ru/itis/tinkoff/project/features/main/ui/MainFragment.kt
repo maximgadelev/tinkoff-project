@@ -133,10 +133,11 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
             }
         }.launchIn(lifecycleScope)
     }
-    private fun refreshFragment(){
+
+    private fun refreshFragment() {
         viewBinding.refreshLayout.setOnRefreshListener {
             viewModel.onViewCreated()
-            viewBinding.refreshLayout.isRefreshing=false
+            viewBinding.refreshLayout.isRefreshing = false
         }
     }
 }

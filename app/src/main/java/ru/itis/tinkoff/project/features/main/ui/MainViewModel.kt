@@ -18,8 +18,8 @@ class MainViewModel(
 ) : ViewModel() {
     private val eventChannel = Channel<Event>()
     private val _item = MutableStateFlow<List<MenuItem>>(emptyList())
-    private val _isLoading = MutableStateFlow<Boolean>(false)
     private val itemProvider = MenuItemProvider(entityMapper)
+    private val _isLoading = MutableStateFlow<Boolean>(false)
     val isLoading = _isLoading.asStateFlow()
     val item = _item.asStateFlow()
     val eventFlow = eventChannel.receiveAsFlow()

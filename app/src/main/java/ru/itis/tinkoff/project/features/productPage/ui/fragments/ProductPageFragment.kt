@@ -34,6 +34,8 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
         val id = arguments?.getInt("id")
         id?.let { viewModel.onViewCreated(it) }
         createMainInformation()
+        showOrHideLoading()
+        id?.let { refreshFragment(it) }
     }
 
     private fun createMainInformation() {
@@ -62,5 +64,22 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
             itemAdapter.differ.submitList(it)
         }
             .launchIn(lifecycleScope)
+    }
+
+    private fun showOrHideLoading() {
+        viewModel.isLoading.onEach {
+            if (it) {
+                viewBinding.progress.visibility = View.VISIBLE
+            } else {
+                viewBinding.progress.visibility = View.GONE
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun refreshFragment(id: Int) {
+        viewBinding.refreshLayout.setOnRefreshListener {
+            viewModel.onViewCreated(id)
+            viewBinding.refreshLayout.isRefreshing = false
+        }
     }
 }
