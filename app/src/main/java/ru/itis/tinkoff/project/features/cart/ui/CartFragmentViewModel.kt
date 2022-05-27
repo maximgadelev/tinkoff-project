@@ -25,20 +25,23 @@ class CartFragmentViewModel(
     private val _orderPrice = MutableStateFlow(0)
     private val _orderDiscount = MutableStateFlow(0)
     private val _orderTotalPrice = MutableStateFlow(0)
+    private val _isLoading = MutableStateFlow<Boolean>(false)
     val productsListSize = _productsListSize.asStateFlow()
     val item = _item.asStateFlow()
     val orderPrice = _orderPrice.asStateFlow()
     val orderDiscount = _orderDiscount.asStateFlow()
     val orderTotalPrice = _orderTotalPrice.asStateFlow()
     val eventFlow = eventChannel.receiveAsFlow()
+    val isLoading = _isLoading.asStateFlow()
 
     init {
         onViewCreated()
     }
 
-    private fun onViewCreated() {
+    fun onViewCreated() {
         viewModelScope.launch {
             try {
+                _isLoading.value = true
                 val products = cartRepository.getProducts()
                 val items = itemProvider.getItems(products)
                 _productsListSize.value = products.size
@@ -46,7 +49,9 @@ class CartFragmentViewModel(
                 _orderPrice.value = products.sumOf { it.price.toInt() }
                 _orderDiscount.value = 280
                 _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
+                _isLoading.value = false
             } catch (ex: Exception) {
+                _isLoading.value = false
                 eventChannel.send(Event.ExceptionEvent)
             }
         }

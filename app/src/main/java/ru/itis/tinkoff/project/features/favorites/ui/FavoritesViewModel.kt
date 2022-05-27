@@ -20,6 +20,8 @@ class FavoritesViewModel(
     private val _item = MutableStateFlow<List<FavoritesItem>>(emptyList())
     private val itemProvider = FavoritesItemProvider(entityMapper)
     private val _productsListSize = MutableStateFlow(0)
+    private val _isLoading = MutableStateFlow<Boolean>(false)
+    val isLoading = _isLoading.asStateFlow()
     val productsListSize = _productsListSize.asStateFlow()
     val item = _item.asStateFlow()
     val eventFlow = eventChannel.receiveAsFlow()
@@ -28,14 +30,17 @@ class FavoritesViewModel(
         onViewCreated()
     }
 
-    private fun onViewCreated() {
+     fun onViewCreated() {
         viewModelScope.launch {
             try {
+                _isLoading.value = true
                 val products = favoritesRepository.getProducts()
                 val items = itemProvider.getItems(products)
                 _productsListSize.value = products.size
                 _item.value = items
+                _isLoading.value = false
             } catch (ex: Exception) {
+                _isLoading.value = false
                 eventChannel.send(Event.ExceptionEvent)
             }
         }

@@ -28,7 +28,7 @@ class PromotionPageFragment : Fragment(R.layout.promotion_page_fragment) {
         RenderAdapterBuilder<PromotionPageItem>()
             .renderer(
                 PromotionPageItem.ProductListPromotionPageItem::class,
-                ProductCardListRenderer(ProductCardItemType.FAVORITE,::onClickButton)
+                ProductCardListRenderer(ProductCardItemType.FAVORITE, ::onClickButton)
             ).build(DifferStrategies.withDiffUtilComparable())
     }
 
@@ -44,6 +44,8 @@ class PromotionPageFragment : Fragment(R.layout.promotion_page_fragment) {
         createProductList()
         viewBinding.ImageViewTitle.load(arguments?.getString("image"))
         createMainInformation()
+        showOrHideLoading()
+        id?.let { refreshFragment(it) }
     }
 
     private fun createProductList() {
@@ -65,10 +67,28 @@ class PromotionPageFragment : Fragment(R.layout.promotion_page_fragment) {
             setTitle(R.string.server_blocked)
         }.show()
     }
+
     private fun onClickButton(renderContract: ProductCardRenderer.RenderContract) {
         val bundle = Bundle()
         bundle.putInt("id", renderContract.id)
         findNavController()
             .navigate(R.id.action_promotionPageFragment_to_productPageFragment, bundle)
+    }
+
+    private fun showOrHideLoading() {
+        viewModel.isLoading.onEach {
+            if (it) {
+                viewBinding.progress.visibility = View.VISIBLE
+            } else {
+                viewBinding.progress.visibility = View.GONE
+            }
+        }.launchIn(lifecycleScope)
+    }
+
+    private fun refreshFragment(id: Int) {
+        viewBinding.refreshLayout.setOnRefreshListener {
+            viewModel.onViewCreated(id)
+            viewBinding.refreshLayout.isRefreshing = false
+        }
     }
 }

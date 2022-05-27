@@ -19,6 +19,8 @@ class ProductPageViewModel(
     private val itemProvider = ProductPageItemProvider()
     private val _mainProduct =
         MutableSharedFlow<Product>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    private val _isLoading = MutableStateFlow<Boolean>(false)
+    val isLoading = _isLoading.asStateFlow()
     val item = _item.asStateFlow()
     val mainProduct = _mainProduct.asSharedFlow()
     val eventFlow = eventChannel.receiveAsFlow()
@@ -26,11 +28,14 @@ class ProductPageViewModel(
     fun onViewCreated(id: Int) {
         viewModelScope.launch {
             try {
+                _isLoading.value = true
                 val product = productPageRepository.getProductById(id)
                 val list = itemProvider.getItems(product)
                 _mainProduct.emit(product)
                 _item.value = list
+                _isLoading.value = false
             } catch (ex: Exception) {
+                _isLoading.value = false
                 eventChannel.send(Event.ExceptionEvent)
             }
         }

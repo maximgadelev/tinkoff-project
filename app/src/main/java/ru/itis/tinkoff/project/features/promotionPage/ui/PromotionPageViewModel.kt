@@ -19,16 +19,21 @@ class PromotionPageViewModel(
     private val eventChannel = Channel<Event>()
     private val _item = MutableStateFlow<List<PromotionPageItem>>(emptyList())
     private val itemProvider = PromotionPageItemProvider(entityMapper)
+    private val _isLoading = MutableStateFlow<Boolean>(false)
+    val isLoading = _isLoading.asStateFlow()
     val eventFlow = eventChannel.receiveAsFlow()
     val item = _item.asStateFlow()
 
     fun onViewCreated(id: Int) {
         viewModelScope.launch {
             try {
+                _isLoading.value = true
                 val products = promotionPageRepository.getProducts(id)
                 val items = itemProvider.getItems(products)
                 _item.value = items
+                _isLoading.value = false
             } catch (ex: Exception) {
+                _isLoading.value = false
                 eventChannel.send(Event.ExceptionEvent)
             }
         }
