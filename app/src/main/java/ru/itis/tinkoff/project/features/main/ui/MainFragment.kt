@@ -65,6 +65,8 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
             itemAdapter.differ.submitList(it)
         }
             .launchIn(lifecycleScope)
+        showOrHideLoading()
+        refreshFragment()
     }
 
     private fun createMainList() {
@@ -120,5 +122,21 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
         bundle.putString("image", renderContract.image)
         findNavController()
             .navigate(R.id.action_menu_to_promotionPageFragment, bundle)
+    }
+
+    private fun showOrHideLoading() {
+        viewModel.isLoading.onEach {
+            if (it) {
+                viewBinding.progress.visibility = View.VISIBLE
+            } else {
+                viewBinding.progress.visibility = View.GONE
+            }
+        }.launchIn(lifecycleScope)
+    }
+    private fun refreshFragment(){
+        viewBinding.refreshLayout.setOnRefreshListener {
+            viewModel.onViewCreated()
+            viewBinding.refreshLayout.isRefreshing=false
+        }
     }
 }

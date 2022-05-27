@@ -18,7 +18,9 @@ class MainViewModel(
 ) : ViewModel() {
     private val eventChannel = Channel<Event>()
     private val _item = MutableStateFlow<List<MenuItem>>(emptyList())
+    private val _isLoading = MutableStateFlow<Boolean>(false)
     private val itemProvider = MenuItemProvider(entityMapper)
+    val isLoading = _isLoading.asStateFlow()
     val item = _item.asStateFlow()
     val eventFlow = eventChannel.receiveAsFlow()
 
@@ -26,15 +28,18 @@ class MainViewModel(
         onViewCreated()
     }
 
-    private fun onViewCreated() {
+     fun onViewCreated() {
         viewModelScope.launch {
             try {
+                _isLoading.value = true
                 val promotions = menuRepository.getPromotions()
                 val products = menuRepository.getProducts()
                 val items = itemProvider.getItemList(products, promotions)
                 _item.value = items
+                _isLoading.value = false
             } catch (ex: Exception) {
                 eventChannel.send(Event.ExceptionEvent)
+                _isLoading.value = false
             }
         }
     }
