@@ -14,6 +14,7 @@ import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProductPageFragmentBinding
+import ru.itis.tinkoff.project.features.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.productPage.ui.ProductPageViewModel
 import ru.itis.tinkoff.project.features.productPage.ui.adapter.PagerAdapter
 import ru.itis.tinkoff.project.features.productPage.ui.renderer.ProductImageListRenderer
@@ -64,6 +65,9 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
             itemAdapter.differ.submitList(it)
         }
             .launchIn(lifecycleScope)
+        viewModel.eventFlow.onEach {
+            showDialog()
+        }.launchIn(lifecycleScope)
     }
 
     private fun showOrHideLoading() {
@@ -81,5 +85,10 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
             viewModel.onViewCreated(id)
             viewBinding.refreshLayout.isRefreshing = false
         }
+    }
+
+    private fun showDialog() {
+        val dialog = ExceptionDialogFragment()
+        dialog.show(parentFragmentManager, "dialog")
     }
 }

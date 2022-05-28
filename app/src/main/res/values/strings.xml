@@ -35,12 +35,18 @@
     <string name="name">Имя</string>
     <string name="surname">Фамилия</string>
     <string name="phone_number">Номер телефона</string>
-    <string name="no_valid_password">Пароль должен состоять из латинских букв и цифр и содержать 8 и более символов</string>
+    <string name="reg_exception">Пользователь с такой почтой или номером уже зарегистрирован</string>
     <string name="accept_the_rights">Я согласен на обработку моих персональных данных</string>
     <string name="button_registration_name">Зарегистрироваться</string>
     <string name="enter_to_profile">Войти в профиль</string>
     <string name="empty_profile_description">Войдите или зарегистрируйтесь, чтобы сохранять товары и просматривать заказы</string>
     <string name="promotion_fragment_title">Акция</string>
     <string name="products_search">Поиск товаров</string>
-
+    <string name="dialog_fragment_title">Какая досада…</string>
+    <string name="dialog_description">Попытайтесь перезагрузить, может быть что-то и выйдет</string>
+    <string name="no_valid_name">Имя не должно быть пустым,содержать 2 символа и начинаться с заглавной буквы</string>
+    <string name="no_valid_surname">Фамилия не должна быть пустой,содержать 2 символа и начинаться с заглавной буквы</string>
+    <string name="no_valid_number">Номер не должен быть пустым,содержать 11 символов и начинаться с 7 или 8</string>
+    <string name="no_valid_email">Email не должен быть пустым и быть в верном формате</string>
+    <string name="no_valid_password">Пароль не должен быть пустым и содержать не менее 8 символов</string>
 </resources>

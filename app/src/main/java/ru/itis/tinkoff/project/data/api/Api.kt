@@ -22,7 +22,7 @@ interface Api {
 
     @GET("products/{id}")
     suspend fun getProductById(@Path("id") id: Int): ProductResponse
-  
+
     @GET("products/promotion/{promotion_id}")
     suspend fun getProductByPromotionId(@Path("promotion_id") id: Int): List<ProductResponse>
 }

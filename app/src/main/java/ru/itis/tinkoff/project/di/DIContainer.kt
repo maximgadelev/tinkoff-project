@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -77,7 +78,7 @@ val appModule = module {
 }
 val dataModule = module {
     single<PromotionRepository> { PromotionRepository(get(), ResponseMapper()) }
-    single<RegistrationRepository> { RegistrationRepository(get()) }
+    single<RegistrationRepository> { RegistrationRepository(get(), ResponseMapper()) }
     single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
     single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }
     single<CartRepository> { CartRepository(api = get(), ResponseMapper()) }
@@ -96,7 +97,8 @@ val networkModule = module {
     single(named("ApiClient")) { provideOkHttpClient(get()) }
     single<Retrofit> { provideRetrofit(get()) }
     single<AuthInterceptor> { AuthInterceptor(get()) }
-    single(named("TokenApiClient")) { provideOkHttpClientForTokenApi() }
+    single(named("TokenApiClient")) { provideOkHttpClientForTokenApi(get()) }
+    single{HttpLoggingInterceptor()}
 }
 
 fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -108,8 +110,8 @@ fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
     return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
 }
 
-fun provideOkHttpClientForTokenApi(): OkHttpClient {
-    return OkHttpClient().newBuilder().build()
+fun provideOkHttpClientForTokenApi(interceptor:HttpLoggingInterceptor): OkHttpClient {
+    return OkHttpClient().newBuilder().addInterceptor(interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)).build()
 }
 
 fun createApi(retrofit: Retrofit): Api {

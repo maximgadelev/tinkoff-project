@@ -15,6 +15,7 @@ import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.FavoritesFragmentBinding
+import ru.itis.tinkoff.project.features.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardRenderer
@@ -64,10 +65,8 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
     }
 
     private fun showDialog() {
-        val builder = AlertDialog.Builder(context)
-        with(builder) {
-            setTitle(R.string.server_blocked)
-        }.show()
+        val dialog = ExceptionDialogFragment()
+        dialog.show(parentFragmentManager, "dialog")
     }
 
     private fun onClickButton(renderContract: ProductCardRenderer.RenderContract) {
