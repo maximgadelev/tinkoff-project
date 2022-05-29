@@ -2,6 +2,7 @@ package ru.itis.tinkoff.project.data.api
 
 import retrofit2.http.GET
 import retrofit2.http.Path
+import ru.itis.tinkoff.project.data.response.CartResponse
 import ru.itis.tinkoff.project.data.response.ProductResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
 import ru.itis.tinkoff.project.entity.Category
@@ -25,4 +26,7 @@ interface Api {
 
     @GET("products/promotion/{promotion_id}")
     suspend fun getProductByPromotionId(@Path("promotion_id") id: Int): List<ProductResponse>
+
+    @GET("bucket")
+    suspend fun getCartProducts(): CartResponse
 }

@@ -104,7 +104,9 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         .addConverterFactory(MoshiConverterFactory.create()).build()
 }
 
-fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
+fun provideOkHttpClient(
+    authInterceptor: AuthInterceptor
+): OkHttpClient {
     return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
 }
 

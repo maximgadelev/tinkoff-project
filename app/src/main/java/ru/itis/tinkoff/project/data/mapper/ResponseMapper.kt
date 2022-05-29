@@ -2,12 +2,8 @@ package ru.itis.tinkoff.project.data.mapper
 
 import android.net.Uri
 import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.data.response.CharacteristicResponse
-import ru.itis.tinkoff.project.data.response.ProductResponse
-import ru.itis.tinkoff.project.data.response.PromotionResponse
-import ru.itis.tinkoff.project.entity.Characteristic
-import ru.itis.tinkoff.project.entity.Product
-import ru.itis.tinkoff.project.entity.Promotion
+import ru.itis.tinkoff.project.data.response.*
+import ru.itis.tinkoff.project.entity.*
 
 class ResponseMapper {
     fun mapProductsResponseToProducts(productResponses: List<ProductResponse>): List<Product> {
@@ -19,7 +15,7 @@ class ResponseMapper {
                 mapCharacteristic(productResponse.characteristicResponse),
                 productResponse.price.toBigDecimal(),
                 productResponse.description,
-                productResponse.brand
+                productResponse.brand,
             )
         }
     }
@@ -61,11 +57,27 @@ class ResponseMapper {
         }
     }
 
-    private fun mapCharacteristic(characteristics: List<CharacteristicResponse>): List<Characteristic> {
+    fun mapCharacteristic(characteristics: List<CharacteristicResponse>): List<Characteristic> {
         return characteristics.map { characteristicResponse ->
             Characteristic(
                 characteristicResponse.characteristic,
                 characteristicResponse.type
+            )
+        }
+    }
+
+    fun mapCartResponseToCartInfo(cartResponse: CartResponse): CartInfo {
+        return CartInfo(
+            mapCartProductToCartProductList(cartResponse.products),
+            cartResponse.totalSum
+        )
+    }
+
+    private fun mapCartProductToCartProductList(list: List<CartProductResponse>): List<CartProduct> {
+        return list.map { responseProduct ->
+            CartProduct(
+                mapProductResponseToProduct(responseProduct.product),
+                responseProduct.quantity
             )
         }
     }

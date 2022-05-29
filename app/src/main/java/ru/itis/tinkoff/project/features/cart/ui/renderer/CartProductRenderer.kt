@@ -2,9 +2,6 @@ package ru.itis.tinkoff.project.features.cart.ui.renderer
 
 import coil.load
 import kotlinx.android.synthetic.main.item_product_card_cart.view.*
-import kotlinx.android.synthetic.main.item_product_card_cart.view.productImageView
-import kotlinx.android.synthetic.main.item_product_card_cart.view.productPriceTextView
-import kotlinx.android.synthetic.main.item_product_card_cart.view.productTitleTextView
 import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
@@ -17,10 +14,11 @@ class CartProductRenderer<Item> : ItemBaseRenderer<Item, CartProductRenderer.Ren
         val id: Int
         val name: String
         val image: List<String>
-        val characteristics:List<Characteristic>
+        val characteristics: List<Characteristic>
         val price: String
         val description: String
         val company: String
+        val quantity: String
     }
 
     override val layoutRes: Int
@@ -31,6 +29,7 @@ class CartProductRenderer<Item> : ItemBaseRenderer<Item, CartProductRenderer.Ren
             viewHolder.itemView.productImageView.load(item.image[0])
             itemView.productTitleTextView.text = item.name
             itemView.productPriceTextView.text = item.price
+            itemView.textViewQuantity.text = item.quantity
             itemView.cartProductCompanyTextView.text = item.company
         }
     }
