@@ -77,7 +77,7 @@ val appModule = module {
 }
 val dataModule = module {
     single<PromotionRepository> { PromotionRepository(get(), ResponseMapper()) }
-    single<RegistrationRepository> { RegistrationRepository(get()) }
+    single<RegistrationRepository> { RegistrationRepository(get(), ResponseMapper()) }
     single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
     single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }
     single<CartRepository> { CartRepository(api = get(), ResponseMapper()) }

@@ -179,8 +179,7 @@
                 app:hintTextColor="@color/normal_grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/TextInput_phoneNumber"
-                app:passwordToggleEnabled="true">
+                app:layout_constraintTop_toBottomOf="@id/TextInput_phoneNumber">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/EditText_registrationPassword"
@@ -194,7 +193,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:text="@string/no_valid_password"
+                android:text="@string/reg_exception"
                 android:textColor="@color/deep_orange"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="@+id/TextInput_registrationPassword"

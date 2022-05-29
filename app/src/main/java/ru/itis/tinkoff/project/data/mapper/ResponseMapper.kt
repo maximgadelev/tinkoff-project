@@ -19,7 +19,7 @@ class ResponseMapper {
                 mapCharacteristic(productResponse.characteristicResponse),
                 productResponse.price.toBigDecimal(),
                 productResponse.description,
-                "New Company" // заглушка,на беке еще нет этого поля
+                productResponse.brand
             )
         }
     }
@@ -44,7 +44,7 @@ class ResponseMapper {
             mapCharacteristic(productResponse.characteristicResponse),
             productResponse.price.toBigDecimal(),
             productResponse.description,
-            "New Company"
+            productResponse.brand
         )
     }
 
