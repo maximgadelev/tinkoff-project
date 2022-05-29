@@ -4,6 +4,7 @@ import android.text.TextUtils
 import android.util.Patterns
 import java.util.regex.Pattern.compile
 
+@SuppressWarnings("MagicNumber")
 class RegistrationValidator {
     fun isValidEmail(email: String): Boolean {
         return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
