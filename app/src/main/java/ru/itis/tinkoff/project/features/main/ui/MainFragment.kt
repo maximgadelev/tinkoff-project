@@ -15,11 +15,11 @@ import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.haroncode.aquarius.core.decorators.SpaceRuleItemDecoration
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.MenuFragmentBinding
-import ru.itis.tinkoff.project.features.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardRenderer
 import ru.itis.tinkoff.project.features.common.renderer.PromotionRender
+import ru.itis.tinkoff.project.features.common.utils.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.common.utils.dp
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer

@@ -14,7 +14,7 @@ import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProductPageFragmentBinding
-import ru.itis.tinkoff.project.features.ExceptionDialogFragment
+import ru.itis.tinkoff.project.features.common.utils.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.productPage.ui.ProductPageViewModel
 import ru.itis.tinkoff.project.features.productPage.ui.adapter.PagerAdapter
 import ru.itis.tinkoff.project.features.productPage.ui.renderer.ProductImageListRenderer
