@@ -50,4 +50,7 @@
     <string name="no_valid_number">Номер не должен быть пустым,содержать 11 символов и начинаться с 7 или 8</string>
     <string name="no_valid_email">Email не должен быть пустым и быть в верном формате</string>
     <string name="no_valid_password">Пароль не должен быть пустым и содержать не менее 8 символов</string>
+    <string name="quantity_dialog_title">Введдите количество товара</string>
+    <string name="quantity_error">Введите положительное число</string>
+    <string name="in_cart">В корзине</string>
 </resources>

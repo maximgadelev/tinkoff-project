@@ -66,7 +66,7 @@ class PromotionPageFragment : Fragment(R.layout.promotion_page_fragment) {
         dialog.show(parentFragmentManager, "dialog")
     }
 
-    private fun onClickButton(renderContract: ProductCardRenderer.RenderContract) {
+    private fun onClickButton(renderContract: ProductCardRenderer.RenderContract, view: View) {
         val bundle = Bundle()
         bundle.putInt("id", renderContract.id)
         findNavController()

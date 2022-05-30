@@ -68,11 +68,16 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         dialog.show(parentFragmentManager, "dialog")
     }
 
-    private fun onClickButton(renderContract: ProductCardRenderer.RenderContract) {
-        val bundle = Bundle()
-        bundle.putInt("id", renderContract.id)
-        findNavController()
-            .navigate(R.id.action_favourites_to_productPageFragment, bundle)
+    private fun onClickButton(renderContract: ProductCardRenderer.RenderContract, view: View) {
+        if (view.id == R.id.buttonToCardFavorite) {
+            view.visibility = View.GONE
+            viewModel.onAddProductToCart(renderContract.id, 1)
+        } else {
+            val bundle = Bundle()
+            bundle.putInt("id", renderContract.id)
+            findNavController()
+                .navigate(R.id.action_favourites_to_productPageFragment, bundle)
+        }
     }
 
     private fun showOrHideLoading() {

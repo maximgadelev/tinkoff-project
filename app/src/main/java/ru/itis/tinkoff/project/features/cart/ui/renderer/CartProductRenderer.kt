@@ -1,5 +1,7 @@
 package ru.itis.tinkoff.project.features.cart.ui.renderer
 
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import kotlinx.android.synthetic.main.item_product_card_cart.view.*
 import ru.haroncode.aquarius.core.clicker.ClickableRenderer
@@ -23,6 +25,14 @@ class CartProductRenderer<Item> : ItemBaseRenderer<Item, CartProductRenderer.Ren
 
     override val layoutRes: Int
         get() = R.layout.item_product_card_cart
+
+    override fun bindClickListener(
+        viewHolder: RecyclerView.ViewHolder,
+        listener: (RecyclerView.ViewHolder, View) -> Unit
+    ) {
+        viewHolder.itemView.imageButtonDeleteCart.setOnClickListener { listener(viewHolder, it) }
+        viewHolder.itemView.setOnClickListener { listener(viewHolder, it) }
+    }
 
     override fun onBindView(viewHolder: BaseViewHolder, item: CartProductRenderer.RenderContract) {
         with(viewHolder) {

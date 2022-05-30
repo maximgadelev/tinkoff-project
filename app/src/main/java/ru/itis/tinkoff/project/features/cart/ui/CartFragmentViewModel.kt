@@ -56,4 +56,24 @@ class CartFragmentViewModel(
             }
         }
     }
+
+    fun deleteProduct(id: Int) {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                cartRepository.deleteProduct(id)
+                val products = cartRepository.getProducts().cartProducts
+                val items = itemProvider.getItems(products)
+                _productsListSize.value = products.size
+                _item.value = items
+                _orderPrice.value = cartRepository.getTotalSum()
+                _orderDiscount.value = 0
+                _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
+                _isLoading.value = false
+            } catch (ex: Exception) {
+                _isLoading.value = false
+                eventChannel.send(Event.ExceptionEvent)
+            }
+        }
+    }
 }

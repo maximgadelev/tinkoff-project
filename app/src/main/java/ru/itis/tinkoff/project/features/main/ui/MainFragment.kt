@@ -107,7 +107,7 @@ class MainFragment : Fragment(R.layout.menu_fragment) {
         dialog.show(parentFragmentManager, "dialog")
     }
 
-    private fun onClickProduct(renderContract: ProductCardRenderer.RenderContract) {
+    private fun onClickProduct(renderContract: ProductCardRenderer.RenderContract, view: View) {
         val bundle = Bundle()
         bundle.putInt("id", renderContract.id)
         findNavController()

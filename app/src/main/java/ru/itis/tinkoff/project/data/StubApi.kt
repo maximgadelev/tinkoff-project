@@ -1,6 +1,7 @@
 package ru.itis.tinkoff.project.data
 
 import ru.itis.tinkoff.project.data.api.Api
+import ru.itis.tinkoff.project.data.request.AddProductToCartRequest
 import ru.itis.tinkoff.project.data.response.CartResponse
 import ru.itis.tinkoff.project.data.response.CategoryResponse
 import ru.itis.tinkoff.project.data.response.ProductResponse
@@ -52,6 +53,10 @@ class StubApi : Api {
     override suspend fun getCartProducts(): CartResponse {
         return CartResponse(emptyList(), 0)
     }
+
+    override suspend fun addProductToCart(addProductToCartRequest: AddProductToCartRequest) {}
+
+    override suspend fun deleteProductFromCart(id: Int) {}
 
     private fun getTestProfile() =
         Profile(

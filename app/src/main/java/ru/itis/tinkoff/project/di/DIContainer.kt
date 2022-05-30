@@ -44,7 +44,8 @@ val appModule = module {
     viewModel<FavoritesViewModel> {
         FavoritesViewModel(
             favoritesRepository = get(),
-            entityMapper = get()
+            get(),
+            entityMapper = get(),
         )
     }
     viewModel<CartFragmentViewModel> {

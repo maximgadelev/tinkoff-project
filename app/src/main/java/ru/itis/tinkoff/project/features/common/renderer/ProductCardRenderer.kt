@@ -3,7 +3,10 @@ package ru.itis.tinkoff.project.features.common.renderer
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import kotlinx.android.synthetic.main.item_product_card_main.view.*
+import kotlinx.android.synthetic.main.item_product_card_favorites.view.*
+import kotlinx.android.synthetic.main.item_product_card_main.view.productImageView
+import kotlinx.android.synthetic.main.item_product_card_main.view.productPriceTextView
+import kotlinx.android.synthetic.main.item_product_card_main.view.productTitleTextView
 import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
@@ -11,7 +14,7 @@ import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 
 class ProductCardRenderer<Item>(
-    type: ProductCardItemType
+    val type: ProductCardItemType
 ) : ItemBaseRenderer<Item, ProductCardRenderer.RenderContract>(),
     ClickableRenderer {
 
@@ -29,6 +32,12 @@ class ProductCardRenderer<Item>(
         viewHolder: RecyclerView.ViewHolder,
         listener: (RecyclerView.ViewHolder, View) -> Unit
     ) {
+        if (type == ProductCardItemType.FAVORITE) {
+            viewHolder.itemView.buttonToCardFavorite.setOnClickListener { buttonToCard ->
+                listener(viewHolder, buttonToCard)
+                viewHolder.itemView.buttonInCart.visibility = View.VISIBLE
+            }
+        }
         viewHolder.itemView.setOnClickListener { listener(viewHolder, it) }
     }
 
@@ -42,6 +51,9 @@ class ProductCardRenderer<Item>(
             viewHolder.itemView.productImageView.load(item.image[0])
             itemView.productTitleTextView.text = item.name
             itemView.productPriceTextView.text = item.price
+            if (type == ProductCardItemType.FAVORITE) {
+                itemView.buttonToCardFavorite
+            }
         }
     }
 }

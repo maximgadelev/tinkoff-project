@@ -34,15 +34,15 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        createCartProductsList()
+        createCartMainInformation()
+        showOrHideLoading()
+        refreshFragment()
         lifecycleScope.launch {
             viewModel.eventFlow.collect {
                 showDialog()
             }
         }
-        createCartProductsList()
-        createCartMainInformation()
-        showOrHideLoading()
-        refreshFragment()
     }
 
     private fun createCartProductsList() {
@@ -77,16 +77,25 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.onViewCreated()
+    }
+
     private fun showDialog() {
         val dialog = ExceptionDialogFragment()
         dialog.show(parentFragmentManager, "dialog")
     }
 
-    private fun onClickProduct(renderContract: CartProductRenderer.RenderContract) {
-        val bundle = Bundle()
-        bundle.putInt("id", renderContract.id)
-        findNavController()
-            .navigate(R.id.action_cart_to_productPageFragment, bundle)
+    private fun onClickProduct(renderContract: CartProductRenderer.RenderContract, view: View) {
+        if (view.id == R.id.imageButtonDeleteCart) {
+            viewModel.deleteProduct(renderContract.id)
+        } else {
+            val bundle = Bundle()
+            bundle.putInt("id", renderContract.id)
+            findNavController()
+                .navigate(R.id.action_cart_to_productPageFragment, bundle)
+        }
     }
 
     private fun showOrHideLoading() {

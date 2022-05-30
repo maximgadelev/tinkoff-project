@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.common.Event
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
@@ -14,6 +15,7 @@ import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItem
 
 class FavoritesViewModel(
     private val favoritesRepository: FavoritesRepository,
+    private val cartRepository: CartRepository,
     private val entityMapper: EntityMapper
 ) : ViewModel() {
     private val eventChannel = Channel<Event>()
@@ -30,7 +32,7 @@ class FavoritesViewModel(
         onViewCreated()
     }
 
-     fun onViewCreated() {
+    fun onViewCreated() {
         viewModelScope.launch {
             try {
                 _isLoading.value = true
@@ -38,6 +40,19 @@ class FavoritesViewModel(
                 val items = itemProvider.getItems(products)
                 _productsListSize.value = products.size
                 _item.value = items
+                _isLoading.value = false
+            } catch (ex: Exception) {
+                _isLoading.value = false
+                eventChannel.send(Event.ExceptionEvent)
+            }
+        }
+    }
+
+    fun onAddProductToCart(id: Int, quality: Int) {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                cartRepository.addProductToCart(id, quality)
                 _isLoading.value = false
             } catch (ex: Exception) {
                 _isLoading.value = false
