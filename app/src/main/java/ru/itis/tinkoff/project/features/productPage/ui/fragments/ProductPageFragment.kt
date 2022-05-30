@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.item_product_card_favorites.view.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -36,6 +37,7 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
         id?.let { viewModel.onViewCreated(it) }
         createMainInformation()
         showOrHideLoading()
+        id?.let { onCreateButtonToCart(it) }
         id?.let { refreshFragment(it) }
     }
 
@@ -90,5 +92,20 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
     private fun showDialog() {
         val dialog = ExceptionDialogFragment()
         dialog.show(parentFragmentManager, "dialog")
+    }
+
+    private fun onCreateButtonToCart(id: Int) {
+        viewBinding.buttonAddToCart.setOnClickListener {
+            viewBinding.buttonAddToCart.visibility = View.GONE
+            viewBinding.countButton.visibility = View.VISIBLE
+            viewBinding.countButton.imageButton_plusQuantity.setOnClickListener {
+                viewBinding.countButton.setCount(viewBinding.countButton.getCount() + 1)
+                viewModel.onAddProductToCart(id, viewBinding.countButton.getCount())
+            }
+            viewBinding.countButton.imageButton_minusQuantity.setOnClickListener {
+                viewBinding.countButton.setCount(viewBinding.countButton.getCount() - 1)
+                viewModel.onAddProductToCart(id, viewBinding.countButton.getCount())
+            }
+        }
     }
 }

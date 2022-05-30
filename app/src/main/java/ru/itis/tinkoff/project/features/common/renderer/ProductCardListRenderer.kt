@@ -29,7 +29,7 @@ class ProductCardListRenderer<Item>(
         override val characteristics: List<Characteristic>,
         override val price: String,
         override val description: String,
-        override val company: String
+        override val company: String,
     ) : ProductCardRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {

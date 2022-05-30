@@ -39,6 +39,5 @@ sealed class MenuItem : ComparableItem {
         override val price: String,
         override val description: String,
         override val company: String,
-
     ) : MenuItem(), ProductCardRenderer.RenderContract
 }

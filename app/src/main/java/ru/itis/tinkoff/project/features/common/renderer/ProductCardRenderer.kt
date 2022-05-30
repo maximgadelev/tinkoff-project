@@ -35,7 +35,13 @@ class ProductCardRenderer<Item>(
         if (type == ProductCardItemType.FAVORITE) {
             viewHolder.itemView.buttonToCardFavorite.setOnClickListener { buttonToCard ->
                 listener(viewHolder, buttonToCard)
-                viewHolder.itemView.buttonInCart.visibility = View.VISIBLE
+                viewHolder.itemView.linearLayoutButton.visibility = View.VISIBLE
+            }
+            viewHolder.itemView.imageButton_plusQuantity.setOnClickListener {
+                listener(viewHolder, it)
+            }
+            viewHolder.itemView.imageButton_minusQuantity.setOnClickListener {
+                listener(viewHolder, it)
             }
         }
         viewHolder.itemView.setOnClickListener { listener(viewHolder, it) }

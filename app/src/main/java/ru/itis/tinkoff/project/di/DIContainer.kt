@@ -56,7 +56,7 @@ val appModule = module {
     }
     viewModel<ProductPageViewModel> {
         ProductPageViewModel(
-            get()
+            get(), get()
         )
     }
     viewModel<AuthorizationViewModel> {
