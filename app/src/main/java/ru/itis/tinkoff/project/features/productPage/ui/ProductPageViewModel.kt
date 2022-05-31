@@ -7,12 +7,14 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.entity.Product
+import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.common.Event
 import ru.itis.tinkoff.project.features.productPage.data.ProductPageRepository
 import ru.itis.tinkoff.project.features.productPage.utils.ProductPageItem
 
 class ProductPageViewModel(
     private val productPageRepository: ProductPageRepository,
+    private val cartRepository: CartRepository,
 ) : ViewModel() {
     private val eventChannel = Channel<Event>()
     private val _item = MutableStateFlow<List<ProductPageItem>>(emptyList())
@@ -36,6 +38,16 @@ class ProductPageViewModel(
                 _isLoading.value = false
             } catch (ex: Exception) {
                 _isLoading.value = false
+                eventChannel.send(Event.ExceptionEvent)
+            }
+        }
+    }
+
+    fun onAddProductToCart(id: Int, quality: Int) {
+        viewModelScope.launch {
+            try {
+                cartRepository.addProductToCart(id, quality)
+            } catch (ex: Exception) {
                 eventChannel.send(Event.ExceptionEvent)
             }
         }

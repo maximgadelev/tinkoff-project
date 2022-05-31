@@ -42,12 +42,32 @@ class CartFragmentViewModel(
         viewModelScope.launch {
             try {
                 _isLoading.value = true
-                val products = cartRepository.getProducts()
+                val products = cartRepository.getProducts().cartProducts
                 val items = itemProvider.getItems(products)
                 _productsListSize.value = products.size
                 _item.value = items
-                _orderPrice.value = products.sumOf { it.price.toInt() }
-                _orderDiscount.value = 280
+                _orderPrice.value = cartRepository.getTotalSum()
+                _orderDiscount.value = 0
+                _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
+                _isLoading.value = false
+            } catch (ex: Exception) {
+                _isLoading.value = false
+                eventChannel.send(Event.ExceptionEvent)
+            }
+        }
+    }
+
+    fun deleteProduct(id: Int) {
+        viewModelScope.launch {
+            try {
+                _isLoading.value = true
+                cartRepository.deleteProduct(id)
+                val products = cartRepository.getProducts().cartProducts
+                val items = itemProvider.getItems(products)
+                _productsListSize.value = products.size
+                _item.value = items
+                _orderPrice.value = cartRepository.getTotalSum()
+                _orderDiscount.value = 0
                 _orderTotalPrice.value = _orderPrice.value - _orderDiscount.value
                 _isLoading.value = false
             } catch (ex: Exception) {

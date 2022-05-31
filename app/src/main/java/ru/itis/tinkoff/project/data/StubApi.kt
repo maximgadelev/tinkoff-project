@@ -1,6 +1,8 @@
 package ru.itis.tinkoff.project.data
 
 import ru.itis.tinkoff.project.data.api.Api
+import ru.itis.tinkoff.project.data.request.AddProductToCartRequest
+import ru.itis.tinkoff.project.data.response.CartResponse
 import ru.itis.tinkoff.project.data.response.CategoryResponse
 import ru.itis.tinkoff.project.data.response.ProductResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
@@ -40,13 +42,24 @@ class StubApi : Api {
             emptyList(),
             "32131",
             price = 123,
-            1.0
-        ,"PFPFPF"
+            1.0, "PFPFPF"
         ) // просто,чтоб пока конфликтов у девочек не было,потом уберем stubApi
     }
 
     override suspend fun getProductByPromotionId(id: Int): List<ProductResponse> {
         return emptyList()
+    }
+
+    override suspend fun getCartProducts(): CartResponse {
+        return CartResponse(emptyList(), 0)
+    }
+
+    override suspend fun addProductToCart(addProductToCartRequest: AddProductToCartRequest) {
+        return
+    }
+
+    override suspend fun deleteProductFromCart(id: Int) {
+        return
     }
 
     private fun getTestProfile() =

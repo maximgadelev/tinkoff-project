@@ -2,6 +2,7 @@ package ru.itis.tinkoff.project.features.favorites.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,10 +15,10 @@ import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.FavoritesFragmentBinding
-import ru.itis.tinkoff.project.features.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardRenderer
+import ru.itis.tinkoff.project.features.common.utils.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.favorites.utils.FavoritesItem
 
 class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
@@ -68,11 +69,27 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
         dialog.show(parentFragmentManager, "dialog")
     }
 
-    private fun onClickButton(renderContract: ProductCardRenderer.RenderContract) {
-        val bundle = Bundle()
-        bundle.putInt("id", renderContract.id)
-        findNavController()
-            .navigate(R.id.action_favourites_to_productPageFragment, bundle)
+    private fun onClickButton(renderContract: ProductCardRenderer.RenderContract, view: View) {
+        when (view.id) {
+            R.id.buttonToCardFavorite ->
+                view.visibility = View.GONE
+            R.id.imageButton_plusQuantity -> {
+            }
+            R.id.imageButton_minusQuantity -> {
+            }
+            R.id.textViewQuantity -> {
+                val quanityTextView = view as TextView
+                viewModel.onAddProductToCart(
+                    renderContract.id, quanityTextView.text.toString().toInt()
+                )
+            }
+            else -> {
+                val bundle = Bundle()
+                bundle.putInt("id", renderContract.id)
+                findNavController()
+                    .navigate(R.id.action_favourites_to_productPageFragment, bundle)
+            }
+        }
     }
 
     private fun showOrHideLoading() {
