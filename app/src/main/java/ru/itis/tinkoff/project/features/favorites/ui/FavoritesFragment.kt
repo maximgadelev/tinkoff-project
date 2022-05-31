@@ -2,6 +2,7 @@ package ru.itis.tinkoff.project.features.favorites.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -69,16 +70,18 @@ class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
     }
 
     private fun onClickButton(renderContract: ProductCardRenderer.RenderContract, view: View) {
-        var a = 1
         when (view.id) {
             R.id.buttonToCardFavorite ->
                 view.visibility = View.GONE
             R.id.imageButton_plusQuantity -> {
-                a += 1
             }
             R.id.imageButton_minusQuantity -> {
-                a -= 1
-
+            }
+            R.id.textViewQuantity -> {
+                val quanityTextView = view as TextView
+                viewModel.onAddProductToCart(
+                    renderContract.id, quanityTextView.text.toString().toInt()
+                )
             }
             else -> {
                 val bundle = Bundle()

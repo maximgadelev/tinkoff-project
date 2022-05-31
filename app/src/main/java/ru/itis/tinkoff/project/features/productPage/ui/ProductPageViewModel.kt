@@ -46,11 +46,8 @@ class ProductPageViewModel(
     fun onAddProductToCart(id: Int, quality: Int) {
         viewModelScope.launch {
             try {
-                _isLoading.value = true
                 cartRepository.addProductToCart(id, quality)
-                _isLoading.value = false
             } catch (ex: Exception) {
-                _isLoading.value = false
                 eventChannel.send(Event.ExceptionEvent)
             }
         }

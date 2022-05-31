@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import ru.itis.tinkoff.project.R
 
-class CountButton @JvmOverloads constructor(
+class CountButtonProductPage @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -17,7 +17,7 @@ class CountButton @JvmOverloads constructor(
     }
 
     private fun initView() {
-        inflate(context, R.layout.count_button_view, this)
+        inflate(context, R.layout.count_button_product_page_view, this)
     }
 
     fun onClick() {

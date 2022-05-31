@@ -199,13 +199,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
-        <ru.itis.tinkoff.project.customViews.CountButton
+        <ru.itis.tinkoff.project.customViews.CountButtonProductPage
             android:id="@+id/countButton"
-            android:layout_width="170dp"
+            android:layout_width="180dp"
             android:layout_height="50dp"
             android:layout_marginTop="233dp"
             android:layout_marginRight="18dp"
             android:visibility="gone"
+            android:clickable="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/linearLayout" />

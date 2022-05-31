@@ -3,6 +3,7 @@ package ru.itis.tinkoff.project.features.common.renderer
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import kotlinx.android.synthetic.main.count_button_product_page_view.view.*
 import kotlinx.android.synthetic.main.item_product_card_favorites.view.*
 import kotlinx.android.synthetic.main.item_product_card_main.view.productImageView
 import kotlinx.android.synthetic.main.item_product_card_main.view.productPriceTextView
@@ -35,13 +36,20 @@ class ProductCardRenderer<Item>(
         if (type == ProductCardItemType.FAVORITE) {
             viewHolder.itemView.buttonToCardFavorite.setOnClickListener { buttonToCard ->
                 listener(viewHolder, buttonToCard)
-                viewHolder.itemView.linearLayoutButton.visibility = View.VISIBLE
+                viewHolder.itemView.countButtonFavorites.visibility = View.VISIBLE
+                listener(viewHolder, viewHolder.itemView.textViewQuantity)
             }
-            viewHolder.itemView.imageButton_plusQuantity.setOnClickListener {
+            viewHolder.itemView.countButtonFavorites.imageButton_plusQuantity.setOnClickListener {
                 listener(viewHolder, it)
+                val button = viewHolder.itemView.countButtonFavorites
+                button.setCount(viewHolder.itemView.countButtonFavorites.getCount() + 1)
+                listener(viewHolder, viewHolder.itemView.textViewQuantity)
             }
-            viewHolder.itemView.imageButton_minusQuantity.setOnClickListener {
+            viewHolder.itemView.countButtonFavorites.imageButton_minusQuantity.setOnClickListener {
                 listener(viewHolder, it)
+                val button = viewHolder.itemView.countButtonFavorites
+                button.setCount(viewHolder.itemView.countButtonFavorites.getCount() - 1)
+                listener(viewHolder, viewHolder.itemView.textViewQuantity)
             }
         }
         viewHolder.itemView.setOnClickListener { listener(viewHolder, it) }
