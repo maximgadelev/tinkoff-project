@@ -14,7 +14,7 @@ private const val PROFILE_SURNAME = "Ivanov"
 private const val PROFILE_IMAGE =
     "https://markshmidt.ru/wa-data/public/shop/products/04/05/504/images/1108/1108.970.jpg"
 
-@SuppressWarnings("MaxLineLength, MagicNumber")
+@SuppressWarnings("MaxLineLength, MagicNumber,EmptyFunctionBlock")
 class StubApi : Api {
 
     override suspend fun getCategories(): List<Category> {
