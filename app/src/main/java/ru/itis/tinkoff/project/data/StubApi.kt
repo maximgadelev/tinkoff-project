@@ -14,7 +14,7 @@ private const val PROFILE_SURNAME = "Ivanov"
 private const val PROFILE_IMAGE =
     "https://markshmidt.ru/wa-data/public/shop/products/04/05/504/images/1108/1108.970.jpg"
 
-@SuppressWarnings("MaxLineLength, MagicNumber,EmptyFunctionBlock")
+@SuppressWarnings("MaxLineLength, MagicNumber")
 class StubApi : Api {
 
     override suspend fun getCategories(): List<Category> {
@@ -54,9 +54,13 @@ class StubApi : Api {
         return CartResponse(emptyList(), 0)
     }
 
-    override suspend fun addProductToCart(addProductToCartRequest: AddProductToCartRequest) {}
+    override suspend fun addProductToCart(addProductToCartRequest: AddProductToCartRequest) {
+        return
+    }
 
-    override suspend fun deleteProductFromCart(id: Int) {}
+    override suspend fun deleteProductFromCart(id: Int) {
+        return
+    }
 
     private fun getTestProfile() =
         Profile(
