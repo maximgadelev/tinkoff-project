@@ -41,7 +41,11 @@
     <fragment
         android:id="@+id/productPageFragment"
         android:name="ru.itis.tinkoff.project.features.productPage.ui.fragments.ProductPageFragment"
-        android:label="ProductPageFragment" />
+        android:label="ProductPageFragment" >
+        <action
+            android:id="@+id/action_productPageFragment_to_reviewsFragment"
+            app:destination="@id/reviewsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/authorizationFragment"
         android:name="ru.itis.tinkoff.project.features.authorization.ui.AuthorizationFragment"
@@ -77,4 +81,8 @@
             android:id="@+id/action_promotionPageFragment_to_productPageFragment"
             app:destination="@id/productPageFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/reviewsFragment"
+        android:name="ru.itis.tinkoff.project.features.reviewsPage.ui.ReviewsFragment"
+        android:label="ReviewsFragment" />
 </navigation>

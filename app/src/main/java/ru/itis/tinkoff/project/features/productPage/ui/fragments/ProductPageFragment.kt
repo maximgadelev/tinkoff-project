@@ -51,6 +51,7 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
                 getString(R.string.price_in_ruble, it.price.toInt())
             viewBinding.textViewProductBrand.text = it.companyName
             viewBinding.textViewProductName.text = it.name
+            onClickToReview(it.id, it.rating)
             viewBinding.pager.adapter =
                 PagerAdapter(this, it.description, it.characteristic)
             TabLayoutMediator(viewBinding.tabLayout, viewBinding.pager) { tab, position ->
@@ -90,5 +91,14 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
     private fun showDialog() {
         val dialog = ExceptionDialogFragment()
         dialog.show(parentFragmentManager, "dialog")
+    }
+
+    private fun onClickToReview(id: Int, rating: Double) {
+        val bundle = Bundle()
+        bundle.putInt("id", id)
+        bundle.putDouble("rating", rating)
+        viewBinding.buttonToFeedback.setOnClickListener {
+            findNavController().navigate(R.id.action_productPageFragment_to_reviewsFragment, bundle)
+        }
     }
 }

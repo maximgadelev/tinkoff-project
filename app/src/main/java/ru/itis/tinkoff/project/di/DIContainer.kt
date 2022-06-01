@@ -29,6 +29,8 @@ import ru.itis.tinkoff.project.features.promotionPage.data.PromotionRepository
 import ru.itis.tinkoff.project.features.promotionPage.ui.PromotionPageViewModel
 import ru.itis.tinkoff.project.features.registration.data.RegistrationRepository
 import ru.itis.tinkoff.project.features.registration.ui.RegistrationFragmentViewModel
+import ru.itis.tinkoff.project.features.reviewsPage.data.ReviewRepository
+import ru.itis.tinkoff.project.features.reviewsPage.ui.ReviewsFragmentViewModel
 import ru.itis.tinkoff.project.network.AuthInterceptor
 
 const val API_URL = "https://market-app-technokratos.herokuapp.com/"
@@ -74,9 +76,16 @@ val appModule = module {
             get()
         )
     }
+    viewModel<ReviewsFragmentViewModel> {
+        ReviewsFragmentViewModel(
+            get(),
+            get()
+        )
+    }
 }
 val dataModule = module {
     single<PromotionRepository> { PromotionRepository(get(), ResponseMapper()) }
+    single<ReviewRepository> { ReviewRepository(get(), ResponseMapper()) }
     single<RegistrationRepository> { RegistrationRepository(get(), ResponseMapper()) }
     single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
     single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }

@@ -4,6 +4,7 @@ import ru.itis.tinkoff.project.data.api.Api
 import ru.itis.tinkoff.project.data.response.CategoryResponse
 import ru.itis.tinkoff.project.data.response.ProductResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
+import ru.itis.tinkoff.project.data.response.ReviewResponse
 import ru.itis.tinkoff.project.entity.Category
 import ru.itis.tinkoff.project.entity.Profile
 
@@ -40,12 +41,15 @@ class StubApi : Api {
             emptyList(),
             "32131",
             price = 123,
-            1.0
-        ,"PFPFPF"
+            1.0, "PFPFPF"
         ) // просто,чтоб пока конфликтов у девочек не было,потом уберем stubApi
     }
 
     override suspend fun getProductByPromotionId(id: Int): List<ProductResponse> {
+        return emptyList()
+    }
+
+    override suspend fun getReviewsByProductsId(id: Int): List<ReviewResponse> {
         return emptyList()
     }
 

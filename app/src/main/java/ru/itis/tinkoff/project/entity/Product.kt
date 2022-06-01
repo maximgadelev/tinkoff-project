@@ -10,4 +10,5 @@ data class Product(
     val price: BigDecimal,
     val description: String,
     val companyName: String,
+    val rating: Double
 )

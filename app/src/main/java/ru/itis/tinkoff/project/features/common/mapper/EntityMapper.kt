@@ -2,10 +2,12 @@ package ru.itis.tinkoff.project.features.common.mapper
 
 import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.entity.Promotion
+import ru.itis.tinkoff.project.entity.Review
 import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductListRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
+import ru.itis.tinkoff.project.features.reviewsPage.ui.renderer.ReviewCardListRenderer
 
 class EntityMapper {
 
@@ -57,6 +59,22 @@ class EntityMapper {
                 product.price.toString() + " ₽",
                 product.description,
                 product.companyName
+            )
+        }
+    }
+
+    fun mapReviewsToReviewsItem(reviews: List<Review>): List<ReviewCardListRenderer.Review> {
+        return reviews.map { review ->
+            ReviewCardListRenderer.Review(
+                review.id,
+                review.advantages,
+                review.comment,
+                review.date,
+                review.disadvantages,
+                review.experience,
+                review.rating,
+                "https://slovnet.ru/wp-content/uploads/2019/08/1-63.jpg",
+                "Иван Иванов"
             )
         }
     }

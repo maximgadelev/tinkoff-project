@@ -4,6 +4,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import ru.itis.tinkoff.project.data.response.ProductResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
+import ru.itis.tinkoff.project.data.response.ReviewResponse
 import ru.itis.tinkoff.project.entity.Category
 import ru.itis.tinkoff.project.entity.Profile
 
@@ -25,4 +26,7 @@ interface Api {
 
     @GET("products/promotion/{promotion_id}")
     suspend fun getProductByPromotionId(@Path("promotion_id") id: Int): List<ProductResponse>
+
+    @GET("review/{productId}")
+    suspend fun getReviewsByProductsId(@Path("productId") id: Int): List<ReviewResponse>
 }

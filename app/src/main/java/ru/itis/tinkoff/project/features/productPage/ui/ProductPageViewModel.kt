@@ -22,6 +22,8 @@ class ProductPageViewModel(
     private val _isLoading = MutableStateFlow<Boolean>(false)
     val isLoading = _isLoading.asStateFlow()
     val item = _item.asStateFlow()
+    val _rating = MutableStateFlow(0.0)
+    val rating = _rating.asStateFlow()
     val mainProduct = _mainProduct.asSharedFlow()
     val eventFlow = eventChannel.receiveAsFlow()
 
@@ -34,10 +36,15 @@ class ProductPageViewModel(
                 _mainProduct.emit(product)
                 _item.value = list
                 _isLoading.value = false
+                _rating.value = product.rating
             } catch (ex: Exception) {
                 _isLoading.value = false
                 eventChannel.send(Event.ExceptionEvent)
             }
         }
+    }
+
+    fun getRating(): Double {
+        return _rating.value
     }
 }

@@ -20,7 +20,7 @@ data class ProductResponse(
     @Json(name = "price")
     val price: Int,
     @Json(name = "rating")
-    val rating: Double?,
+    val rating: Double,
     @Json(name = "brand")
     val brand: String
 )

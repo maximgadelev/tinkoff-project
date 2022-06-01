@@ -5,9 +5,11 @@ import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.data.response.CharacteristicResponse
 import ru.itis.tinkoff.project.data.response.ProductResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
+import ru.itis.tinkoff.project.data.response.ReviewResponse
 import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.entity.Promotion
+import ru.itis.tinkoff.project.entity.Review
 
 class ResponseMapper {
     fun mapProductsResponseToProducts(productResponses: List<ProductResponse>): List<Product> {
@@ -19,7 +21,8 @@ class ResponseMapper {
                 mapCharacteristic(productResponse.characteristicResponse),
                 productResponse.price.toBigDecimal(),
                 productResponse.description,
-                productResponse.brand
+                productResponse.brand,
+                productResponse.rating
             )
         }
     }
@@ -44,7 +47,8 @@ class ResponseMapper {
             mapCharacteristic(productResponse.characteristicResponse),
             productResponse.price.toBigDecimal(),
             productResponse.description,
-            productResponse.brand
+            productResponse.brand,
+            productResponse.rating
         )
     }
 
@@ -66,6 +70,20 @@ class ResponseMapper {
             Characteristic(
                 characteristicResponse.characteristic,
                 characteristicResponse.type
+            )
+        }
+    }
+
+    fun mapReviewList(reviews: List<ReviewResponse>): List<Review> {
+        return reviews.map { reviewResponse ->
+            Review(
+                reviewResponse.id,
+                reviewResponse.advantages,
+                reviewResponse.comment,
+                reviewResponse.date,
+                reviewResponse.disadvantages,
+                reviewResponse.experience,
+                reviewResponse.rating
             )
         }
     }

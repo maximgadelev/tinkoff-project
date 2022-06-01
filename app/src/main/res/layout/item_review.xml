@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="14dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageView_profile"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@color/black" />
+
+            <TextView
+                android:id="@+id/textView_profileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/circleImageView_profile"
+                app:layout_constraintTop_toTopOf="@id/circleImageView_profile"
+                tools:text="Ольга Г." />
+
+            <TextView
+                android:id="@+id/textView_reviewDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/circleImageView_profile"
+                app:layout_constraintTop_toBottomOf="@id/textView_profileName"
+                tools:text="22 ноября 2022" />
+
+            <RatingBar
+                android:id="@+id/ratingBar_review"
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:secondaryProgressTintMode="src_in"
+                android:clickable="false"
+               android:theme="@style/MyRatingBar"
+                app:layout_constraintStart_toStartOf="@+id/circleImageView_profile"
+                app:layout_constraintTop_toBottomOf="@+id/circleImageView_profile" />
+
+            <TextView
+                android:id="@+id/textView_experience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/review_experience_title"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ratingBar_review" />
+
+            <TextView
+                android:id="@+id/textView_experience_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView_experience"
+                app:layout_constraintTop_toBottomOf="@id/textView_experience"
+                tools:text="Неделя" />
+
+            <TextView
+                android:id="@+id/textView_advantages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/advantages_title"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView_experience_description"
+                app:layout_constraintTop_toBottomOf="@+id/textView_experience_description" />
+
+            <TextView
+                android:id="@+id/textView_advantages_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView_advantages"
+                app:layout_constraintTop_toBottomOf="@+id/textView_advantages"
+                tools:text="Очень все круто" />
+
+            <TextView
+                android:id="@+id/textView_disadvantages_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/disadvantages"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView_advantages_description"
+                app:layout_constraintTop_toBottomOf="@+id/textView_advantages_description" />
+
+            <TextView
+                android:id="@+id/textView_disadvantages_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView_disadvantages_title"
+                app:layout_constraintTop_toBottomOf="@+id/textView_disadvantages_title"
+                tools:text="Очень все круто" />
+
+            <TextView
+                android:id="@+id/textView_comment_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/comment_title"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/textView_disadvantages_description"
+                app:layout_constraintTop_toBottomOf="@+id/textView_disadvantages_description" />
+
+            <TextView
+                android:id="@+id/textView_comment_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/textView_comment_title"
+                app:layout_constraintTop_toBottomOf="@+id/textView_comment_title"
+                tools:text="Очень все круто" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
