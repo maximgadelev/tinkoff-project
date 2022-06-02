@@ -91,4 +91,8 @@
         <item name="backgroundTint">@color/deep_yellow</item>
     </style>
 
+    <style name="TabTextApperance" parent="TextAppearance.Design.Tab">
+        <item name="textAllCaps">false</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
 </resources>

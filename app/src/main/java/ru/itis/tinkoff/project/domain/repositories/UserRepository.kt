@@ -1,7 +1,7 @@
 package ru.itis.tinkoff.project.domain.repositories
 
-import ru.itis.tinkoff.project.entity.User
+import ru.itis.tinkoff.project.entity.Profile
 
 interface UserRepository {
-    suspend fun getUser(id: Int): User
+    suspend fun getUser(): Profile
 }

@@ -10,15 +10,19 @@ import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.haroncode.aquarius.core.clicker.ClickableRenderer
+import ru.haroncode.aquarius.core.clicker.DefaultClicker
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
+import ru.itis.tinkoff.project.entity.Product
+import ru.itis.tinkoff.project.features.common.renderer.PromotionRender
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer.RenderContract
 import ru.itis.tinkoff.project.features.main.utils.PromotionItemSize
 
 class SnapRenderer<Item>(
     size: PromotionItemSize,
-    private val isSnap: Boolean
+    private val isSnap: Boolean,
+    private val listener: (PromotionRender.RenderContract) -> Unit
 ) : ItemBaseRenderer<Item, RenderContract>(), ClickableRenderer {
 
     interface RenderContract {
@@ -26,13 +30,16 @@ class SnapRenderer<Item>(
     }
 
     data class Promotion(
+        override val id: Int,
+        override val name: String,
+        override val isActive: Boolean,
         override val image: String,
-        override val name: String
+        override val products: List<Product>,
     ) : PromotionRender.RenderContract, ComparableItem
 
-    private val itemAdapter by lazy {
+    val itemAdapter by lazy {
         RenderAdapterBuilder<Promotion>()
-            .renderer(Promotion::class, PromotionRender(size))
+            .renderer(Promotion::class, PromotionRender(size), DefaultClicker(listener))
             .build(DifferStrategies.withDiffUtilComparable())
     }
 
