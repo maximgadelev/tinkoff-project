@@ -1,15 +1,43 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/light_grey"
+        android:visibility="visible" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/search_view_border"
+        android:textColorHint="@color/black"
+        app:iconifiedByDefault="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:queryBackground="@color/transparent"
+        app:queryHint="@string/products_search" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="60dp"
-        android:clipToPadding="false"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        android:layout_marginTop="60dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="60dp"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </FrameLayout>

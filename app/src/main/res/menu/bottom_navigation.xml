@@ -9,7 +9,7 @@
         android:icon="@drawable/ic_search_24"
         android:title="@string/catalog" />
     <item
-        android:id="@+id/basket"
+        android:id="@+id/cart"
         android:icon="@drawable/ic_shopping_cart_24"
         android:title="@string/basket" />
     <item

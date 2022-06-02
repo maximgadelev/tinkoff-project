@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
     id 'io.gitlab.arturbosch.detekt' version "1.19.0"
 }
 apply plugin: 'kotlin-android'
@@ -38,7 +39,7 @@ android {
 }
 
 dependencies {
-
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
@@ -78,6 +79,7 @@ dependencies {
     implementation "io.insert-koin:koin-core:3.1.5"
     implementation("com.squareup.moshi:moshi:1.11.0")
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
 }
 
 detekt {

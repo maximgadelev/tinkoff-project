@@ -1,6 +1,9 @@
 package ru.itis.tinkoff.project.entity
 
 data class Promotion(
+    val id: Int,
     val name: String,
-    val image: String
+    val isActive: Boolean,
+    val image: String,
+    val products: List<Product>
 )

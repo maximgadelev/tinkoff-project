@@ -20,7 +20,7 @@ class MenuItemProvider(
             )
         )
         resultList += MenuItem.ThreePromotionsCardMenuItem(
-            entityMapper.mapPromotionToSnapRenderItem(promotions).slice(0..2)
+            entityMapper.mapPromotionToSnapRenderItem(promotions)
         )
         return resultList
     }
