@@ -49,14 +49,26 @@ class StubApi : Api {
         return emptyList()
     }
 
-    override suspend fun getReviewsByProductsId(id: Int): List<ReviewResponse> {
-        return emptyList()
-    }
-
     private fun getTestProfile() =
         Profile(
             PROFILE_NAME,
             PROFILE_SURNAME,
             PROFILE_IMAGE
         )
+
+    override suspend fun getReviewsByProductsId(id: Int): List<ReviewResponse> {
+        return emptyList()
+    }
+
+    override suspend fun getCartProducts(): CartResponse {
+        return CartResponse(emptyList(), 0)
+    }
+
+    override suspend fun addProductToCart(addProductToCartRequest: AddProductToCartRequest) {
+        return
+    }
+
+    override suspend fun deleteProductFromCart(id: Int) {
+        return
+    }
 }

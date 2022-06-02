@@ -19,7 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/productImageView"
@@ -59,18 +59,28 @@
 
             <TextView
                 android:id="@+id/productPriceTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/black"
                 android:textSize="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
+
                 app:layout_constraintStart_toEndOf="@id/productImageView"
                 app:layout_constraintTop_toBottomOf="@id/cartProductCompanyTextView"
-                tools:text="999 P" />
+                tools:text="1 P" />
 
+            <TextView
+                android:id="@+id/textViewQuantity"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:gravity="right|center"
+                android:layout_marginLeft="20dp"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/productPriceTextView"
+                app:layout_constraintTop_toTopOf="@+id/productPriceTextView"
+                tools:text="x 15" />
             <ImageButton
                 android:id="@+id/imageButtonLikeCart"
                 android:layout_width="32dp"

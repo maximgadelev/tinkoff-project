@@ -1,27 +1,24 @@
 package ru.itis.tinkoff.project.features.common.renderer
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.IdRes
 import kotlinx.android.synthetic.main.item_carousel.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
-import ru.haroncode.aquarius.core.clicker.DefaultClicker
 import ru.haroncode.aquarius.core.diffutil.ComparableItem
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.entity.Characteristic
 import ru.itis.tinkoff.project.features.common.ProductCardItemType
+import ru.itis.tinkoff.project.features.common.utils.CustomClicker
 
 class ProductCardListRenderer<Item>(
     type: ProductCardItemType,
-    listener: (ProductCardRenderer.RenderContract) -> Unit
+    listener: (ProductCardRenderer.RenderContract, View) -> Unit,
 ) : ItemBaseRenderer<Item, ProductCardListRenderer.RenderContract>() {
 
     interface RenderContract {
-        @get:IdRes
-        val id: Int?
-            get() = null
         val products: List<Product>
     }
 
@@ -32,12 +29,12 @@ class ProductCardListRenderer<Item>(
         override val characteristics: List<Characteristic>,
         override val price: String,
         override val description: String,
-        override val company: String
+        override val company: String,
     ) : ProductCardRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {
         RenderAdapterBuilder<Product>()
-            .renderer(Product::class, ProductCardRenderer(type), DefaultClicker(listener))
+            .renderer(Product::class, ProductCardRenderer(type), CustomClicker(listener))
             .build(DifferStrategies.withDiffUtilComparable())
     }
     override val layoutRes: Int = when (type) {

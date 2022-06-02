@@ -46,7 +46,8 @@ val appModule = module {
     viewModel<FavoritesViewModel> {
         FavoritesViewModel(
             favoritesRepository = get(),
-            entityMapper = get()
+            get(),
+            entityMapper = get(),
         )
     }
     viewModel<CartFragmentViewModel> {
@@ -57,7 +58,7 @@ val appModule = module {
     }
     viewModel<ProductPageViewModel> {
         ProductPageViewModel(
-            get()
+            get(), get()
         )
     }
     viewModel<AuthorizationViewModel> {
@@ -113,7 +114,9 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         .addConverterFactory(MoshiConverterFactory.create()).build()
 }
 
-fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
+fun provideOkHttpClient(
+    authInterceptor: AuthInterceptor
+): OkHttpClient {
     return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
 }
 

@@ -1,4 +1,4 @@
-package ru.itis.tinkoff.project.features
+package ru.itis.tinkoff.project.features.common.utils
 
 import android.os.Bundle
 import android.view.LayoutInflater

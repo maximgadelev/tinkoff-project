@@ -73,7 +73,6 @@ class ResponseMapper {
             )
         }
     }
-
     fun mapReviewList(reviews: List<ReviewResponse>): List<Review> {
         return reviews.map { reviewResponse ->
             Review(
@@ -84,6 +83,21 @@ class ResponseMapper {
                 reviewResponse.disadvantages,
                 reviewResponse.experience,
                 reviewResponse.rating
+            )
+        }
+    }
+    fun mapCartResponseToCartInfo(cartResponse: CartResponse): CartInfo {
+        return CartInfo(
+            mapCartProductToCartProductList(cartResponse.products),
+            cartResponse.totalSum
+        )
+    }
+
+    private fun mapCartProductToCartProductList(list: List<CartProductResponse>): List<CartProduct> {
+        return list.map { responseProduct ->
+            CartProduct(
+                mapProductResponseToProduct(responseProduct.product),
+                responseProduct.quantity
             )
         }
     }

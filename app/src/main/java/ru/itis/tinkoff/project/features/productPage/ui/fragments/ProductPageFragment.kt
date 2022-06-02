@@ -9,6 +9,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.android.synthetic.main.count_button_product_page_view.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
@@ -36,6 +37,7 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
         id?.let { viewModel.onViewCreated(it) }
         createMainInformation()
         showOrHideLoading()
+        id?.let { onCreateButtonToCart(it) }
         id?.let { refreshFragment(it) }
     }
 
@@ -47,11 +49,11 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
             viewBinding.recyclerViewImagesProductPage.adapter = itemAdapter
             viewBinding.textViewProductPagePrice.text =
                 getString(R.string.price_in_ruble, it.price.toInt())
+            onClickToReview(it.id, it.rating)
             viewBinding.textViewProductPagePriceSecond.text =
                 getString(R.string.price_in_ruble, it.price.toInt())
             viewBinding.textViewProductBrand.text = it.companyName
             viewBinding.textViewProductName.text = it.name
-            onClickToReview(it.id, it.rating)
             viewBinding.pager.adapter =
                 PagerAdapter(this, it.description, it.characteristic)
             TabLayoutMediator(viewBinding.tabLayout, viewBinding.pager) { tab, position ->
@@ -92,13 +94,27 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
         val dialog = ExceptionDialogFragment()
         dialog.show(parentFragmentManager, "dialog")
     }
-
     private fun onClickToReview(id: Int, rating: Double) {
         val bundle = Bundle()
         bundle.putInt("id", id)
         bundle.putDouble("rating", rating)
         viewBinding.buttonToFeedback.setOnClickListener {
             findNavController().navigate(R.id.action_productPageFragment_to_reviewsFragment, bundle)
+        }
+    }
+    private fun onCreateButtonToCart(id: Int) {
+        viewBinding.buttonAddToCart.setOnClickListener {
+            viewBinding.buttonAddToCart.visibility = View.GONE
+            viewBinding.countButton.visibility = View.VISIBLE
+            viewModel.onAddProductToCart(id, viewBinding.countButton.getCount())
+            viewBinding.countButton.imageButton_plusQuantity.setOnClickListener {
+                viewBinding.countButton.setCount(viewBinding.countButton.getCount() + 1)
+                viewModel.onAddProductToCart(id, viewBinding.countButton.getCount())
+            }
+            viewBinding.countButton.imageButton_minusQuantity.setOnClickListener {
+                viewBinding.countButton.setCount(viewBinding.countButton.getCount() - 1)
+                viewModel.onAddProductToCart(id, viewBinding.countButton.getCount())
+            }
         }
     }
 }
