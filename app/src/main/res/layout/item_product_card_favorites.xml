@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-
     android:gravity="center">
 
     <androidx.cardview.widget.CardView
@@ -90,8 +88,8 @@
                android:clickable="true"
                android:visibility="gone"
                android:layout_height="30dp"
-               android:layout_marginBottom="8dp"
-               android:layout_marginRight="6dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginRight="10dp"
                app:layout_constraintBottom_toBottomOf="parent"
                app:layout_constraintEnd_toEndOf="parent"
                />

@@ -15,6 +15,7 @@ import ru.itis.tinkoff.project.data.api.TokenApi
 import ru.itis.tinkoff.project.data.database.local.PreferenceManager
 import ru.itis.tinkoff.project.data.mapper.ResponseMapper
 import ru.itis.tinkoff.project.data.repository.TokenRepository
+import ru.itis.tinkoff.project.domain.repositories.UserRepository
 import ru.itis.tinkoff.project.features.authorization.ui.AuthorizationViewModel
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
@@ -27,6 +28,8 @@ import ru.itis.tinkoff.project.features.main.data.MenuRepository
 import ru.itis.tinkoff.project.features.main.ui.MainViewModel
 import ru.itis.tinkoff.project.features.productPage.data.ProductPageRepository
 import ru.itis.tinkoff.project.features.productPage.ui.ProductPageViewModel
+import ru.itis.tinkoff.project.features.profile.data.UserRepositoryImpl
+import ru.itis.tinkoff.project.features.profile.ui.UserViewModel
 import ru.itis.tinkoff.project.features.promotionPage.data.PromotionRepository
 import ru.itis.tinkoff.project.features.promotionPage.ui.PromotionPageViewModel
 import ru.itis.tinkoff.project.features.registration.data.RegistrationRepository
@@ -38,67 +41,74 @@ import ru.itis.tinkoff.project.network.AuthInterceptor
 const val API_URL = "https://market-app-technokratos.herokuapp.com/"
 const val PREFERNCES_FILE_KEY = "ru.iti.tinkoff.project"
 val appModule = module {
-    single<EntityMapper> { EntityMapper() }
-    viewModel<MainViewModel> {
+    single { EntityMapper() }
+    viewModel {
         MainViewModel(
             menuRepository = get(),
             entityMapper = get()
         )
     }
-    viewModel<FavoritesViewModel> {
-        FavoritesViewModel(
-            favoritesRepository = get(),
-            entityMapper = get()
+    viewModel {
+        UserViewModel(
+            userRepository = get()
         )
     }
-    viewModel<CartFragmentViewModel> {
+    viewModel {
+        FavoritesViewModel(
+            favoritesRepository = get(),
+            entityMapper = get(),
+            cartRepository = get()
+        )
+    }
+    viewModel {
         CartFragmentViewModel(
             cartRepository = get(),
             entityMapper = get()
         )
     }
-    viewModel<ProductPageViewModel> {
+    viewModel {
         ProductPageViewModel(
+            get(),
             get()
         )
     }
-    viewModel<AuthorizationViewModel> {
+    viewModel {
         AuthorizationViewModel(
             get()
         )
     }
-    viewModel<RegistrationFragmentViewModel> {
+    viewModel {
         RegistrationFragmentViewModel(
             get()
         )
     }
-    viewModel<PromotionPageViewModel> {
+    viewModel {
         PromotionPageViewModel(
             get(),
             get()
         )
     }
+    viewModel {
+        ReviewsFragmentViewModel(
+            get(),
+            get()
+        )
+    }
+    viewModel {
+        ConfirmViewModel(get())
+    }
 }
-viewModel<ReviewsFragmentViewModel> {
-    ReviewsFragmentViewModel(
-        get(),
-        get()
-    )
-}
-viewModel<ConfirmViewModel> {
-    ConfirmViewModel(get())
-}
-
 val dataModule = module {
-    single<ConfirmRepository>{ ConfirmRepository(get()) }
-    single<ReviewRepository> { ReviewRepository(get(), ResponseMapper()) }
-    single<PromotionRepository> { PromotionRepository(get(), ResponseMapper()) }
-    single<RegistrationRepository> { RegistrationRepository(get(), ResponseMapper()) }
-    single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
-    single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }
-    single<CartRepository> { CartRepository(api = get(), ResponseMapper()) }
-    single<ProductPageRepository> { ProductPageRepository(get(), ResponseMapper()) }
-    single<TokenRepository> {
+    single { ConfirmRepository(get()) }
+    single { ReviewRepository(get(), ResponseMapper()) }
+    single { PromotionRepository(get(), ResponseMapper()) }
+    single<UserRepository> { UserRepositoryImpl(api = get(), ResponseMapper()) }
+    single { RegistrationRepository(get(), ResponseMapper()) }
+    single { MenuRepository(api = get(), ResponseMapper()) }
+    single { FavoritesRepository(api = get(), ResponseMapper()) }
+    single { CartRepository(api = get(), ResponseMapper()) }
+    single { ProductPageRepository(get(), ResponseMapper()) }
+    single {
         TokenRepository(
             tokenApi = get(), PreferenceManager(
                 provideSharedPreferences(androidApplication())
@@ -107,11 +117,11 @@ val dataModule = module {
     }
 }
 val networkModule = module {
-    single<TokenApi> { createTokenApi(provideRetrofit(get(named("TokenApiClient")))) }
-    single<Api> { createApi(provideRetrofit(get(named("ApiClient")))) }
+    single { createTokenApi(provideRetrofit(get(named("TokenApiClient")))) }
+    single { createApi(provideRetrofit(get(named("ApiClient")))) }
     single(named("ApiClient")) { provideOkHttpClient(get()) }
-    single<Retrofit> { provideRetrofit(get()) }
-    single<AuthInterceptor> { AuthInterceptor(get()) }
+    single { provideRetrofit(get()) }
+    single { AuthInterceptor(get()) }
     single(named("TokenApiClient")) { provideOkHttpClientForTokenApi() }
 }
 

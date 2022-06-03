@@ -2,14 +2,8 @@ package ru.itis.tinkoff.project.data.mapper
 
 import android.net.Uri
 import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.data.response.CharacteristicResponse
-import ru.itis.tinkoff.project.data.response.ProductResponse
-import ru.itis.tinkoff.project.data.response.ProfileResponse
-import ru.itis.tinkoff.project.data.response.PromotionResponse
-import ru.itis.tinkoff.project.entity.Characteristic
-import ru.itis.tinkoff.project.entity.Product
-import ru.itis.tinkoff.project.entity.Profile
-import ru.itis.tinkoff.project.entity.Promotion
+import ru.itis.tinkoff.project.data.response.*
+import ru.itis.tinkoff.project.entity.*
 
 class ResponseMapper {
     fun mapProductsResponseToProducts(productResponses: List<ProductResponse>): List<Product> {
@@ -47,7 +41,8 @@ class ResponseMapper {
             mapCharacteristic(productResponse.characteristicResponse),
             productResponse.price.toBigDecimal(),
             productResponse.description,
-            productResponse.brand
+            productResponse.brand,
+            productResponse.rating
         )
     }
 
