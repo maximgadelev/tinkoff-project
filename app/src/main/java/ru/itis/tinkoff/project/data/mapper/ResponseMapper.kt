@@ -81,4 +81,8 @@ class ResponseMapper {
             )
         }
     }
+
+    fun mapProfileResponseToProfile(profileResponse: ProfileResponse): Profile{
+        return Profile(profileResponse.firstName, profileResponse.lastName, profileResponse.profileImg)
+    }
 }

@@ -37,7 +37,11 @@
     <fragment
         android:id="@+id/profile"
         android:name="ru.itis.tinkoff.project.features.profile.ui.ProfileFragment"
-        android:label="ProfileFragment" />
+        android:label="ProfileFragment">
+        <action
+            android:id="@+id/action_profileFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productPageFragment"
         android:name="ru.itis.tinkoff.project.features.productPage.ui.fragments.ProductPageFragment"
