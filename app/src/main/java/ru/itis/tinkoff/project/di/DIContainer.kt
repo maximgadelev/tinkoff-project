@@ -88,7 +88,7 @@ val dataModule = module {
     single { PromotionRepository(get(), ResponseMapper()) }
     single { RegistrationRepository(get(), ResponseMapper()) }
     single { MenuRepository(api = get(), ResponseMapper()) }
-    single<UserRepository> { UserRepositoryImpl(api = get()) }
+    single<UserRepository> { UserRepositoryImpl(api = get(), ResponseMapper()) }
     single { FavoritesRepository(api = get(), ResponseMapper()) }
     single { CartRepository(api = get(), ResponseMapper()) }
     single { ProductPageRepository(get(), ResponseMapper()) }

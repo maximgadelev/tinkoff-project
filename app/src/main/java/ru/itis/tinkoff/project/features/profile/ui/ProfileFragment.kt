@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -32,6 +33,10 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         super.onViewCreated(view, savedInstanceState)
         initRv()
         initUser()
+        initSwipeToRefreshLayout()
+        viewBinding.outBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_authorizationFragment)
+        }
     }
 
     private fun initUser() {
@@ -50,9 +55,24 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private fun fillUserInfo(profile: Profile) {
         with(viewBinding) {
-            tvName.text = profile.name
-            tvSurname.text = profile.surname
-            tvOptionTitleActOrders.text // add active orders initialization later
+            tvName.text = profile.firstName
+            tvSurname.text = profile.lastName
+            /*val avatarBitmap = BitmapFactory.decodeFile(profile.profileImg)
+            avatarBitmap?.also{
+                ivAvatar.setImageBitmap(it)
+            }*/
+        }
+    }
+
+    private fun initSwipeToRefreshLayout() {
+        with(viewBinding) {
+            swipeRefreshLayout.setOnRefreshListener {
+                viewModel.onViewCreated()
+                swipeRefreshLayout.isRefreshing = false
+            }
+            swipeRefreshLayout.setColorSchemeResources(
+                R.color.deep_orange
+            )
         }
     }
 }

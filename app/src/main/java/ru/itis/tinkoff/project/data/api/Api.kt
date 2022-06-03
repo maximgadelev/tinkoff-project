@@ -4,9 +4,9 @@ import retrofit2.http.*
 import ru.itis.tinkoff.project.data.request.AddProductToCartRequest
 import ru.itis.tinkoff.project.data.response.CartResponse
 import ru.itis.tinkoff.project.data.response.ProductResponse
+import ru.itis.tinkoff.project.data.response.ProfileResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
 import ru.itis.tinkoff.project.entity.Category
-import ru.itis.tinkoff.project.entity.Profile
 
 interface Api {
     @GET("categories")
@@ -15,8 +15,8 @@ interface Api {
     @GET("products")
     suspend fun getProducts(): List<ProductResponse>
 
-    @GET("profileInfo")
-    suspend fun getProfileInfo(): Profile
+    @GET("profile")
+    suspend fun getProfileInfo(): ProfileResponse
 
     @GET("promotions")
     suspend fun getPromotions(): List<PromotionResponse>
