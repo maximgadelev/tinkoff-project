@@ -8,6 +8,7 @@ import kotlinx.coroutines.launch
 import ru.itis.tinkoff.project.features.common.Event
 import ru.itis.tinkoff.project.features.registration.data.RegistrationRepository
 
+@SuppressWarnings("LongParameterList")
 class RegistrationFragmentViewModel(
     private val registrationRepository: RegistrationRepository
 ) : ViewModel() {
@@ -18,7 +19,8 @@ class RegistrationFragmentViewModel(
         secondName: String,
         email: String,
         phoneNumber: String,
-        password: String
+        password: String,
+        dateOfBirth: String
     ) {
         viewModelScope.launch {
             try {
@@ -27,7 +29,8 @@ class RegistrationFragmentViewModel(
                     secondName,
                     email,
                     phoneNumber,
-                    password
+                    password,
+                    dateOfBirth
                 )
                 eventChannel.send(Event.NavigateToConfirmEvent)
             } catch (ex: Exception) {
