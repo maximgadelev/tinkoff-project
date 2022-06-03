@@ -15,10 +15,10 @@ import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.CartFragmentBinding
-import ru.itis.tinkoff.project.features.common.utils.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductListRenderer
 import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductRenderer
 import ru.itis.tinkoff.project.features.cart.utils.CartItem
+import ru.itis.tinkoff.project.features.common.utils.ExceptionDialogFragment
 
 class CartFragment : Fragment(R.layout.cart_fragment) {
 
