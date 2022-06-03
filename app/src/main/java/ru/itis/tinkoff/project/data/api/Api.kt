@@ -7,7 +7,6 @@ import ru.itis.tinkoff.project.data.response.ProductResponse
 import ru.itis.tinkoff.project.data.response.ProfileResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
 import ru.itis.tinkoff.project.entity.Category
-import ru.itis.tinkoff.project.entity.Profile
 
 interface Api {
     @GET("categories")
