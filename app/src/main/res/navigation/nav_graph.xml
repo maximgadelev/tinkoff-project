@@ -59,8 +59,8 @@
         android:name="ru.itis.tinkoff.project.features.registration.ui.RegistrationFragment"
         android:label="RegistrationFragment" >
         <action
-            android:id="@+id/action_registrationFragment_to_authorizationFragment"
-            app:destination="@id/authorizationFragment" />
+            android:id="@+id/action_registrationFragment_to_confirmFragment"
+            app:destination="@id/confirmFragment" />
     </fragment>
     <fragment
         android:id="@+id/emptyProfileFragment"
@@ -85,4 +85,12 @@
         android:id="@+id/reviewsFragment"
         android:name="ru.itis.tinkoff.project.features.reviewsPage.ui.ReviewsFragment"
         android:label="ReviewsFragment" />
+    <fragment
+        android:id="@+id/confirmFragment"
+        android:name="ru.itis.tinkoff.project.features.confirm.ui.ConfirmFragment"
+        android:label="ConfirmFragment" >
+        <action
+            android:id="@+id/action_confirmFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
+    </fragment>
 </navigation>

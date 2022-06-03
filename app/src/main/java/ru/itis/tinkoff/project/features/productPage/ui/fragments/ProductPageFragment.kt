@@ -1,21 +1,22 @@
 package ru.itis.tinkoff.project.features.productPage.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.count_button_product_page_view.view.*
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import kotlinx.android.synthetic.main.count_button_product_page_view.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ProductPageFragmentBinding
-import ru.itis.tinkoff.project.features.ExceptionDialogFragment
+import ru.itis.tinkoff.project.features.common.utils.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.productPage.ui.ProductPageViewModel
 import ru.itis.tinkoff.project.features.productPage.ui.adapter.PagerAdapter
 import ru.itis.tinkoff.project.features.productPage.ui.renderer.ProductImageListRenderer
@@ -94,6 +95,7 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
         val dialog = ExceptionDialogFragment()
         dialog.show(parentFragmentManager, "dialog")
     }
+
     private fun onClickToReview(id: Int, rating: Double) {
         val bundle = Bundle()
         bundle.putInt("id", id)
@@ -102,6 +104,7 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
             findNavController().navigate(R.id.action_productPageFragment_to_reviewsFragment, bundle)
         }
     }
+
     private fun onCreateButtonToCart(id: Int) {
         viewBinding.buttonAddToCart.setOnClickListener {
             viewBinding.buttonAddToCart.visibility = View.GONE

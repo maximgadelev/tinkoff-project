@@ -2,14 +2,8 @@ package ru.itis.tinkoff.project.data.mapper
 
 import android.net.Uri
 import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.data.response.CharacteristicResponse
-import ru.itis.tinkoff.project.data.response.ProductResponse
-import ru.itis.tinkoff.project.data.response.PromotionResponse
-import ru.itis.tinkoff.project.data.response.ReviewResponse
-import ru.itis.tinkoff.project.entity.Characteristic
-import ru.itis.tinkoff.project.entity.Product
-import ru.itis.tinkoff.project.entity.Promotion
-import ru.itis.tinkoff.project.entity.Review
+import ru.itis.tinkoff.project.data.response.*
+import ru.itis.tinkoff.project.entity.*
 
 class ResponseMapper {
     fun mapProductsResponseToProducts(productResponses: List<ProductResponse>): List<Product> {
@@ -73,6 +67,7 @@ class ResponseMapper {
             )
         }
     }
+
     fun mapReviewList(reviews: List<ReviewResponse>): List<Review> {
         return reviews.map { reviewResponse ->
             Review(
@@ -82,10 +77,13 @@ class ResponseMapper {
                 reviewResponse.date,
                 reviewResponse.disadvantages,
                 reviewResponse.experience,
-                reviewResponse.rating
+                reviewResponse.rating,
+                reviewResponse.profile.profileImg,
+                reviewResponse.profile.firstName + " " + reviewResponse.profile.secondName
             )
         }
     }
+
     fun mapCartResponseToCartInfo(cartResponse: CartResponse): CartInfo {
         return CartInfo(
             mapCartProductToCartProductList(cartResponse.products),

@@ -55,4 +55,10 @@
     <string name="advantages_title">Достоинства</string>
     <string name="disadvantages">Недостатки</string>
     <string name="comment_title">Комментарий</string>
+    <string name="confirm_title">Верификация</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="confirm_card_title">Отправьте код верификации, чтобы подтвердить почту</string>
+    <string name="confirm_code">Код</string>
+    <string name="no_valid_code">Введите верный код</string>
+    <string name="cheked_box_exception">Вы должны согласить с условиями</string>
 </resources>

@@ -23,4 +23,9 @@ interface TokenApi {
     suspend fun registerUser(
         @Body registrationRequest: RegistrationRequest
     )
+
+    @GET("confirm")
+    suspend fun confirm(
+        @Query("confirm_code") confirmRequest: String
+    )
 }

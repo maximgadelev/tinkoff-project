@@ -75,8 +75,8 @@ class EntityMapper {
                 review.disadvantages,
                 review.experience,
                 review.rating,
-                "https://slovnet.ru/wp-content/uploads/2019/08/1-63.jpg",
-                "Иван Иванов"
+                review.profileImage,
+                review.profileName
             )
         }
     }

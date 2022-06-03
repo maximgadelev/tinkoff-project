@@ -1,10 +1,8 @@
 package ru.itis.tinkoff.project.data
 
 import ru.itis.tinkoff.project.data.api.Api
-import ru.itis.tinkoff.project.data.response.CategoryResponse
-import ru.itis.tinkoff.project.data.response.ProductResponse
-import ru.itis.tinkoff.project.data.response.PromotionResponse
-import ru.itis.tinkoff.project.data.response.ReviewResponse
+import ru.itis.tinkoff.project.data.request.AddProductToCartRequest
+import ru.itis.tinkoff.project.data.response.*
 import ru.itis.tinkoff.project.entity.Category
 import ru.itis.tinkoff.project.entity.Profile
 

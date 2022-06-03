@@ -1,6 +1,8 @@
 package ru.itis.tinkoff.project.data.api
 
 import retrofit2.http.*
+import ru.itis.tinkoff.project.data.request.AddProductToCartRequest
+import ru.itis.tinkoff.project.data.response.CartResponse
 import ru.itis.tinkoff.project.data.response.ProductResponse
 import ru.itis.tinkoff.project.data.response.PromotionResponse
 import ru.itis.tinkoff.project.data.response.ReviewResponse

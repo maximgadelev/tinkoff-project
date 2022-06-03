@@ -1,7 +1,6 @@
 package ru.itis.tinkoff.project.features.reviewsPage.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -14,7 +13,7 @@ import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.itis.tinkoff.project.R
 import ru.itis.tinkoff.project.databinding.ReviewsPageFragmentBinding
-import ru.itis.tinkoff.project.features.ExceptionDialogFragment
+import ru.itis.tinkoff.project.features.common.utils.ExceptionDialogFragment
 import ru.itis.tinkoff.project.features.reviewsPage.ui.renderer.ReviewCardListRenderer
 import ru.itis.tinkoff.project.features.reviewsPage.utils.ReviewsItem
 
@@ -36,16 +35,15 @@ class ReviewsFragment : Fragment(R.layout.reviews_page_fragment) {
                 showDialog()
             }
         }
-            val id = arguments?.getInt("id")
-            val rating = arguments?.getDouble("rating")
-            if (rating != null) {
-                viewBinding.ratingBar.rating = rating.toFloat()
-                Log.e("123",rating.toString())
-                Log.e("123",id.toString())
-            }
-            id?.let { viewModel.onViewCreated(it) }
-            createReviewsList()
-            createMainInformation()
+        val id = arguments?.getInt("id")
+        val rating = arguments?.getDouble("rating")
+        if (rating != null) {
+            viewBinding.ratingBar.rating = rating.toFloat()
+            viewBinding.textViewRatingCount.text = rating.toFloat().toString() + "/5"
+        }
+        id?.let { viewModel.onViewCreated(it) }
+        createReviewsList()
+        createMainInformation()
     }
 
     private fun createReviewsList() {
@@ -60,7 +58,7 @@ class ReviewsFragment : Fragment(R.layout.reviews_page_fragment) {
             itemAdapter.differ.submitList(it)
         }.launchIn(lifecycleScope)
         viewModel.reviewsListSize.onEach {
-            viewBinding.textViewReviewsCount.text = it.toString() + "отзыв(а)"
+            viewBinding.textViewReviewsCount.text = "$it отзыв(а)"
         }.launchIn(lifecycleScope)
     }
 

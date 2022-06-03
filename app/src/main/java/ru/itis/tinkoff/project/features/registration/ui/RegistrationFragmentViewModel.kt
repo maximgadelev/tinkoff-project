@@ -29,7 +29,7 @@ class RegistrationFragmentViewModel(
                     phoneNumber,
                     password
                 )
-                eventChannel.send(Event.NavigateToAuthorizationEvent)
+                eventChannel.send(Event.NavigateToConfirmEvent)
             } catch (ex: Exception) {
                 eventChannel.send(Event.ExceptionEvent)
             }

@@ -37,10 +37,12 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
                 )
                 viewModel.eventFlow.onEach {
                     when (it) {
-                        Event.NavigateToAuthorizationEvent ->
-                            findNavController().navigate(R.id.action_registrationFragment_to_authorizationFragment)
-                        Event.ExceptionEvent ->
+                        Event.NavigateToConfirmEvent ->
+                            findNavController().navigate(R.id.action_registrationFragment_to_confirmFragment)
+                        Event.ExceptionEvent -> {
                             viewBinding.TextViewValid.visibility = View.VISIBLE
+                            viewBinding.TextViewValid.text = getString(R.string.reg_exception)
+                        }
                     }
                 }.launchIn(viewLifecycleOwner.lifecycleScope)
             }
@@ -58,7 +60,7 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
                 password
             ) || !registrationValidator.isValidNumber(number) || !registrationValidator.isValidName(
                 name
-            ) || !registrationValidator.isValidSurname(surname)
+            ) || !registrationValidator.isValidSurname(surname) || !viewBinding.CheckBoxRegistration.isChecked
         ) {
             if (!registrationValidator.isValidPassword(password)) {
                 viewBinding.EditTextRegistrationPassword.error =
@@ -79,6 +81,10 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
             if (!registrationValidator.isValidSurname(surname)) {
                 viewBinding.EditTextSurname.error =
                     getString(R.string.no_valid_surname)
+            }
+            if (!viewBinding.CheckBoxRegistration.isChecked) {
+                viewBinding.TextViewValid.text = getString(R.string.cheked_box_exception)
+                viewBinding.TextViewValid.visibility = View.VISIBLE
             }
             return false
         }
