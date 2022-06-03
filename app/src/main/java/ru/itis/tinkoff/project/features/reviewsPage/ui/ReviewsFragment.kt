@@ -42,6 +42,7 @@ class ReviewsFragment : Fragment(R.layout.reviews_page_fragment) {
             viewBinding.textViewRatingCount.text = rating.toFloat().toString() + "/5"
         }
         id?.let { viewModel.onViewCreated(it) }
+        id?.let { refreshFragment(it) }
         createReviewsList()
         createMainInformation()
     }
@@ -65,5 +66,12 @@ class ReviewsFragment : Fragment(R.layout.reviews_page_fragment) {
     private fun showDialog() {
         val dialog = ExceptionDialogFragment()
         dialog.show(parentFragmentManager, "dialog")
+    }
+
+    private fun refreshFragment(id: Int) {
+        viewBinding.refreshLayout.setOnRefreshListener {
+            viewModel.onViewCreated(id)
+            viewBinding.refreshLayout.isRefreshing = false
+        }
     }
 }

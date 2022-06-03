@@ -1,6 +1,5 @@
 package ru.itis.tinkoff.project.features.reviewsPage.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
@@ -12,7 +11,6 @@ import ru.itis.tinkoff.project.features.common.Event
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.reviewsPage.data.ReviewRepository
 import ru.itis.tinkoff.project.features.reviewsPage.utils.ReviewsItem
-import java.lang.Exception
 
 class ReviewsFragmentViewModel(
     private val reviewRepository: ReviewRepository,

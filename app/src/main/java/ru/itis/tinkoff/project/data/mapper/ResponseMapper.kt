@@ -78,8 +78,8 @@ class ResponseMapper {
                 reviewResponse.disadvantages,
                 reviewResponse.experience,
                 reviewResponse.rating,
-                reviewResponse.profile.profileImg,
-                reviewResponse.profile.firstName + " " + reviewResponse.profile.secondName
+                reviewResponse.profile.profileImg.toString(),
+                reviewResponse.profile.firstName + " " + reviewResponse.profile.lastName
             )
         }
     }

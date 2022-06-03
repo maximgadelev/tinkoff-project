@@ -4,15 +4,17 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ProfileInfoResponse(
-    @Json(name = "id")
-    val id: Int,
+data class ProfileResponse(
     @Json(name = "firstName")
     val firstName: String,
+    @Json(name = "id")
+    val id: Int,
     @Json(name = "lastName")
-    val secondName: String,
+    val lastName: String,
     @Json(name = "phoneNumber")
     val phoneNumber: String,
     @Json(name = "profileImg")
-    val profileImg: String
+    val profileImg: String?,
+    @Json(name = "role")
+    val role: String
 )

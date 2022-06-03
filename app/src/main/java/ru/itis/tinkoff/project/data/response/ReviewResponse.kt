@@ -20,5 +20,5 @@ data class ReviewResponse(
     @Json(name = "rating")
     val rating: Double,
     @Json(name = "user")
-    val profile: ProfileInfoResponse
+    val profile: ProfileResponse
 )
