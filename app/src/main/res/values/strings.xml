@@ -6,6 +6,15 @@
     <string name="favourites">Избранное</string>
     <string name="profile">Профиль</string>
     <string name="title">Выбор покупателей</string>
+    <string name="go_out">Выйти</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="go_to_option">Go to option</string>
+    <string name="option_icon">Option icon</string>
+    <string name="active_orders">Нет активных заказов</string>
+    <string name="cant_load_data">Невозможно загрузить данные</string>
+    <string name="my_orders">"Мои заказы"</string>
+    <string name="help">"Помощь"</string>
     <string name="to_cart">В корзину</string>
     <string name="Favorite">Избранное</string>
     <string name="number_of_products">%1$d товаров</string>
@@ -15,7 +24,6 @@
     <string name="discount">Скидка</string>
     <string name="total_price">Итоговая сумма</string>
     <string name="price_in_ruble">%1$d ₽</string>
-    <string name="quantity">%1$d товара(ов)</string>
     <string name="discount_in_ruble">-%1$d ₽</string>
     <string name="to_order_registration">Перейти к оформлению</string>
     <string name="server_blocked">Сервер недоступен</string>
@@ -33,8 +41,6 @@
     <string name="enter_fragment_title">Вход</string>
     <string name="registration_title">Регистрация</string>
     <string name="create_account_title">Создание аккаунта</string>
-    <string name="name">Имя</string>
-    <string name="surname">Фамилия</string>
     <string name="phone_number">Номер телефона</string>
     <string name="reg_exception">Пользователь с такой почтой или номером уже зарегистрирован</string>
     <string name="accept_the_rights">Я согласен на обработку моих персональных данных</string>

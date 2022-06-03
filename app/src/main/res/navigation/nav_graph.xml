@@ -59,8 +59,8 @@
         android:name="ru.itis.tinkoff.project.features.registration.ui.RegistrationFragment"
         android:label="RegistrationFragment" >
         <action
-            android:id="@+id/action_registrationFragment_to_confirmFragment"
-            app:destination="@id/confirmFragment" />
+            android:id="@+id/action_registrationFragment_to_authorizationFragment"
+            app:destination="@id/authorizationFragment" />
     </fragment>
     <fragment
         android:id="@+id/emptyProfileFragment"

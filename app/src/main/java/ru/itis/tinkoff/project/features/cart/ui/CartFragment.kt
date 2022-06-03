@@ -34,15 +34,15 @@ class CartFragment : Fragment(R.layout.cart_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createCartProductsList()
-        createCartMainInformation()
-        showOrHideLoading()
-        refreshFragment()
         lifecycleScope.launch {
             viewModel.eventFlow.collect {
                 showDialog()
             }
         }
+        createCartProductsList()
+        createCartMainInformation()
+        showOrHideLoading()
+        refreshFragment()
     }
 
     private fun createCartProductsList() {

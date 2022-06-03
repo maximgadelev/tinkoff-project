@@ -48,8 +48,7 @@ val appModule = module {
     viewModel<FavoritesViewModel> {
         FavoritesViewModel(
             favoritesRepository = get(),
-            get(),
-            entityMapper = get(),
+            entityMapper = get()
         )
     }
     viewModel<CartFragmentViewModel> {
@@ -60,7 +59,7 @@ val appModule = module {
     }
     viewModel<ProductPageViewModel> {
         ProductPageViewModel(
-            get(), get()
+            get()
         )
     }
     viewModel<AuthorizationViewModel> {
@@ -79,20 +78,21 @@ val appModule = module {
             get()
         )
     }
-    viewModel<ReviewsFragmentViewModel> {
-        ReviewsFragmentViewModel(
-            get(),
-            get()
-        )
-    }
-    viewModel<ConfirmViewModel> {
-        ConfirmViewModel(get())
-    }
 }
+viewModel<ReviewsFragmentViewModel> {
+    ReviewsFragmentViewModel(
+        get(),
+        get()
+    )
+}
+viewModel<ConfirmViewModel> {
+    ConfirmViewModel(get())
+}
+
 val dataModule = module {
-    single<ConfirmRepository>{ConfirmRepository(get())}
-    single<PromotionRepository> { PromotionRepository(get(), ResponseMapper()) }
+    single<ConfirmRepository>{ ConfirmRepository(get()) }
     single<ReviewRepository> { ReviewRepository(get(), ResponseMapper()) }
+    single<PromotionRepository> { PromotionRepository(get(), ResponseMapper()) }
     single<RegistrationRepository> { RegistrationRepository(get(), ResponseMapper()) }
     single<MenuRepository> { MenuRepository(api = get(), ResponseMapper()) }
     single<FavoritesRepository> { FavoritesRepository(api = get(), ResponseMapper()) }
@@ -120,9 +120,7 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         .addConverterFactory(MoshiConverterFactory.create()).build()
 }
 
-fun provideOkHttpClient(
-    authInterceptor: AuthInterceptor
-): OkHttpClient {
+fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
     return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
 }
 

@@ -45,7 +45,7 @@ class EntityMapper {
                 product.characteristic,
                 product.price.toString() + " ₽",
                 product.description,
-                product.companyName,
+                product.companyName
             )
         }
     }
