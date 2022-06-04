@@ -161,10 +161,11 @@
         app:layout_constraintStart_toStartOf="parent"
         android:indeterminateTint="@color/light_grey"
         android:visibility="visible" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:layout_width="match_parent"
-        android:layout_height="505dp"
         android:id="@+id/refreshLayout"
+        android:layout_width="400dp"
+        android:layout_height="387dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
