@@ -1,9 +1,7 @@
 package ru.itis.tinkoff.project.features.reviewsPage.ui.renderer
 
-import android.util.Log
 import coil.load
 import kotlinx.android.synthetic.main.item_review.view.*
-import kotlinx.android.synthetic.main.reviews_page_fragment.view.*
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
 

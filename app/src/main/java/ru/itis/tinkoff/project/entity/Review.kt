@@ -8,6 +8,6 @@ data class Review(
     val disadvantages: String,
     val experience: String,
     val rating: Double,
-    val profileImage:String,
-    val profileName:String
+    val profileImage: String,
+    val profileName: String
 )

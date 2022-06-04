@@ -1,9 +1,8 @@
 package ru.itis.tinkoff.project.features.reviewsPage.ui.renderer
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.item_reviews_card_recycler.view.*
-import kotlinx.android.synthetic.main.reviews_page_fragment.view.*
 import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
 import ru.haroncode.aquarius.core.diffutil.ComparableItem

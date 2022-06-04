@@ -1,6 +1,5 @@
 package ru.itis.tinkoff.project.features.productPage.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.BufferOverflow
@@ -39,8 +38,6 @@ class ProductPageViewModel(
                 _mainProduct.emit(product)
                 _item.value = list
                 _rating.value = product.rating
-                Log.e("123",product.rating.toString())
-                Log.e("123",_rating.value.toString())
                 _isLoading.value = false
             } catch (ex: Exception) {
                 _isLoading.value = false
