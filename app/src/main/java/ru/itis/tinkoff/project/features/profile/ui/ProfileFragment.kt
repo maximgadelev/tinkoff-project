@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -42,6 +43,23 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     private lateinit var alertDialog: AlertDialog
     private val REQUEST_CODE_LOAD = 1001
     private val REQUEST_CODE_TAKE_PHOTO = 1002
+    val photoLoadingPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()){
+            granted ->
+        when {
+            granted -> {
+                gallery.launch("")
+            }
+            !shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE) -> {
+                // доступ к камере запрещен, пользователь поставил галочку Don't ask again.
+            }
+            else -> {
+                // доступ к камере запрещен, пользователь отклонил запрос
+            }
+        }
+    }
+    val gallery = registerForActivityResult(ActivityResultContracts.GetContent()) {
+        loadWithCoil(it)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -74,10 +92,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         with(viewBinding) {
             tvName.text = profile.firstName
             tvSurname.text = profile.lastName
-            /*val avatarBitmap = BitmapFactory.decodeFile(profile.profileImg)
-            avatarBitmap?.also{
-                ivAvatar.setImageBitmap(it)
-            }*/
+            ivAvatar.load(profile.profileImg){
+                crossfade(true)
+                placeholder(R.drawable.user_photo_default)
+                error(R.drawable.user_photo_default)
+            }
         }
     }
 
@@ -114,10 +133,15 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
     private fun addAvatarByLoading() {
-        if (checkGalleryPermissions() == true) {
+       /* if (checkGalleryPermissions() == true) {
             chooseImageGallery()
         } else {
             requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),REQUEST_CODE_LOAD)
+        }*/
+        if (shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            // доступ к камере запрещен, нужно объяснить зачем нам требуется разрешение
+        } else {
+            photoLoadingPermission.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
     }
 
@@ -129,7 +153,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         }
     }
 
-    private fun checkGalleryPermissions(): Boolean? {
+    /*private fun checkGalleryPermissions(): Boolean? {
         activity?.apply{
             return ContextCompat.checkSelfPermission(
                 applicationContext,
@@ -140,7 +164,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             ) == PackageManager.PERMISSION_GRANTED
         }
         return false
-    }
+    }*/
 
     private fun checkCameraPermissions(): Boolean? {
         activity?.apply{
