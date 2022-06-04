@@ -43,7 +43,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewRegistration"
         android:layout_width="370dp"
-        android:layout_height="500dp"
+        android:layout_height="550dp"
         android:layout_marginTop="140dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
@@ -188,6 +188,30 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/TextInput_dateOfBirth"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="@string/date_of_birth"
+                app:boxCornerRadiusBottomEnd="18dp"
+                app:boxCornerRadiusBottomStart="18dp"
+                app:boxCornerRadiusTopEnd="18dp"
+                app:boxCornerRadiusTopStart="18dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:hintTextColor="@color/normal_grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/TextInput_registrationPassword">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/EditText_dateOfBirth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:id="@+id/TextView_valid"
                 android:layout_width="0dp"
@@ -196,15 +220,16 @@
                 android:text="@string/reg_exception"
                 android:textColor="@color/deep_orange"
                 android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="@+id/TextInput_registrationPassword"
-                app:layout_constraintStart_toStartOf="@+id/TextInput_registrationPassword"
-                app:layout_constraintTop_toBottomOf="@id/TextInput_registrationPassword" />
+                app:layout_constraintEnd_toEndOf="@+id/TextInput_dateOfBirth"
+                app:layout_constraintStart_toStartOf="@+id/TextInput_dateOfBirth"
+                app:layout_constraintTop_toBottomOf="@id/TextInput_dateOfBirth" />
 
             <CheckBox
                 android:id="@+id/CheckBox_registration"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:layout_marginTop="56dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="116dp"
                 android:buttonTint="@color/deep_orange"
                 android:scaleX="1.5"
                 android:scaleY="1.5"

@@ -3,10 +3,12 @@ package ru.itis.tinkoff.project.features.common.mapper
 import ru.itis.tinkoff.project.entity.CartProduct
 import ru.itis.tinkoff.project.entity.Product
 import ru.itis.tinkoff.project.entity.Promotion
+import ru.itis.tinkoff.project.entity.Review
 import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductListRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
+import ru.itis.tinkoff.project.features.reviewsPage.ui.renderer.ReviewCardListRenderer
 
 class EntityMapper {
 
@@ -43,7 +45,7 @@ class EntityMapper {
                 product.characteristic,
                 product.price.toString() + " ₽",
                 product.description,
-                product.companyName,
+                product.companyName
             )
         }
     }
@@ -59,6 +61,22 @@ class EntityMapper {
                 cartProduct.product.description,
                 cartProduct.product.companyName,
                 "x " + cartProduct.quantity.toString()
+            )
+        }
+    }
+
+    fun mapReviewsToReviewsItem(reviews: List<Review>): List<ReviewCardListRenderer.Review> {
+        return reviews.map { review ->
+            ReviewCardListRenderer.Review(
+                review.id,
+                review.advantages,
+                review.comment,
+                review.date,
+                review.disadvantages,
+                review.experience,
+                review.rating,
+                review.profileImage,
+                review.profileName
             )
         }
     }

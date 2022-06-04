@@ -33,4 +33,9 @@ class RegistrationValidator {
             number
         ).matches()
     }
+
+    fun isValidBirthDate(date: String): Boolean {
+        val birthPattern = "^(([0-2][0-9]|[3][0-1])\\.([0][1-9]|[1][0-2])\\.[1-2][0-9][0-9][0-9])\$"
+        return !TextUtils.isEmpty(date) && compile(birthPattern).matcher(date).matches()
+    }
 }

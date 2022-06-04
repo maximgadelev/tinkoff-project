@@ -16,6 +16,7 @@ class ResponseMapper {
                 productResponse.price.toBigDecimal(),
                 productResponse.description,
                 productResponse.brand,
+                productResponse.rating
             )
         }
     }
@@ -40,7 +41,8 @@ class ResponseMapper {
             mapCharacteristic(productResponse.characteristicResponse),
             productResponse.price.toBigDecimal(),
             productResponse.description,
-            productResponse.brand
+            productResponse.brand,
+            productResponse.rating
         )
     }
 
@@ -57,11 +59,27 @@ class ResponseMapper {
         }
     }
 
-    fun mapCharacteristic(characteristics: List<CharacteristicResponse>): List<Characteristic> {
+    private fun mapCharacteristic(characteristics: List<CharacteristicResponse>): List<Characteristic> {
         return characteristics.map { characteristicResponse ->
             Characteristic(
                 characteristicResponse.characteristic,
                 characteristicResponse.type
+            )
+        }
+    }
+
+    fun mapReviewList(reviews: List<ReviewResponse>): List<Review> {
+        return reviews.map { reviewResponse ->
+            Review(
+                reviewResponse.id,
+                reviewResponse.advantages,
+                reviewResponse.comment,
+                reviewResponse.date,
+                reviewResponse.disadvantages,
+                reviewResponse.experience,
+                reviewResponse.rating,
+                reviewResponse.profile.profileImg.toString(),
+                reviewResponse.profile.firstName + " " + reviewResponse.profile.lastName
             )
         }
     }
@@ -83,6 +101,10 @@ class ResponseMapper {
     }
 
     fun mapProfileResponseToProfile(profileResponse: ProfileResponse): Profile {
-        return Profile(profileResponse.firstName, profileResponse.lastName, profileResponse.profileImg)
+        return Profile(
+            profileResponse.firstName,
+            profileResponse.lastName,
+            profileResponse.profileImg
+        )
     }
 }

@@ -4,6 +4,7 @@ import ru.itis.tinkoff.project.data.api.TokenApi
 import ru.itis.tinkoff.project.data.mapper.ResponseMapper
 import ru.itis.tinkoff.project.data.request.RegistrationRequest
 
+@SuppressWarnings("LongParameterList")
 class RegistrationRepository(
     private val tokenApi: TokenApi,
     private val mapper: ResponseMapper
@@ -13,7 +14,8 @@ class RegistrationRepository(
         secondName: String,
         email: String,
         phoneNumber: String,
-        password: String
+        password: String,
+        dateOfBirth: String
     ) {
         tokenApi.registerUser(
             RegistrationRequest(
@@ -21,7 +23,8 @@ class RegistrationRepository(
                 secondName,
                 email,
                 phoneNumber,
-                password
+                password,
+                dateOfBirth
             )
         )
     }

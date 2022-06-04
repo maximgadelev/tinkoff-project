@@ -20,6 +20,8 @@ import ru.itis.tinkoff.project.features.authorization.ui.AuthorizationViewModel
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
+import ru.itis.tinkoff.project.features.confirm.data.ConfirmRepository
+import ru.itis.tinkoff.project.features.confirm.ui.ConfirmViewModel
 import ru.itis.tinkoff.project.features.favorites.data.FavoritesRepository
 import ru.itis.tinkoff.project.features.favorites.ui.FavoritesViewModel
 import ru.itis.tinkoff.project.features.main.data.MenuRepository
@@ -32,6 +34,8 @@ import ru.itis.tinkoff.project.features.promotionPage.data.PromotionRepository
 import ru.itis.tinkoff.project.features.promotionPage.ui.PromotionPageViewModel
 import ru.itis.tinkoff.project.features.registration.data.RegistrationRepository
 import ru.itis.tinkoff.project.features.registration.ui.RegistrationFragmentViewModel
+import ru.itis.tinkoff.project.features.reviewsPage.data.ReviewRepository
+import ru.itis.tinkoff.project.features.reviewsPage.ui.ReviewsFragmentViewModel
 import ru.itis.tinkoff.project.network.AuthInterceptor
 
 const val API_URL = "https://market-app-technokratos.herokuapp.com/"
@@ -52,8 +56,8 @@ val appModule = module {
     viewModel {
         FavoritesViewModel(
             favoritesRepository = get(),
-            get(),
             entityMapper = get(),
+            cartRepository = get()
         )
     }
     viewModel {
@@ -64,7 +68,8 @@ val appModule = module {
     }
     viewModel {
         ProductPageViewModel(
-            get(), get()
+            get(),
+            get()
         )
     }
     viewModel {
@@ -80,15 +85,27 @@ val appModule = module {
     viewModel {
         PromotionPageViewModel(
             get(),
+            get(),
             get()
         )
     }
+    viewModel {
+        ReviewsFragmentViewModel(
+            get(),
+            get()
+        )
+    }
+    viewModel {
+        ConfirmViewModel(get())
+    }
 }
 val dataModule = module {
+    single { ConfirmRepository(get()) }
+    single { ReviewRepository(get(), ResponseMapper()) }
     single { PromotionRepository(get(), ResponseMapper()) }
+    single<UserRepository> { UserRepositoryImpl(api = get(), ResponseMapper()) }
     single { RegistrationRepository(get(), ResponseMapper()) }
     single { MenuRepository(api = get(), ResponseMapper()) }
-    single<UserRepository> { UserRepositoryImpl(api = get(), ResponseMapper()) }
     single { FavoritesRepository(api = get(), ResponseMapper()) }
     single { CartRepository(api = get(), ResponseMapper()) }
     single { ProductPageRepository(get(), ResponseMapper()) }
@@ -114,9 +131,7 @@ fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         .addConverterFactory(MoshiConverterFactory.create()).build()
 }
 
-fun provideOkHttpClient(
-    authInterceptor: AuthInterceptor
-): OkHttpClient {
+fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
     return OkHttpClient().newBuilder().addInterceptor(authInterceptor).build()
 }
 

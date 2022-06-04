@@ -33,14 +33,17 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
                     viewBinding.EditTextSurname.text.toString(),
                     viewBinding.EditTextRegistrationEmail.text.toString(),
                     viewBinding.EditTextPhoneNumber.text.toString(),
-                    viewBinding.EditTextRegistrationPassword.text.toString()
+                    viewBinding.EditTextRegistrationPassword.text.toString(),
+                    viewBinding.EditTextDateOfBirth.text.toString()
                 )
                 viewModel.eventFlow.onEach {
                     when (it) {
-                        Event.NavigateToAuthorizationEvent ->
-                            findNavController().navigate(R.id.action_registrationFragment_to_authorizationFragment)
-                        Event.ExceptionEvent ->
+                        Event.NavigateToConfirmEvent ->
+                            findNavController().navigate(R.id.action_registrationFragment_to_confirmFragment)
+                        Event.ExceptionEvent -> {
                             viewBinding.TextViewValid.visibility = View.VISIBLE
+                            viewBinding.TextViewValid.text = getString(R.string.reg_exception)
+                        }
                     }
                 }.launchIn(viewLifecycleOwner.lifecycleScope)
             }
@@ -53,12 +56,15 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
         val email = viewBinding.EditTextRegistrationEmail.text.toString()
         val number = viewBinding.EditTextPhoneNumber.text.toString()
         val password = viewBinding.EditTextRegistrationPassword.text.toString()
-
+        val date = viewBinding.EditTextDateOfBirth.text.toString()
         if (!registrationValidator.isValidEmail(email) || !registrationValidator.isValidPassword(
                 password
             ) || !registrationValidator.isValidNumber(number) || !registrationValidator.isValidName(
                 name
-            ) || !registrationValidator.isValidSurname(surname)
+            ) || !registrationValidator.isValidSurname(surname) || !viewBinding.CheckBoxRegistration.isChecked ||
+            !registrationValidator.isValidBirthDate(
+                date
+            )
         ) {
             if (!registrationValidator.isValidPassword(password)) {
                 viewBinding.EditTextRegistrationPassword.error =
@@ -79,6 +85,13 @@ class RegistrationFragment : Fragment(R.layout.registration_fragment) {
             if (!registrationValidator.isValidSurname(surname)) {
                 viewBinding.EditTextSurname.error =
                     getString(R.string.no_valid_surname)
+            }
+            if (!viewBinding.CheckBoxRegistration.isChecked) {
+                viewBinding.TextViewValid.text = getString(R.string.cheked_box_exception)
+                viewBinding.TextViewValid.visibility = View.VISIBLE
+            }
+            if (!registrationValidator.isValidBirthDate(date)) {
+                viewBinding.EditTextDateOfBirth.error = getString(R.string.date_exception)
             }
             return false
         }

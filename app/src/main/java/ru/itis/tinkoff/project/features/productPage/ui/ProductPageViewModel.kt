@@ -22,6 +22,8 @@ class ProductPageViewModel(
     private val _mainProduct =
         MutableSharedFlow<Product>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     private val _isLoading = MutableStateFlow<Boolean>(false)
+    private val _rating = MutableStateFlow(0.0)
+    val rating = _rating.asStateFlow()
     val isLoading = _isLoading.asStateFlow()
     val item = _item.asStateFlow()
     val mainProduct = _mainProduct.asSharedFlow()
@@ -35,6 +37,7 @@ class ProductPageViewModel(
                 val list = itemProvider.getItems(product)
                 _mainProduct.emit(product)
                 _item.value = list
+                _rating.value = product.rating
                 _isLoading.value = false
             } catch (ex: Exception) {
                 _isLoading.value = false

@@ -49,6 +49,7 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
             viewBinding.recyclerViewImagesProductPage.adapter = itemAdapter
             viewBinding.textViewProductPagePrice.text =
                 getString(R.string.price_in_ruble, it.price.toInt())
+            onClickToReview(it.id, it.rating)
             viewBinding.textViewProductPagePriceSecond.text =
                 getString(R.string.price_in_ruble, it.price.toInt())
             viewBinding.textViewProductBrand.text = it.companyName
@@ -92,6 +93,15 @@ class ProductPageFragment : Fragment(R.layout.product_page_fragment) {
     private fun showDialog() {
         val dialog = ExceptionDialogFragment()
         dialog.show(parentFragmentManager, "dialog")
+    }
+
+    private fun onClickToReview(id: Int, rating: Double) {
+        val bundle = Bundle()
+        bundle.putInt("id", id)
+        bundle.putDouble("rating", rating)
+        viewBinding.buttonToFeedback.setOnClickListener {
+            findNavController().navigate(R.id.action_productPageFragment_to_reviewsFragment, bundle)
+        }
     }
 
     private fun onCreateButtonToCart(id: Int) {

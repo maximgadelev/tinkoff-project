@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Primula</string>
+    <string name="app_name">tinkoff-project</string>
     <string name="menu">Меню</string>
     <string name="catalog">Каталог</string>
     <string name="basket">Корзина</string>
@@ -24,7 +24,6 @@
     <string name="discount">Скидка</string>
     <string name="total_price">Итоговая сумма</string>
     <string name="price_in_ruble">%1$d ₽</string>
-    <string name="quantity">%1$d товара(ов)</string>
     <string name="discount_in_ruble">-%1$d ₽</string>
     <string name="to_order_registration">Перейти к оформлению</string>
     <string name="server_blocked">Сервер недоступен</string>
@@ -57,7 +56,17 @@
     <string name="no_valid_number">Номер не должен быть пустым,содержать 11 символов и начинаться с 7 или 8</string>
     <string name="no_valid_email">Email не должен быть пустым и быть в верном формате</string>
     <string name="no_valid_password">Пароль не должен быть пустым и содержать не менее 8 символов</string>
-    <string name="quantity_dialog_title">Введдите количество товара</string>
-    <string name="quantity_error">Введите положительное число</string>
-    <string name="in_cart">В корзине</string>
+    <string name="reviews_title">Отзывы</string>
+    <string name="review_experience_title">Опыт использования</string>
+    <string name="advantages_title">Достоинства</string>
+    <string name="disadvantages">Недостатки</string>
+    <string name="comment_title">Комментарий</string>
+    <string name="confirm_title">Верификация</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="confirm_card_title">Отправьте код верификации, чтобы подтвердить почту</string>
+    <string name="confirm_code">Код</string>
+    <string name="no_valid_code">Введите верный код</string>
+    <string name="cheked_box_exception">Вы должны согласить с условиями</string>
+    <string name="date_of_birth">Дата рождения</string>
+    <string name="date_exception">Дата должны быть в формате дд.мм.гггг</string>
 </resources>
