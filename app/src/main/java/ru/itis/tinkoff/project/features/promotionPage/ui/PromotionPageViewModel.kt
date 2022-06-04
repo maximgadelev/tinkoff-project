@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.common.Event
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.promotionPage.data.PromotionRepository
@@ -14,7 +15,8 @@ import ru.itis.tinkoff.project.features.promotionPage.utils.PromotionPageItem
 
 class PromotionPageViewModel(
     private val promotionPageRepository: PromotionRepository,
-    private val entityMapper: EntityMapper
+    private val entityMapper: EntityMapper,
+    private val cartRepository: CartRepository,
 ) : ViewModel() {
     private val eventChannel = Channel<Event>()
     private val _item = MutableStateFlow<List<PromotionPageItem>>(emptyList())
@@ -34,6 +36,16 @@ class PromotionPageViewModel(
                 _isLoading.value = false
             } catch (ex: Exception) {
                 _isLoading.value = false
+                eventChannel.send(Event.ExceptionEvent)
+            }
+        }
+    }
+
+    fun onAddProductToCart(id: Int, quality: Int) {
+        viewModelScope.launch {
+            try {
+                cartRepository.addProductToCart(id, quality)
+            } catch (ex: Exception) {
                 eventChannel.send(Event.ExceptionEvent)
             }
         }

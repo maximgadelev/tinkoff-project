@@ -2,6 +2,7 @@ package ru.itis.tinkoff.project.features.promotionPage.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -67,10 +68,26 @@ class PromotionPageFragment : Fragment(R.layout.promotion_page_fragment) {
     }
 
     private fun onClickButton(renderContract: ProductCardRenderer.RenderContract, view: View) {
-        val bundle = Bundle()
-        bundle.putInt("id", renderContract.id)
-        findNavController()
-            .navigate(R.id.action_promotionPageFragment_to_productPageFragment, bundle)
+        when (view.id) {
+            R.id.buttonToCardFavorite ->
+                view.visibility = View.GONE
+            R.id.imageButton_plusQuantity -> {
+            }
+            R.id.imageButton_minusQuantity -> {
+            }
+            R.id.textViewQuantity -> {
+                val quanityTextView = view as TextView
+                viewModel.onAddProductToCart(
+                    renderContract.id, quanityTextView.text.toString().toInt()
+                )
+            }
+            else -> {
+                val bundle = Bundle()
+                bundle.putInt("id", renderContract.id)
+                findNavController()
+                    .navigate(R.id.action_promotionPageFragment_to_productPageFragment, bundle)
+            }
+        }
     }
 
     private fun showOrHideLoading() {

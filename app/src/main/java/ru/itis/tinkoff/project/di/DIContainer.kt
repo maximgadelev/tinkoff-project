@@ -85,6 +85,7 @@ val appModule = module {
     viewModel {
         PromotionPageViewModel(
             get(),
+            get(),
             get()
         )
     }
