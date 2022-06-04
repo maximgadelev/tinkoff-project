@@ -24,6 +24,7 @@
     <string name="discount">Скидка</string>
     <string name="total_price">Итоговая сумма</string>
     <string name="price_in_ruble">%1$d ₽</string>
+    <string name="quantity">%1$d товара(ов)</string>
     <string name="discount_in_ruble">-%1$d ₽</string>
     <string name="to_order_registration">Перейти к оформлению</string>
     <string name="server_blocked">Сервер недоступен</string>
@@ -56,6 +57,17 @@
     <string name="no_valid_number">Номер не должен быть пустым,содержать 11 символов и начинаться с 7 или 8</string>
     <string name="no_valid_email">Email не должен быть пустым и быть в верном формате</string>
     <string name="no_valid_password">Пароль не должен быть пустым и содержать не менее 8 символов</string>
+    <string name="quantity_dialog_title">Введдите количество товара</string>
+    <string name="quantity_error">Введите положительное число</string>
+    <string name="in_cart">В корзине</string>
+    <string name="image_gallery_uri">image/*</string>
+    <string name="access_to_gallery_forbidden">Доступ к галерее запрещен</string>
+    <string name="access_to_camera_forbidden">Доступ к камере запрещен</string>
+    <string name="profile_photo_successfully_loaded">Фото профиля успешно изменено</string>
+    <string name="cancel">Отмена</string>
+    <string name="change_avatar">Изменить аватар профиля</string>
+    <string name="take_picture">Сделать фото</string>
+    <string name="load_from_device">Загрузить с устройства</string>
     <string name="reviews_title">Отзывы</string>
     <string name="review_experience_title">Опыт использования</string>
     <string name="advantages_title">Достоинства</string>
