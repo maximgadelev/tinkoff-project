@@ -37,32 +37,34 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             .build(DifferStrategies.withDiffUtilComparable())
     }
     private lateinit var alertDialog: AlertDialog
-    private val galleryLoadingPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()){
+    private val galleryLoadingPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
         when {
-            it -> {
-                galleryGetContent.launch(getString(R.string.image_gallery_uri))
-            }
+            it -> galleryGetContent.launch(getString(R.string.image_gallery_uri))
             else -> Toast.makeText(context, getString(R.string.access_to_gallery_forbidden), Toast.LENGTH_SHORT).show()
         }
     }
-    private val cameraLoadingPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()){
+    private val cameraLoadingPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
         when {
-            it -> {
-                cameraTakePicture.launch()
-            }
+            it -> cameraTakePicture.launch()
             else -> Toast.makeText(context, getString(R.string.access_to_camera_forbidden), Toast.LENGTH_SHORT).show()
         }
     }
-    private val cameraTakePicture = registerForActivityResult(ActivityResultContracts.TakePicturePreview()){
-            bitmap:Bitmap? -> bitmap?.let{
+    private val cameraTakePicture = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) {
+            bitmap: Bitmap? -> bitmap?.let {
                 viewBinding.ivAvatar.setImageBitmap(bitmap)
-                Toast.makeText(context, getString(R.string.profile_photo_successfully_loaded), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    getString(R.string.profile_photo_successfully_loaded),
+                    Toast.LENGTH_SHORT).show()
             }
     }
     private val galleryGetContent = registerForActivityResult(ActivityResultContracts.GetContent()) {
-            uri:Uri? -> uri?.let {
+            uri: Uri? -> uri?.let {
                 loadWithCoil(it)
-                Toast.makeText(context, getString(R.string.profile_photo_successfully_loaded), Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    context,
+                    getString(R.string.profile_photo_successfully_loaded),
+                    Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -97,7 +99,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         with(viewBinding) {
             tvName.text = profile.firstName
             tvSurname.text = profile.lastName
-            ivAvatar.load(profile.profileImg){
+            ivAvatar.load(profile.profileImg) {
                 crossfade(true)
                 placeholder(R.drawable.user_photo_default)
                 error(R.drawable.user_photo_default)
@@ -119,10 +121,13 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
 
     private fun showAlert() {
         val builder = AlertDialog.Builder(context)
-        val optionsForLoading = arrayOf<CharSequence>(getString(R.string.take_picture),getString(R.string.load_from_device))
+        val optionsForLoading = arrayOf<CharSequence>(
+            getString(R.string.take_picture),
+            getString(R.string.load_from_device)
+        )
         builder
             .setTitle(getString(R.string.change_avatar))
-            .setItems(optionsForLoading){_, which->
+            .setItems(optionsForLoading) {_, which ->
                 if (which == 0) {
                     addAvatarByTakingPhoto()
                 }
@@ -130,11 +135,11 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                     addAvatarByLoading()
                 }
             }
-            .setNegativeButton(getString(R.string.cancel)){dialog, _->
+            .setNegativeButton(getString(R.string.cancel)) {dialog, _ ->
                 dialog.cancel()
             }
             .show()
-        alertDialog= builder.create()
+        alertDialog = builder.create()
     }
 
     private fun addAvatarByLoading() {
@@ -146,8 +151,8 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
     private fun loadWithCoil(imageRoute: Uri) {
-        with(viewBinding){
-            ivAvatar.load(imageRoute){
+        with(viewBinding) {
+            ivAvatar.load(imageRoute) {
                 crossfade(true)
                 placeholder(R.drawable.user_photo_default)
                 error(R.drawable.user_photo_default)
