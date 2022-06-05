@@ -78,8 +78,8 @@ class EntityMapper {
             )
         }
     }
-    fun mapCategoryToCatalogListItem(categories : List<Category>): List<CatalogRenderer.Category> {
-        return categories.map {  category ->
+    fun mapCategoryToCatalogListItem(categories: List<Category>): List<CatalogRenderer.Category> {
+        return categories.map { category ->
             CatalogRenderer.Category(
                 category.name,
                 category.photo
