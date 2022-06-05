@@ -25,7 +25,7 @@
         android:id="@+id/sv_catalog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:queryHint="@string/search_bar_hint"
+        app:queryHint="@string/products_search"
         android:textColorHint="@color/black"
         android:background="@drawable/light_grey_round_corners_shape"
         app:layout_constraintTop_toTopOf="parent"
