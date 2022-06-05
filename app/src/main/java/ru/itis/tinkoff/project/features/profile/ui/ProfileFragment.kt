@@ -127,7 +127,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
         )
         builder
             .setTitle(getString(R.string.change_avatar))
-            .setItems(optionsForLoading) {_, which ->
+            .setItems(optionsForLoading) { _, which ->
                 if (which == 0) {
                     addAvatarByTakingPhoto()
                 }
@@ -135,7 +135,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                     addAvatarByLoading()
                 }
             }
-            .setNegativeButton(getString(R.string.cancel)) {dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.cancel()
             }
             .show()
