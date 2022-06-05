@@ -15,12 +15,12 @@ import ru.itis.tinkoff.project.R
 class CatalogRenderer<Item> : ItemBaseRenderer<Item, CatalogRenderer.RenderContract>(), ClickableRenderer {
 
     interface RenderContract {
-        val categories : List<Category>
+        val categories: List<Category>
     }
 
     data class Category(
-        override val name : String,
-        override val icon : String
+        override val name: String,
+        override val icon: String
     ) : CategoryRenderer.RenderContract, ComparableItem
 
     private val itemAdapter by lazy {

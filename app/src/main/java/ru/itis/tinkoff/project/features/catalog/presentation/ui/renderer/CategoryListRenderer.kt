@@ -8,7 +8,8 @@ import ru.haroncode.aquarius.core.clicker.ClickableRenderer
 import ru.haroncode.aquarius.core.renderer.ItemBaseRenderer
 import ru.itis.tinkoff.project.R
 
-class CategoryListRenderer<Item> : ItemBaseRenderer<Item, CategoryListRenderer.RenderContract>(), ClickableRenderer {
+class CategoryListRenderer<Item> : ItemBaseRenderer<Item, CategoryListRenderer.RenderContract>(),
+    ClickableRenderer {
 
     interface RenderContract {
         val title: String

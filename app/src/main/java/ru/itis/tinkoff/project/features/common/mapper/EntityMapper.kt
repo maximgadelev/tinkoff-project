@@ -1,10 +1,8 @@
 package ru.itis.tinkoff.project.features.common.mapper
 
-import ru.itis.tinkoff.project.entity.CartProduct
-import ru.itis.tinkoff.project.entity.Product
-import ru.itis.tinkoff.project.entity.Promotion
-import ru.itis.tinkoff.project.entity.Review
+import ru.itis.tinkoff.project.entity.*
 import ru.itis.tinkoff.project.features.cart.ui.renderer.CartProductListRenderer
+import ru.itis.tinkoff.project.features.catalog.presentation.ui.renderer.CatalogRenderer
 import ru.itis.tinkoff.project.features.common.renderer.ProductCardListRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.CarouselRenderer
 import ru.itis.tinkoff.project.features.main.ui.renderer.SnapRenderer
@@ -77,6 +75,14 @@ class EntityMapper {
                 review.rating,
                 review.profileImage,
                 review.profileName
+            )
+        }
+    }
+    fun mapCategoryToCatalogListItem(categories : List<Category>): List<CatalogRenderer.Category> {
+        return categories.map {  category ->
+            CatalogRenderer.Category(
+                category.name,
+                category.photo
             )
         }
     }

@@ -7,15 +7,15 @@ import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import ru.haroncode.aquarius.core.RenderAdapterBuilder
-import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
-import ru.itis.tinkoff.project.R
-import ru.itis.tinkoff.project.features.catalog.presentation.ui.renderer.CategoryRenderer
-import ru.itis.tinkoff.project.features.catalog.presentation.ui.viewModel.CategoryViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import ru.haroncode.aquarius.core.base.strategies.DifferStrategies
+import ru.haroncode.aquarius.core.RenderAdapterBuilder
 import ru.itis.tinkoff.project.databinding.CatalogFragmentBinding
 import ru.itis.tinkoff.project.features.catalog.presentation.ui.renderer.CatalogRenderer
+import ru.itis.tinkoff.project.features.catalog.presentation.ui.renderer.CategoryRenderer
+import ru.itis.tinkoff.project.features.catalog.presentation.ui.viewModel.CategoryViewModel
 import ru.itis.tinkoff.project.features.catalog.utils.CatalogListItem
+import ru.itis.tinkoff.project.R
 
 class CatalogFragment : Fragment(R.layout.catalog_fragment) {
 
@@ -43,5 +43,3 @@ class CatalogFragment : Fragment(R.layout.catalog_fragment) {
         }
     }
 }
-
-
