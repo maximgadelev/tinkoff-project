@@ -36,7 +36,6 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
             .renderer(ProfileOptionItem::class, ProfileOptionListRenderer())
             .build(DifferStrategies.withDiffUtilComparable())
     }
-    private lateinit var alertDialog: AlertDialog
     private val galleryLoadingPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
         when {
             it -> galleryGetContent.launch(getString(R.string.image_gallery_uri))
@@ -139,7 +138,7 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
                 dialog.cancel()
             }
             .show()
-        alertDialog = builder.create()
+        builder.create()
     }
 
     private fun addAvatarByLoading() {
