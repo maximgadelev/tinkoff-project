@@ -39,8 +39,8 @@
                     android:layout_height="match_parent"
                     android:src="@drawable/user_photo_default"
                     android:scaleType="centerCrop">
-
                 </ImageView>
+
             </androidx.cardview.widget.CardView>
 
             <TextView
