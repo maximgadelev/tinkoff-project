@@ -13,10 +13,6 @@ android {
         viewBinding true
         dataBinding true
     }
-
-    lintOptions {
-        checkReleaseBuilds false
-    }
     defaultConfig {
         applicationId "ru.itis.tinkoff.project"
         minSdk 26
