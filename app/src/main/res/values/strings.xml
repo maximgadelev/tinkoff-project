@@ -81,4 +81,6 @@
     <string name="cheked_box_exception">Вы должны согласить с условиями</string>
     <string name="date_of_birth">Дата рождения</string>
     <string name="date_exception">Дата должны быть в формате дд.мм.гггг</string>
+    <string name="product_name">Продукт</string>
+    <string name="producer">Производитель</string>
 </resources>

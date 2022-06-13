@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="160dp"
+    android:layout_height="280dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/white_round_corners_shape"
+    android:elevation="@dimen/elevation_size"
+    android:translationZ="@dimen/elevation_size"
+    android:layout_marginEnd="@dimen/spacing_smallest"
+    android:layout_marginBottom="@dimen/spacing_smallest">
+    
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_product"
+        android:layout_width="match_parent"
+        android:layout_height="152dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/spacing_smallest"
+        android:layout_marginStart="@dimen/spacing_smallest"
+        android:layout_marginEnd="@dimen/spacing_smallest"
+        android:background="@color/purple_200"
+        />
+
+    <TextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        app:layout_constraintTop_toBottomOf="@+id/iv_product"
+        android:layout_marginTop="@dimen/spacing_smallest"
+        android:layout_marginStart="@dimen/spacing_smallest"
+        android:layout_marginEnd="@dimen/spacing_smallest"
+        style="TextStyleMedium.LargeTextBlack"
+        android:text="@string/product_name"/>
+
+    <TextView
+        android:id="@+id/producer"
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
+        style="@style/TextStyleMedium.LargeTextGrey"
+        android:text="@string/producer"
+        android:layout_marginEnd="@dimen/spacing_smallest"
+        android:layout_marginStart="@dimen/spacing_smallest"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/producer"
+        app:layout_constraintStart_toStartOf="@+id/producer"
+        android:text="34 000"
+        style="@style/TextStyleMedium.LargeTextOrange"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
