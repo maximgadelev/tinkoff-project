@@ -3,11 +3,10 @@ package ru.itis.tinkoff.project.data.api
 import retrofit2.http.*
 import ru.itis.tinkoff.project.data.request.AddProductToCartRequest
 import ru.itis.tinkoff.project.data.response.*
-import ru.itis.tinkoff.project.entity.Category
 
 interface Api {
     @GET("categories")
-    suspend fun getCategories(): List<Category>
+    suspend fun getCategories(): List<CategoryResponse>
 
     @GET("products")
     suspend fun getProducts(): List<ProductResponse>

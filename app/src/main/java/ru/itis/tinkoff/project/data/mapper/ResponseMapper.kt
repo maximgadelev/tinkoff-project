@@ -107,4 +107,10 @@ class ResponseMapper {
             profileResponse.profileImg
         )
     }
+
+    fun mapCategoriesResponseListToCategoryList(list: List<CategoryResponse>): List<Category> {
+        return list.map { categoryResponse ->
+            Category(categoryResponse.id, categoryResponse.name)
+        }
+    }
 }
