@@ -25,6 +25,7 @@ class CategoryRenderer<Item> : ItemBaseRenderer<Item, CategoryRenderer.RenderCon
 
     override fun onBindView(viewHolder: BaseViewHolder, item: RenderContract) {
         viewHolder.itemView.iv_icon_category.load(item.image)
+        viewHolder.itemView.tv_category_title.text = item.name
     }
 
     override val layoutRes: Int

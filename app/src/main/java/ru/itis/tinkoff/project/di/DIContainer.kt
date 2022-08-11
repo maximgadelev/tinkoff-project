@@ -19,6 +19,8 @@ import ru.itis.tinkoff.project.domain.repositories.UserRepository
 import ru.itis.tinkoff.project.features.authorization.ui.AuthorizationViewModel
 import ru.itis.tinkoff.project.features.cart.data.CartRepository
 import ru.itis.tinkoff.project.features.cart.ui.CartFragmentViewModel
+import ru.itis.tinkoff.project.features.catalog.data.CatalogRepository
+import ru.itis.tinkoff.project.features.catalog.ui.CatalogViewModel
 import ru.itis.tinkoff.project.features.common.mapper.EntityMapper
 import ru.itis.tinkoff.project.features.confirm.data.ConfirmRepository
 import ru.itis.tinkoff.project.features.confirm.ui.ConfirmViewModel
@@ -98,6 +100,9 @@ val appModule = module {
     viewModel {
         ConfirmViewModel(get())
     }
+    viewModel {
+        CatalogViewModel(get(), get())
+    }
 }
 val dataModule = module {
     single { ConfirmRepository(get()) }
@@ -109,6 +114,7 @@ val dataModule = module {
     single { FavoritesRepository(api = get(), ResponseMapper()) }
     single { CartRepository(api = get(), ResponseMapper()) }
     single { ProductPageRepository(get(), ResponseMapper()) }
+    single { CatalogRepository(get(), ResponseMapper()) }
     single {
         TokenRepository(
             tokenApi = get(), PreferenceManager(
