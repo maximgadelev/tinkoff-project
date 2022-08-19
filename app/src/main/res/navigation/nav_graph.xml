@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/catalog"
-        android:name="ru.itis.tinkoff.project.features.catalog.CatalogFragment"
+        android:name="ru.itis.tinkoff.project.features.catalog.ui.CatalogFragment"
         android:label="CatalogFragment" />
     <fragment
         android:id="@+id/cart"
